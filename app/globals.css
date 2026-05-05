@@ -43,6 +43,12 @@
     font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
   }
 
+  @media (hover: hover) and (pointer: fine) {
+    body, a, button, input, textarea, label, [role="button"] {
+      cursor: none;
+    }
+  }
+
   ::selection {
     background: #EB0A1E;
     color: #ffffff;
