@@ -5,14 +5,44 @@ import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber";
 import { Html, Float, ContactShadows, Environment } from "@react-three/drei";
 import * as THREE from "three";
 
-type HotspotKey = "pc" | "legos" | "gundam" | "toyota" | "phone";
+export type HotspotKey = "pc" | "legos" | "gundam" | "toyota" | "phone";
 
-const labels: Record<HotspotKey, { title: string; sub: string }> = {
+export const HOTSPOT_LABELS: Record<HotspotKey, { title: string; sub: string }> = {
   pc: { title: "PC", sub: "Projects" },
   legos: { title: "Legos", sub: "Current Work" },
   gundam: { title: "Gundam", sub: "Builds · Instagram" },
   toyota: { title: "Toyota", sub: "About" },
   phone: { title: "Phone", sub: "Contact" },
+};
+
+const labels = HOTSPOT_LABELS;
+
+const OVERVIEW_CAMERA = {
+  pos: new THREE.Vector3(4, 3.4, 5),
+  target: new THREE.Vector3(0, 0.5, 0),
+};
+
+const FOCUS_CAMERA: Record<HotspotKey, { pos: THREE.Vector3; target: THREE.Vector3 }> = {
+  pc: {
+    pos: new THREE.Vector3(-0.2, 1.4, 1.6),
+    target: new THREE.Vector3(-1.1, 0.95, -0.8),
+  },
+  toyota: {
+    pos: new THREE.Vector3(3.2, 1.1, 2.5),
+    target: new THREE.Vector3(1.6, 0.4, 0.8),
+  },
+  gundam: {
+    pos: new THREE.Vector3(1.8, 1.2, 0.5),
+    target: new THREE.Vector3(0.4, 0.7, -1.2),
+  },
+  legos: {
+    pos: new THREE.Vector3(-0.4, 1.1, 2.6),
+    target: new THREE.Vector3(-1.6, 0.25, 1.2),
+  },
+  phone: {
+    pos: new THREE.Vector3(2.2, 1.6, 1.6),
+    target: new THREE.Vector3(0.95, 0.93, 0.05),
+  },
 };
 
 function Hotspot({
@@ -367,20 +397,32 @@ function Floor() {
   );
 }
 
-function CameraRig() {
+const _targetVec = new THREE.Vector3();
+const _lookVec = new THREE.Vector3();
+
+function CameraRig({ focused }: { focused: HotspotKey | null }) {
   useFrame((state) => {
     const { x, y } = state.pointer;
-    state.camera.position.x = THREE.MathUtils.lerp(
-      state.camera.position.x,
-      4 + x * 0.6,
-      0.04
-    );
-    state.camera.position.y = THREE.MathUtils.lerp(
-      state.camera.position.y,
-      3.4 + y * 0.3,
-      0.04
-    );
-    state.camera.lookAt(0, 0.5, 0);
+    const ease = focused ? 0.06 : 0.05;
+
+    if (focused) {
+      const cam = FOCUS_CAMERA[focused];
+      _targetVec.copy(cam.pos).add(new THREE.Vector3(x * 0.18, y * 0.12, 0));
+      _lookVec.copy(cam.target);
+    } else {
+      _targetVec
+        .copy(OVERVIEW_CAMERA.pos)
+        .add(new THREE.Vector3(x * 0.6, y * 0.3, 0));
+      _lookVec.copy(OVERVIEW_CAMERA.target);
+    }
+
+    state.camera.position.lerp(_targetVec, ease);
+
+    const currentLook = new THREE.Vector3();
+    state.camera.getWorldDirection(currentLook);
+    const targetDir = _lookVec.clone().sub(state.camera.position).normalize();
+    const eased = currentLook.lerp(targetDir, ease * 1.4).normalize();
+    state.camera.lookAt(state.camera.position.clone().add(eased));
   });
   return null;
 }
@@ -393,10 +435,13 @@ type ScenePropsBase = {
 
 export default function RoomScene({
   onSelect,
+  focused,
 }: {
   onSelect?: (k: HotspotKey) => void;
+  focused?: HotspotKey | null;
 }) {
   const [hovered, setHovered] = useState<HotspotKey | null>(null);
+  const activeFocus = focused ?? null;
 
   return (
     <Canvas
@@ -442,7 +487,7 @@ export default function RoomScene({
           far={4}
         />
         <Environment preset="warehouse" />
-        <CameraRig />
+        <CameraRig focused={activeFocus} />
       </Suspense>
     </Canvas>
   );
