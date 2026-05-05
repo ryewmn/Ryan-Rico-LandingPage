@@ -2,7 +2,7 @@
 
 import { Suspense, useRef, useState } from "react";
 import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber";
-import { Html, Float, ContactShadows, Environment } from "@react-three/drei";
+import { Html, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTFModel } from "@/components/gltf-model";
 
@@ -865,55 +865,64 @@ export default function RoomScene({
 
   return (
     <Canvas
-      shadows
-      dpr={[1, 2]}
+      shadows="basic"
+      dpr={[1, 1.5]}
       camera={{ position: [4, 3.4, 5], fov: 38 }}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+      gl={{
+        antialias: false,
+        alpha: true,
+        powerPreference: "high-performance",
+        stencil: false,
+      }}
+      performance={{ min: 0.5 }}
       className="!absolute inset-0"
     >
       <Suspense fallback={null}>
         <color attach="background" args={["#0a0a0a"]} />
         <fog attach="fog" args={["#0a0a0a", 8, 18]} />
 
-        <ambientLight intensity={0.35} />
+        <ambientLight intensity={0.55} />
         <directionalLight
           position={[4, 6, 3]}
-          intensity={1.2}
+          intensity={1.4}
           castShadow
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
+          shadow-mapSize-width={512}
+          shadow-mapSize-height={512}
+          shadow-camera-near={1}
+          shadow-camera-far={12}
+          shadow-camera-left={-4}
+          shadow-camera-right={4}
+          shadow-camera-top={4}
+          shadow-camera-bottom={-4}
         />
-        <pointLight position={[-3, 2, 2]} intensity={20} color="#EB0A1E" distance={8} />
-        <pointLight position={[3, 2, -2]} intensity={22} color="#FF6B1A" distance={9} />
+        <pointLight position={[-3, 2, 2]} intensity={18} color="#EB0A1E" distance={7} />
+        <pointLight position={[3, 2, -2]} intensity={20} color="#FF6B1A" distance={8} />
 
-        <Float speed={0.4} floatIntensity={0.08} rotationIntensity={0}>
-          <group>
-            <Floor />
-            <Desk />
-            <PCMonitor hovered={hovered} setHovered={setHovered} onSelect={onSelect} />
-            <ToyotaCar hovered={hovered} setHovered={setHovered} onSelect={onSelect} />
-            <GundamFigure hovered={hovered} setHovered={setHovered} onSelect={onSelect} />
-            <LegoPile hovered={hovered} setHovered={setHovered} onSelect={onSelect} />
-            <Phone hovered={hovered} setHovered={setHovered} onSelect={onSelect} />
+        <group>
+          <Floor />
+          <Desk />
+          <PCMonitor hovered={hovered} setHovered={setHovered} onSelect={onSelect} />
+          <ToyotaCar hovered={hovered} setHovered={setHovered} onSelect={onSelect} />
+          <GundamFigure hovered={hovered} setHovered={setHovered} onSelect={onSelect} />
+          <LegoPile hovered={hovered} setHovered={setHovered} onSelect={onSelect} />
+          <Phone hovered={hovered} setHovered={setHovered} onSelect={onSelect} />
 
-            {/* Real .glb decoration: a stylized toy car on the desk.
-                Source: Khronos glTF Sample Assets (CC-BY 4.0 / public). */}
-            <Suspense fallback={null}>
-              <group position={[-0.4, 0.43, 0.4]} rotation={[0, 0.6, 0]}>
-                <GLTFModel src="/models/toycar.glb" scale={4.5} />
-              </group>
-            </Suspense>
-          </group>
-        </Float>
+          {/* CC-BY Khronos sample: ToyCar.glb decoration on the desk. */}
+          <Suspense fallback={null}>
+            <group position={[-0.4, 0.43, 0.4]} rotation={[0, 0.6, 0]}>
+              <GLTFModel src="/models/toycar.glb" scale={4.5} />
+            </group>
+          </Suspense>
+        </group>
 
         <ContactShadows
           position={[0, 0.001, 0]}
-          opacity={0.55}
-          scale={10}
-          blur={2.5}
-          far={4}
+          opacity={0.5}
+          scale={9}
+          blur={2}
+          far={3}
+          frames={1}
         />
-        <Environment preset="warehouse" />
         <CameraRig focused={activeFocus} />
       </Suspense>
     </Canvas>

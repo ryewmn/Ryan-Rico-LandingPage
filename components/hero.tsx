@@ -5,18 +5,12 @@ import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
-  Blocks,
-  Car,
   ChevronDown,
-  Cpu,
   Github,
   Instagram,
   Linkedin,
   MapPin,
-  PhoneCall,
-  Wrench,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/magnetic";
 import type { HotspotKey } from "@/components/room-scene";
@@ -34,14 +28,6 @@ const RoomScene = dynamic(() => import("@/components/room-scene"), {
     </div>
   ),
 });
-
-const minimap: { key: HotspotKey; icon: LucideIcon; label: string }[] = [
-  { key: "pc", icon: Cpu, label: "PC" },
-  { key: "legos", icon: Blocks, label: "Legos" },
-  { key: "gundam", icon: Wrench, label: "Gundam" },
-  { key: "toyota", icon: Car, label: "Toyota" },
-  { key: "phone", icon: PhoneCall, label: "Phone" },
-];
 
 export function Hero() {
   const [is3DReady, setIs3DReady] = useState(false);
@@ -300,49 +286,6 @@ export function Hero() {
           </div>
         </motion.div>
       </div>
-
-      {/* Minimap nav (desktop, always visible after first focus) */}
-      {isDesktop ? (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.0 }}
-          className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-24 z-20"
-        >
-          <div className="pointer-events-auto flex items-center gap-1.5 rounded-full border border-white/10 bg-neutral-950/70 backdrop-blur px-2 py-2 shadow-2xl">
-            {minimap.map((m) => {
-              const Icon = m.icon;
-              const isActive = focused === m.key;
-              return (
-                <button
-                  key={m.key}
-                  onClick={() => setFocused(m.key)}
-                  aria-label={`Focus on ${m.label}`}
-                  className={`group relative inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
-                    isActive
-                      ? "bg-ember text-white"
-                      : "text-white/60 hover:bg-white/10 hover:text-white"
-                  }`}
-                >
-                  <Icon size={15} />
-                  <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-white/10 bg-neutral-950/90 px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                    {m.label}
-                  </span>
-                </button>
-              );
-            })}
-            <div className="mx-1 h-5 w-px bg-white/10" />
-            <button
-              onClick={closeFocus}
-              disabled={!focused}
-              aria-label="Back to overview"
-              className="inline-flex h-9 px-3 items-center justify-center gap-1.5 rounded-full text-[10px] font-mono uppercase tracking-wider text-white/60 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:hover:bg-transparent disabled:cursor-not-allowed"
-            >
-              Overview
-            </button>
-          </div>
-        </motion.div>
-      ) : null}
 
       {/* Content panel overlay */}
       {isDesktop ? (
