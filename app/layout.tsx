@@ -1,7 +1,18 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Instrument_Serif } from "next/font/google";
+import { SmoothScroll } from "@/components/smooth-scroll";
+import { Cursor } from "@/components/cursor";
 import "./globals.css";
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Ryan Rico | BDC Sales & Software",
@@ -10,10 +21,8 @@ export const metadata: Metadata = {
   keywords: [
     "Ryan Rico",
     "Round Rock Toyota",
-    "Vehicle Acquisition",
-    "Retail Retention",
-    "Lease Retention",
     "BDC Sales",
+    "Internet Sales",
     "Automotive Software",
     "Dealership AI",
   ],
@@ -34,9 +43,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable}`}
     >
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <SmoothScroll />
+        <Cursor />
+        {children}
+      </body>
     </html>
   );
 }

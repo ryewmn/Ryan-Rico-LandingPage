@@ -1,10 +1,12 @@
 "use client";
 
+import { useRef } from "react";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail, MapPin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Magnetic } from "@/components/magnetic";
 
 const HeroScene = dynamic(() => import("@/components/hero-scene"), {
   ssr: false,
@@ -16,15 +18,25 @@ const HeroScene = dynamic(() => import("@/components/hero-scene"), {
 });
 
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const yText = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const yScene = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
+
   return (
-    <section className="relative isolate overflow-hidden bg-neutral-950 text-white">
-      {/* background grid */}
+    <section
+      ref={ref}
+      className="relative isolate overflow-hidden bg-neutral-950 text-white"
+    >
       <div
         className="absolute inset-0 grid-bg opacity-60 mask-fade-b pointer-events-none"
         aria-hidden="true"
       />
-
-      {/* red glow */}
       <div
         className="absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[900px] rounded-full bg-toyota-red/20 blur-[160px] pointer-events-none"
         aria-hidden="true"
@@ -34,9 +46,12 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      <div className="container relative pt-36 md:pt-44 pb-24 md:pb-32">
+      <motion.div
+        style={{ opacity }}
+        className="container relative pt-36 md:pt-44 pb-24 md:pb-32"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7">
+          <motion.div style={{ y: yText }} className="lg:col-span-7">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -52,11 +67,11 @@ export function Hero() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.05 }}
-              className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance leading-[1.05]"
+              className="mt-6 text-5xl sm:text-6xl md:text-7xl lg:text-[88px] font-bold tracking-tight text-balance leading-[1.02]"
             >
               Building the systems
               <br />
-              <span className="bg-gradient-to-r from-white via-white to-neutral-400 bg-clip-text text-transparent">
+              <span className="font-display italic font-normal bg-gradient-to-r from-white via-white to-neutral-400 bg-clip-text text-transparent">
                 behind the showroom.
               </span>
             </motion.h1>
@@ -76,17 +91,21 @@ export function Hero() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.25 }}
-              className="mt-10 flex flex-wrap items-center gap-3"
+              className="mt-10 flex flex-wrap items-center gap-4"
             >
-              <Button asChild size="lg">
-                <a href="#contact">
-                  Let&apos;s connect
-                  <ArrowRight size={18} />
-                </a>
-              </Button>
-              <Button asChild variant="outline-light" size="lg">
-                <a href="#projects">See projects</a>
-              </Button>
+              <Magnetic>
+                <Button asChild size="lg">
+                  <a href="#contact">
+                    Let&apos;s connect
+                    <ArrowRight size={18} />
+                  </a>
+                </Button>
+              </Magnetic>
+              <Magnetic strength={0.25}>
+                <Button asChild variant="outline-light" size="lg">
+                  <a href="#projects">See projects</a>
+                </Button>
+              </Magnetic>
             </motion.div>
 
             <motion.ul
@@ -134,9 +153,10 @@ export function Hero() {
                 </a>
               </li>
             </motion.ul>
-          </div>
+          </motion.div>
 
           <motion.div
+            style={{ y: yScene, scale }}
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.2 }}
@@ -145,19 +165,16 @@ export function Hero() {
             <div className="relative aspect-square w-full max-w-[520px] mx-auto rounded-3xl overflow-hidden border border-white/10 bg-black/40">
               <HeroScene />
 
-              {/* subtle vignette */}
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 rounded-3xl shadow-[inset_0_0_120px_rgba(0,0,0,0.65)]"
               />
 
-              {/* corner badge */}
               <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.18em] text-white/70 backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full bg-toyota-red animate-pulse" />
                 Live
               </div>
 
-              {/* corner caption */}
               <div className="pointer-events-none absolute left-4 bottom-4 right-4 flex items-end justify-between text-[11px] font-mono uppercase tracking-[0.18em] text-white/50">
                 <span>BDC Sales</span>
                 <span>Round Rock Toyota</span>
@@ -165,8 +182,7 @@ export function Hero() {
             </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
-

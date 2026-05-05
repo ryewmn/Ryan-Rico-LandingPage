@@ -49,8 +49,11 @@ export function CurrentWork() {
             <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
               Current Work
             </p>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 text-balance">
-              Where I spend my time.
+            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
+              Where I{" "}
+              <span className="font-display italic font-normal">
+                spend my time.
+              </span>
             </h2>
           </div>
           <p className="text-base text-neutral-600 max-w-md">
