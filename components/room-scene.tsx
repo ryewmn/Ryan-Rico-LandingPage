@@ -4,6 +4,7 @@ import { Suspense, useRef, useState } from "react";
 import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber";
 import { Html, Float, ContactShadows, Environment } from "@react-three/drei";
 import * as THREE from "three";
+import { GLTFModel } from "@/components/gltf-model";
 
 export type HotspotKey = "pc" | "legos" | "gundam" | "toyota" | "phone";
 
@@ -894,6 +895,14 @@ export default function RoomScene({
             <GundamFigure hovered={hovered} setHovered={setHovered} onSelect={onSelect} />
             <LegoPile hovered={hovered} setHovered={setHovered} onSelect={onSelect} />
             <Phone hovered={hovered} setHovered={setHovered} onSelect={onSelect} />
+
+            {/* Real .glb decoration: a stylized toy car on the desk.
+                Source: Khronos glTF Sample Assets (CC-BY 4.0 / public). */}
+            <Suspense fallback={null}>
+              <group position={[-0.4, 0.43, 0.4]} rotation={[0, 0.6, 0]}>
+                <GLTFModel src="/models/toycar.glb" scale={4.5} />
+              </group>
+            </Suspense>
           </group>
         </Float>
 
