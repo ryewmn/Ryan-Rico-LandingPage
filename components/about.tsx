@@ -4,10 +4,9 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 
 const stats = [
-  { value: "5+", label: "Years in automotive retail" },
-  { value: "1.2K+", label: "Vehicles acquired" },
-  { value: "6", label: "Internal tools shipped" },
-  { value: "100%", label: "Customer-first focus" },
+  { value: "3", label: "Years in automotive retail" },
+  { value: "150+", label: "Vehicles a year" },
+  { value: "1", label: "Internal tool shipped" },
 ];
 
 export function About() {
@@ -41,11 +40,10 @@ export function About() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6 }}
             >
-              I started in the car business answering internet leads and
-              learning how appointments actually become deliveries. Today I run
-              vehicle acquisition for one of the busiest Toyota stores in
-              Texas, and I spend my evenings building software for the same
-              workflows I run during the day.
+              Three years in at Round Rock Toyota. I work BDC Sales — handling
+              internet leads, setting appointments, and walking customers from
+              first message to first vehicle. Last year I helped move 150+
+              vehicles through that funnel.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -53,10 +51,10 @@ export function About() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: 0.05 }}
             >
-              My favorite problems sit at the seam between people and process —
-              the moment a service customer becomes a sales opportunity, the
-              follow-up that turns a cold lead warm, the dashboard that finally
-              tells the floor what to focus on today.
+              After hours I build software for the same workflows I run during
+              the day. The first tool I shipped — a leaderboard for the sales
+              floor — is live. The next ones (a BDC toolkit and an AI-assisted
+              car-buying agent) are in progress.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -77,7 +75,7 @@ export function About() {
           </div>
         </div>
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}

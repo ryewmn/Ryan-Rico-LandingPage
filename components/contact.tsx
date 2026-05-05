@@ -94,7 +94,7 @@ export function Contact() {
                 Ryan Rico
               </h3>
               <p className="mt-1 text-sm text-white/60">
-                Vehicle Acquisition Manager
+                BDC Sales · Round Rock Toyota
               </p>
 
               <ul className="mt-10 space-y-5">

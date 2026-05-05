@@ -14,16 +14,16 @@ const groups: SkillGroup[] = [
   {
     icon: Car,
     title: "Automotive",
-    description: "Operational know-how built from years on the floor.",
+    description: "Day-to-day skills built handling internet leads on the floor.",
     items: [
-      "Vehicle acquisition",
-      "Pre-owned valuation",
-      "Lease & equity retention",
       "BDC operations",
       "Internet sales process",
-      "Service-to-sales handoff",
+      "Lead qualification",
+      "Appointment setting",
       "Customer follow-up cadences",
-      "Inventory strategy",
+      "Phone & text outreach",
+      "Toyota CRM workflow",
+      "Vehicle product knowledge",
     ],
   },
   {

@@ -57,9 +57,9 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="mt-8 max-w-xl text-lg md:text-xl text-white/70 leading-relaxed"
             >
-              I&apos;m Ryan Rico — Vehicle Acquisition Manager at Round Rock
-              Toyota. I write software, design retention workflows, and obsess
-              over the details that turn opportunities into customers for life.
+              I&apos;m Ryan Rico — BDC Sales at Round Rock Toyota. I work
+              internet leads during the day and build software for dealership
+              workflows after hours.
             </motion.p>
 
             <motion.div
@@ -143,21 +143,21 @@ export function Hero() {
                   Now
                 </p>
                 <h3 className="mt-3 text-xl font-semibold tracking-tight">
-                  Vehicle Acquisition Manager
+                  BDC Sales
                 </h3>
                 <p className="text-sm text-white/60">Round Rock Toyota</p>
 
                 <div className="mt-8 grid grid-cols-3 gap-4">
-                  <Stat label="Years on the floor" value="5+" />
-                  <Stat label="Vehicles acquired" value="1.2K+" />
-                  <Stat label="Tools shipped" value="6" />
+                  <Stat label="Years in retail" value="3" />
+                  <Stat label="Vehicles / year" value="150+" />
+                  <Stat label="Tools shipped" value="1" />
                 </div>
 
                 <div className="mt-8 space-y-3 border-t border-white/10 pt-6">
-                  <Tag>Retail Retention</Tag>
-                  <Tag>Vehicle Acquisition</Tag>
-                  <Tag>BDC &amp; Workflow</Tag>
+                  <Tag>Internet Sales &amp; BDC</Tag>
+                  <Tag>Customer Follow-Up</Tag>
                   <Tag>Internal Software</Tag>
+                  <Tag>AI &amp; Automation</Tag>
                 </div>
               </div>
             </div>

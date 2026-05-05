@@ -1,14 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  ClipboardList,
-  Handshake,
-  LineChart,
-  PhoneCall,
-  Cog,
-  Users,
-} from "lucide-react";
+import { Inbox, PhoneCall, Cog, Bot } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 type Area = {
@@ -19,40 +12,28 @@ type Area = {
 
 const areas: Area[] = [
   {
-    icon: Handshake,
-    title: "Vehicle Acquisition",
+    icon: Inbox,
+    title: "Internet Leads",
     description:
-      "Sourcing pre-owned inventory from service customers, private parties, and trade-ins with fair, data-backed offers.",
-  },
-  {
-    icon: LineChart,
-    title: "Retail Retention",
-    description:
-      "Building lease-end and equity-mining motions that bring customers back into the dealership before competitors do.",
+      "First touch on inbound leads — qualifying interest, answering the real question fast, and getting the right vehicle in front of the customer.",
   },
   {
     icon: PhoneCall,
-    title: "BDC Workflow",
+    title: "Customer Follow-Up",
     description:
-      "Designing call, text, and email cadences that get appointments set and customers in the door — without the spam.",
-  },
-  {
-    icon: ClipboardList,
-    title: "Process Design",
-    description:
-      "Translating what works on the floor into repeatable steps the whole team can follow on day one.",
+      "Call, text, and email cadences that move a lead from inquiry to appointment to delivery without burning the relationship.",
   },
   {
     icon: Cog,
     title: "Internal Software",
     description:
-      "Shipping small, sharp tools that solve real problems for managers and salespeople — not vanity dashboards.",
+      "Building small, focused tools for the sales floor — starting with a live leaderboard and a BDC toolkit in progress.",
   },
   {
-    icon: Users,
-    title: "Team Coaching",
+    icon: Bot,
+    title: "AI & Automation",
     description:
-      "Working one-on-one with sales and service staff to tighten the gap between effort and result.",
+      "Experimenting with AI agents to make car buying simpler for customers and the workflow lighter for the team.",
   },
 ];
 
