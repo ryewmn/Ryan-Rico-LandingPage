@@ -10,7 +10,6 @@ import {
   Instagram,
   LineChart,
   Linkedin,
-  Mail,
   MapPin,
   Phone,
   Sparkles,
@@ -75,7 +74,7 @@ export function Hero() {
       id="top"
       className="relative isolate w-full overflow-hidden bg-stone-50 text-neutral-900"
     >
-      {/* Background flourishes — subtle, daylight */}
+      {/* Background flourishes */}
       <div
         aria-hidden="true"
         className="absolute inset-0 grid-bg-soft opacity-50"
@@ -105,8 +104,11 @@ export function Hero() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[160px] md:auto-rows-[180px] gap-3 md:gap-4">
-          {/* NAME — 2x2 hero */}
+        {/* Bento grid: 4 cols, rows grow to content (min 200px). */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-4 [grid-auto-rows:minmax(200px,auto)]">
+          {/* ───────── ROW 1: identity ───────── */}
+
+          {/* A · NAME — 2×2 */}
           <Card
             index={0}
             className="md:col-span-2 md:row-span-2 flex flex-col justify-between bg-gradient-to-br from-toyota-red/[0.06] via-amber-100/40 to-white"
@@ -126,9 +128,8 @@ export function Hero() {
                 </span>
               </h1>
               <p className="mt-5 max-w-md text-base md:text-lg text-neutral-600 leading-relaxed">
-                BDC Sales at Round Rock Toyota. I work internet leads by day,
-                build dashboards and AI tools by night, and snap together
-                Gunpla in between.
+                BDC Sales at Round Rock Toyota. Internet leads by day,
+                dashboards and AI tools by night.
               </p>
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -149,7 +150,7 @@ export function Hero() {
             </div>
           </Card>
 
-          {/* NOW — 2x1 */}
+          {/* B · NOW — 2×1 */}
           <Card index={1} className="md:col-span-2 flex flex-col justify-between">
             <div className="flex items-center justify-between">
               <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
@@ -174,7 +175,7 @@ export function Hero() {
             </div>
           </Card>
 
-          {/* STAT 1 — 1x1 */}
+          {/* C · STAT YEARS — 1×1 */}
           <Card index={2} className="flex flex-col justify-between">
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
               Years
@@ -182,21 +183,26 @@ export function Hero() {
             <p className="text-5xl md:text-6xl font-bold tracking-tight text-neutral-900 leading-none">
               3
             </p>
-            <p className="text-xs text-neutral-500 mt-1">in automotive retail</p>
+            <p className="text-xs text-neutral-500">in automotive retail</p>
           </Card>
 
-          {/* STAT 2 — 1x1 */}
-          <Card index={3} className="flex flex-col justify-between bg-gradient-to-br from-amber-50 to-white">
+          {/* D · STAT VEHICLES — 1×1 */}
+          <Card
+            index={3}
+            className="flex flex-col justify-between bg-gradient-to-br from-amber-50 to-white"
+          >
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
               Per year
             </span>
             <p className="text-5xl md:text-6xl font-bold tracking-tight text-toyota-red leading-none">
               150+
             </p>
-            <p className="text-xs text-neutral-500 mt-1">vehicles delivered</p>
+            <p className="text-xs text-neutral-500">vehicles delivered</p>
           </Card>
 
-          {/* FEATURED PROJECT — 2x2 */}
+          {/* ───────── ROW 2: what I work on ───────── */}
+
+          {/* E · FEATURED PROJECT — 2×2 */}
           <Card
             index={4}
             href="https://github.com/ryewmn/ROUND-ROCK-TOYOTA-LEADERBOARD"
@@ -223,8 +229,8 @@ export function Hero() {
                 </span>
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-neutral-600 max-w-md">
-                Internal performance dashboard for the sales floor — tracks
-                appointments, shows, and deliveries by salesperson.
+                Internal performance dashboard for the sales floor — appointments,
+                shows, and deliveries by salesperson.
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {["TypeScript", "Next.js", "Tailwind"].map((t) => (
@@ -246,7 +252,7 @@ export function Hero() {
             </div>
           </Card>
 
-          {/* BUILDS — 2x2 */}
+          {/* F · BUILDS / IG — 2×2 */}
           <Card
             index={5}
             href="https://www.instagram.com/builds.by.ryry/"
@@ -269,9 +275,8 @@ export function Hero() {
                 @builds.by.ryry
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-neutral-700 max-w-md">
-                Off-the-clock Gunpla. Master Grade, Real Grade, the occasional
-                kit I should have skipped. Same loop as code — start with
-                parts, end with something that stands on its own.
+                Off-the-clock Gunpla. Same loop as code — start with parts, end
+                with something that stands on its own.
               </p>
               <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 group-hover:text-toyota-red transition-colors">
                 Follow the builds
@@ -283,9 +288,11 @@ export function Hero() {
             </div>
           </Card>
 
-          {/* CURRENT WORK — 2x1 */}
-          <Card index={6} href="#current-work" className="md:col-span-2">
-            <div className="flex items-start justify-between mb-4">
+          {/* ───────── ROW 3: where + how ───────── */}
+
+          {/* G · CURRENT WORK — 2×1 */}
+          <Card index={6} href="#current-work" className="md:col-span-2 flex flex-col justify-between">
+            <div className="flex items-start justify-between">
               <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
                 Current Work
               </span>
@@ -310,7 +317,7 @@ export function Hero() {
             </ul>
           </Card>
 
-          {/* GITHUB */}
+          {/* H · GITHUB — 1×1 */}
           <Card
             index={7}
             href="https://github.com/ryewmn"
@@ -323,7 +330,7 @@ export function Hero() {
             </div>
           </Card>
 
-          {/* LINKEDIN */}
+          {/* I · LINKEDIN — 1×1 */}
           <Card
             index={8}
             href="https://www.linkedin.com/in/ryanchristopherrico/"
@@ -336,54 +343,33 @@ export function Hero() {
             </div>
           </Card>
 
-          {/* LOCATION */}
-          <Card index={9} className="flex flex-col justify-between">
-            <MapPin size={20} className="text-toyota-red" />
-            <div>
-              <p className="text-sm font-semibold text-neutral-900">Round Rock</p>
-              <p className="text-xs text-neutral-500">Texas</p>
-            </div>
-          </Card>
+          {/* ───────── ROW 4: contact CTA ───────── */}
 
-          {/* EMAIL */}
+          {/* J · CONTACT — 4×1 full width */}
           <Card
-            index={10}
-            href="mailto:ryanchristopher.rico@gmail.com"
-            className="flex flex-col justify-between"
-          >
-            <Mail size={20} className="text-neutral-700" />
-            <div>
-              <p className="text-sm font-semibold text-neutral-900">Email</p>
-              <p className="text-xs text-neutral-500 break-all">
-                ryanchristopher.rico@gmail.com
-              </p>
-            </div>
-          </Card>
-
-          {/* CONTACT CTA — 4x1 */}
-          <Card
-            index={11}
+            index={9}
             href="#contact"
-            className="md:col-span-4 bg-gradient-to-r from-toyota-red/10 via-amber-100/60 to-toyota-red/10 flex flex-row items-center justify-between"
+            className="md:col-span-4 bg-gradient-to-r from-toyota-red/10 via-amber-100/60 to-toyota-red/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 min-w-0">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-toyota-red/10 text-toyota-red ring-1 ring-toyota-red/30 shrink-0">
                 <Phone size={20} />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-lg md:text-xl font-semibold text-neutral-900 tracking-tight">
                   Looking for a vehicle, or want to talk{" "}
                   <span className="font-display italic font-normal">software?</span>
                 </p>
-                <p className="text-sm text-neutral-600">
-                  (717) 781-4318 · I respond within a business day.
+                <p className="text-sm text-neutral-600 mt-0.5">
+                  (717) 781-4318 · ryanchristopher.rico@gmail.com · I respond within a business day
                 </p>
               </div>
             </div>
-            <ArrowUpRight
-              size={20}
-              className="text-neutral-500 group-hover:text-toyota-red transition-colors shrink-0 hidden sm:block"
-            />
+            <div className="flex items-center gap-2 shrink-0 text-sm font-medium text-neutral-700 group-hover:text-toyota-red transition-colors">
+              <MapPin size={14} className="text-toyota-red" />
+              Round Rock, TX
+              <ArrowUpRight size={16} className="ml-1" />
+            </div>
           </Card>
         </div>
       </div>
