@@ -4,9 +4,9 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ryan Rico | Vehicle Acquisition & Retail Retention",
+  title: "Ryan Rico | Automotive Operations & Software",
   description:
-    "Ryan Rico builds customer follow-up systems, vehicle acquisition processes, and software tools that help dealerships turn opportunities into appointments. Vehicle Acquisition Manager at Round Rock Toyota.",
+    "Ryan Rico builds customer follow-up systems, vehicle acquisition processes, and software tools that help dealerships turn opportunities into appointments.",
   keywords: [
     "Ryan Rico",
     "Round Rock Toyota",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Ryan Rico" }],
   openGraph: {
-    title: "Ryan Rico | Vehicle Acquisition & Retail Retention",
+    title: "Ryan Rico | Automotive Operations & Software",
     description:
       "Automotive Retention Specialist building software tools for dealership operations.",
     type: "website",

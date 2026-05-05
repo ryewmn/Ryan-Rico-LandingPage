@@ -124,20 +124,19 @@ export function Projects() {
                 </div>
 
                 <div className="mt-7 flex items-center justify-between border-t border-neutral-100 pt-5">
-                  <button
-                    type="button"
+                  <a
+                    href="#contact"
                     className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 hover:text-toyota-red transition-colors"
-                    aria-label={`View details about ${project.title}`}
+                    aria-label={`Ask about ${project.title}`}
                   >
-                    View Details
+                    Ask about it
                     <ArrowUpRight
                       size={16}
                       className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     />
-                  </button>
+                  </a>
                 </div>
 
-                {/* Hover accent */}
                 <div
                   aria-hidden="true"
                   className="absolute inset-x-0 bottom-0 h-0.5 bg-toyota-red scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100"
