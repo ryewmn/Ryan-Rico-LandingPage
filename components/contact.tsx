@@ -2,7 +2,16 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Building2, ArrowRight, Check } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Building2,
+  ArrowRight,
+  Check,
+  Github,
+  Linkedin,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -16,10 +25,21 @@ export function Contact() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setState("submitting");
-    // Replace with real submit handler. Simulate request for now.
-    await new Promise((r) => setTimeout(r, 800));
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = encodeURIComponent(String(data.get("name") || ""));
+    const message = encodeURIComponent(String(data.get("message") || ""));
+    const email = String(data.get("email") || "");
+    const subject = `Hello from ${decodeURIComponent(name) || "your site"}`;
+    const body = `${decodeURIComponent(message)}%0D%0A%0D%0A— ${decodeURIComponent(
+      name
+    )} (${email})`;
+    window.location.href = `mailto:ryanchristopher.rico@gmail.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${body}`;
+    await new Promise((r) => setTimeout(r, 600));
     setState("success");
-    (e.currentTarget as HTMLFormElement).reset();
+    form.reset();
     setTimeout(() => setState("idle"), 3000);
   }
 
@@ -74,7 +94,7 @@ export function Contact() {
                 Ryan Rico
               </h3>
               <p className="mt-1 text-sm text-white/60">
-                Vehicle Acquisition Manager
+                BDC Sales · Round Rock Toyota
               </p>
 
               <ul className="mt-10 space-y-5">
@@ -102,7 +122,7 @@ export function Contact() {
                       Location
                     </p>
                     <p className="mt-1 text-sm font-medium">
-                      Round Rock / Georgetown, Texas
+                      Round Rock, Texas
                     </p>
                   </div>
                 </li>
@@ -116,10 +136,10 @@ export function Contact() {
                       Email
                     </p>
                     <a
-                      href="mailto:hello@ryanrico.com"
-                      className="mt-1 block text-sm font-medium hover:text-toyota-red transition-colors"
+                      href="mailto:ryanchristopher.rico@gmail.com"
+                      className="mt-1 block text-sm font-medium hover:text-toyota-red transition-colors break-all"
                     >
-                      hello@ryanrico.com
+                      ryanchristopher.rico@gmail.com
                     </a>
                   </div>
                 </li>
@@ -133,14 +153,42 @@ export function Contact() {
                       Phone
                     </p>
                     <a
-                      href="tel:+15125550100"
+                      href="tel:+17177814318"
                       className="mt-1 block text-sm font-medium hover:text-toyota-red transition-colors"
                     >
-                      (512) 555-0100
+                      (717) 781-4318
                     </a>
                   </div>
                 </li>
               </ul>
+
+              <div className="mt-10 flex items-center gap-3 border-t border-white/10 pt-6">
+                <a
+                  href="https://www.linkedin.com/in/ryanchristopherrico/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={16} />
+                </a>
+                <a
+                  href="https://github.com/ryewmn"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github size={16} />
+                </a>
+                <a
+                  href="mailto:ryanchristopher.rico@gmail.com"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-colors"
+                  aria-label="Email"
+                >
+                  <Mail size={16} />
+                </a>
+              </div>
             </div>
           </motion.div>
 

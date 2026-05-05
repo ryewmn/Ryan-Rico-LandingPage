@@ -1,4 +1,4 @@
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, Phone, Linkedin, Github } from "lucide-react";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -28,9 +28,36 @@ export function Footer() {
               <span className="font-semibold tracking-tight">Ryan Rico</span>
             </div>
             <p className="mt-5 text-sm leading-relaxed text-white/60 max-w-sm">
-              Automotive Technology &middot; Retail Retention &middot; Software
+              Automotive Operations &middot; Retail Retention &middot; Software
               Development. Based in Round Rock, Texas.
             </p>
+            <div className="mt-6 flex items-center gap-3">
+              <a
+                href="https://www.linkedin.com/in/ryanchristopherrico/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={15} />
+              </a>
+              <a
+                href="https://github.com/ryewmn"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-colors"
+                aria-label="GitHub"
+              >
+                <Github size={15} />
+              </a>
+              <a
+                href="mailto:ryanchristopher.rico@gmail.com"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-colors"
+                aria-label="Email"
+              >
+                <Mail size={15} />
+              </a>
+            </div>
           </div>
 
           <div className="md:col-span-3">
@@ -57,17 +84,26 @@ export function Footer() {
             </p>
             <ul className="mt-5 space-y-3">
               <li className="flex items-center gap-2 text-sm text-white/70">
-                <Mail size={14} className="text-toyota-red" />
+                <Mail size={14} className="text-toyota-red shrink-0" />
                 <a
-                  href="mailto:hello@ryanrico.com"
-                  className="hover:text-white transition-colors"
+                  href="mailto:ryanchristopher.rico@gmail.com"
+                  className="hover:text-white transition-colors break-all"
                 >
-                  hello@ryanrico.com
+                  ryanchristopher.rico@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2 text-sm text-white/70">
-                <MapPin size={14} className="text-toyota-red" />
-                Round Rock / Georgetown, Texas
+                <Phone size={14} className="text-toyota-red shrink-0" />
+                <a
+                  href="tel:+17177814318"
+                  className="hover:text-white transition-colors"
+                >
+                  (717) 781-4318
+                </a>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-white/70">
+                <MapPin size={14} className="text-toyota-red shrink-0" />
+                Round Rock, Texas
               </li>
             </ul>
           </div>

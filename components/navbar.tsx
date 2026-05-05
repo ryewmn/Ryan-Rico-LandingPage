@@ -49,12 +49,7 @@ export function Navbar() {
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-toyota-red text-white font-bold text-sm tracking-tight shadow-red-glow">
             RR
           </span>
-          <span
-            className={cn(
-              "font-semibold tracking-tight transition-colors",
-              scrolled ? "text-neutral-900" : "text-neutral-900"
-            )}
-          >
+          <span className="font-semibold tracking-tight text-neutral-900">
             Ryan Rico
           </span>
         </a>

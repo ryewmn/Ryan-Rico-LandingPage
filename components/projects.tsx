@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Trophy, Bot, Wrench, Send } from "lucide-react";
+import { ArrowUpRight, Trophy, Bot, Wrench, FileSearch, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { LucideIcon } from "lucide-react";
 
@@ -13,6 +13,8 @@ type Project = {
   status: Status;
   tags: string[];
   icon: LucideIcon;
+  url?: string;
+  isPrivate?: boolean;
 };
 
 const statusVariant: Record<Status, "live" | "building" | "planning"> = {
@@ -25,34 +27,38 @@ const projects: Project[] = [
   {
     title: "Round Rock Toyota Leaderboard",
     description:
-      "An internal performance dashboard for the sales floor. Tracks appointments, shows, and closes by salesperson with daily and monthly views.",
+      "Internal performance dashboard for the sales floor. Tracks appointments, shows, and deliveries by salesperson with daily and monthly views.",
     status: "Live",
-    tags: ["Next.js", "Supabase", "Tailwind"],
+    tags: ["TypeScript", "Next.js", "Tailwind"],
     icon: Trophy,
+    url: "https://github.com/ryewmn/ROUND-ROCK-TOYOTA-LEADERBOARD",
   },
   {
-    title: "AI Vehicle Negotiation Engine",
+    title: "BDC Toolkit",
     description:
-      "An assistant that helps acquisition managers price private-party vehicles and structure offers based on equity, market data, and customer goals.",
+      "A working set of tools for the Round Rock Toyota BDC — script libraries, lead workups, and follow-up helpers built around how the team actually works.",
     status: "Building",
-    tags: ["AI Agents", "TypeScript", "Automation"],
-    icon: Bot,
-  },
-  {
-    title: "Service-to-Sales Workflow",
-    description:
-      "A repeatable process that surfaces service customers with strong trade equity and routes qualified opportunities to the sales team in real time.",
-    status: "Building",
-    tags: ["Process", "Automation", "BDC"],
+    tags: ["Internal", "BDC", "Workflow"],
     icon: Wrench,
+    isPrivate: true,
   },
   {
-    title: "Lead Follow-Up System",
+    title: "Car Sales AI Agent",
     description:
-      "A structured cadence engine for internet leads. Multi-touch outreach across call, text, and email with clear handoff once the customer responds.",
-    status: "Planning",
-    tags: ["CRM", "Workflows", "Retention"],
-    icon: Send,
+      "Experimenting with AI agents that help customers find the right car and the right deal — the tedious back-and-forth, automated.",
+    status: "Building",
+    tags: ["AI Agents", "JavaScript", "Automation"],
+    icon: Bot,
+    isPrivate: true,
+  },
+  {
+    title: "OpsGlass",
+    description:
+      "AI-powered multimodal document assistant that ingests invoices, contracts, and receipts from uploads, Google Drive, and Gmail, and allows natural language querying using Hugging Face models. Includes semantic search, structured extraction, and anomaly detection.",
+    status: "Building",
+    tags: ["AI", "Hugging Face", "Semantic Search"],
+    icon: FileSearch,
+    isPrivate: true,
   },
 ];
 
@@ -124,20 +130,41 @@ export function Projects() {
                 </div>
 
                 <div className="mt-7 flex items-center justify-between border-t border-neutral-100 pt-5">
-                  <button
-                    type="button"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 hover:text-toyota-red transition-colors"
-                    aria-label={`View details about ${project.title}`}
-                  >
-                    View Details
-                    <ArrowUpRight
-                      size={16}
-                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    />
-                  </button>
+                  {project.url ? (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 hover:text-toyota-red transition-colors"
+                      aria-label={`View ${project.title} on GitHub`}
+                    >
+                      View on GitHub
+                      <ArrowUpRight
+                        size={16}
+                        className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
+                    </a>
+                  ) : (
+                    <a
+                      href="#contact"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 hover:text-toyota-red transition-colors"
+                      aria-label={`Ask about ${project.title}`}
+                    >
+                      Ask about it
+                      <ArrowUpRight
+                        size={16}
+                        className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
+                    </a>
+                  )}
+                  {project.isPrivate ? (
+                    <span className="inline-flex items-center gap-1 text-xs text-neutral-400">
+                      <Lock size={11} />
+                      Private repo
+                    </span>
+                  ) : null}
                 </div>
 
-                {/* Hover accent */}
                 <div
                   aria-hidden="true"
                   className="absolute inset-x-0 bottom-0 h-0.5 bg-toyota-red scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100"
