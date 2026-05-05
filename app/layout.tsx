@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Instrument_Serif } from "next/font/google";
-import { SmoothScroll } from "@/components/smooth-scroll";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -25,7 +24,6 @@ export const metadata: Metadata = {
     "Automotive Software",
     "Dealership AI",
     "Gunpla",
-    "Three.js",
   ],
   authors: [{ name: "Ryan Rico" }],
   openGraph: {
@@ -44,12 +42,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable} dark`}
+      className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable}`}
     >
-      <body className="font-sans bg-neutral-950 text-white">
-        <SmoothScroll />
-        {children}
-      </body>
+      <body className="font-sans bg-stone-50 text-neutral-900">{children}</body>
     </html>
   );
 }

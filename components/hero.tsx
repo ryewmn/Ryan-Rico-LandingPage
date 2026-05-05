@@ -1,296 +1,392 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
-  ChevronDown,
+  ArrowUpRight,
+  Bot,
+  Building2,
   Github,
   Instagram,
+  LineChart,
   Linkedin,
+  Mail,
   MapPin,
+  Phone,
+  Sparkles,
+  Trophy,
+  Wrench,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/magnetic";
-import type { HotspotKey } from "@/components/room-scene";
 
-const RoomPanel = dynamic(
-  () => import("@/components/room-panel").then((m) => m.RoomPanel),
-  { ssr: false }
-);
-
-const RoomScene = dynamic(() => import("@/components/room-scene"), {
-  ssr: false,
-  loading: () => (
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div className="h-72 w-72 rounded-full bg-ember/30 blur-3xl animate-pulse" />
-    </div>
-  ),
+const fade = (i: number) => ({
+  initial: { opacity: 0, y: 16 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-40px" },
+  transition: {
+    duration: 0.55,
+    delay: 0.05 * i,
+    ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+  },
 });
 
+function Card({
+  className = "",
+  children,
+  index = 0,
+  href,
+}: {
+  className?: string;
+  children: React.ReactNode;
+  index?: number;
+  href?: string;
+}) {
+  const base =
+    "group relative overflow-hidden rounded-3xl border border-neutral-200 bg-white p-6 md:p-7 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_2px_4px_rgba(0,0,0,0.05),0_16px_40px_rgba(0,0,0,0.07)] hover:border-neutral-300";
+
+  const inner = (
+    <motion.div {...fade(index)} className={`${base} ${className}`}>
+      {children}
+    </motion.div>
+  );
+
+  if (href) {
+    const isExternal =
+      href.startsWith("http") || href.startsWith("mailto") || href.startsWith("tel");
+    return (
+      <a
+        href={href}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noreferrer" : undefined}
+        className="block"
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return inner;
+}
+
 export function Hero() {
-  const [is3DReady, setIs3DReady] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(true);
-  const [focused, setFocused] = useState<HotspotKey | null>(null);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    const update = () => setIsDesktop(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    const t = setTimeout(() => setIs3DReady(true), 50);
-    return () => clearTimeout(t);
-  }, []);
-
-  const closeFocus = useCallback(() => setFocused(null), []);
-
-  // Esc to close
-  useEffect(() => {
-    if (!focused) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeFocus();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [focused, closeFocus]);
-
-  // Lock body scroll while focused on desktop
-  useEffect(() => {
-    if (!isDesktop) return;
-    if (focused) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [focused, isDesktop]);
-
-  const handleHotspot = (key: HotspotKey) => {
-    if (!isDesktop) {
-      // mobile fallback: smooth scroll to corresponding section
-      const map: Record<HotspotKey, string> = {
-        pc: "#projects",
-        legos: "#current-work",
-        gundam: "#current-work",
-        toyota: "#about",
-        phone: "#contact",
-      };
-      const el = document.querySelector(map[key]);
-      el?.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-    setFocused(key);
-  };
-
   return (
     <section
       id="top"
-      className="relative isolate min-h-screen w-full overflow-hidden bg-neutral-950 text-white"
+      className="relative isolate w-full overflow-hidden bg-stone-50 text-neutral-900"
     >
-      {/* Background scene (desktop only) */}
-      {isDesktop && is3DReady ? (
-        <div className="absolute inset-0">
-          <RoomScene onSelect={handleHotspot} focused={focused} />
-        </div>
-      ) : (
-        <>
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 grid-bg-fine opacity-60"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[900px] rounded-full bg-toyota-red/20 blur-[160px]"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-32 -right-20 h-[400px] w-[400px] rounded-full bg-ember/25 blur-[140px]"
-          />
-        </>
-      )}
-
-      {/* Vignette */}
+      {/* Background flourishes — subtle, daylight */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-neutral-950/70 via-transparent to-neutral-950"
+        className="absolute inset-0 grid-bg-soft opacity-50"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.55)_100%)]"
+        className="absolute -top-40 -left-20 h-[600px] w-[700px] rounded-full bg-toyota-red/[0.05] blur-[160px]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute top-40 right-0 h-[500px] w-[500px] rounded-full bg-amber-200/30 blur-[160px]"
       />
 
-      {/* Dim when focused */}
-      <AnimatePresence>
-        {focused ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="pointer-events-none absolute inset-0 bg-neutral-950/55 backdrop-blur-[2px]"
-          />
-        ) : null}
-      </AnimatePresence>
-
-      {/* HUD */}
-      <div className="relative z-10 flex min-h-screen flex-col">
-        {/* Top bar */}
-        <div className="container flex items-start justify-between pt-24 md:pt-28">
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{
-              opacity: focused ? 0.4 : 1,
-              y: 0,
-            }}
-            transition={{ duration: 0.4 }}
-            className="max-w-xs"
-          >
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ember">
-              [ The Workroom ]
-            </p>
-            <p className="mt-2 text-sm text-white/60">
-              {isDesktop
-                ? "Hover the desk. Click any object to walk over to it."
-                : "BDC Sales · Software · Builds. Tap below to explore."}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="hidden md:flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-white/50"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-ember animate-pulse" />
-            Live · Round Rock, TX
-          </motion.div>
-        </div>
-
-        {/* Centered title (fades when focused) */}
-        <div className="container flex-1 flex items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{
-              opacity: focused ? 0 : 1,
-              y: focused ? 30 : 0,
-            }}
-            transition={{ duration: 0.6, delay: focused ? 0 : 0.1 }}
-            className="max-w-3xl"
-          >
-            <h1 className="text-[14vw] sm:text-[12vw] md:text-[8.5vw] lg:text-[7.2vw] font-bold tracking-tight leading-[0.92]">
-              Ryan{" "}
-              <span className="font-display italic font-normal text-gradient-fire">
-                Rico.
-              </span>
-            </h1>
-            <p className="mt-6 max-w-xl text-base md:text-lg text-white/70 leading-relaxed">
-              BDC Sales at Round Rock Toyota. I work internet leads by day,
-              build dashboards and AI tools by night, and snap together Gunpla
-              kits in between.
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Magnetic>
-                <Button
-                  size="lg"
-                  onClick={() => isDesktop ? setFocused("phone") : (document.querySelector("#contact") as HTMLElement)?.scrollIntoView({ behavior: "smooth" })}
-                >
-                  Let&apos;s connect
-                  <ArrowRight size={18} />
-                </Button>
-              </Magnetic>
-              <Magnetic strength={0.25}>
-                <Button
-                  variant="outline-light"
-                  size="lg"
-                  onClick={() => isDesktop ? setFocused("pc") : (document.querySelector("#projects") as HTMLElement)?.scrollIntoView({ behavior: "smooth" })}
-                >
-                  See projects
-                </Button>
-              </Magnetic>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Bottom bar */}
+      <div className="relative z-10 container pt-28 md:pt-32 pb-14">
         <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{
-            opacity: focused ? 0.3 : 1,
-            y: 0,
-          }}
-          transition={{ duration: 0.4 }}
-          className="container pb-10"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-6 flex items-center justify-between"
         >
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs md:text-sm text-white/55">
-              <li className="flex items-center gap-2">
-                <MapPin size={13} className="text-ember" />
-                Round Rock, TX
-              </li>
-              <li className="hidden sm:flex h-3 w-px bg-white/10" />
-              <li>
-                <a
-                  href="https://github.com/ryewmn"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 hover:text-white transition-colors"
-                >
-                  <Github size={13} />
-                  github.com/ryewmn
-                </a>
-              </li>
-              <li className="hidden sm:flex h-3 w-px bg-white/10" />
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/ryanchristopherrico/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 hover:text-white transition-colors"
-                >
-                  <Linkedin size={13} />
-                  LinkedIn
-                </a>
-              </li>
-              <li className="hidden sm:flex h-3 w-px bg-white/10" />
-              <li>
-                <a
-                  href="https://www.instagram.com/builds.by.ryry/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 hover:text-white transition-colors"
-                >
-                  <Instagram size={13} />
-                  @builds.by.ryry
-                </a>
-              </li>
-            </ul>
-
-            <a
-              href="#about"
-              className="group flex items-center gap-2 text-xs font-mono uppercase tracking-[0.22em] text-white/50 hover:text-white transition-colors"
-            >
-              Scroll
-              <ChevronDown
-                size={14}
-                className="transition-transform group-hover:translate-y-0.5 animate-bounce"
-              />
-            </a>
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-toyota-red">
+            [ Ryan Rico ] · Personal site
+          </p>
+          <div className="hidden md:flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-neutral-500">
+            <span className="h-1.5 w-1.5 rounded-full bg-toyota-red animate-pulse" />
+            Live · Round Rock, TX
           </div>
         </motion.div>
-      </div>
 
-      {/* Content panel overlay */}
-      {isDesktop ? (
-        <RoomPanel hotspot={focused} onClose={closeFocus} />
-      ) : null}
+        <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[160px] md:auto-rows-[180px] gap-3 md:gap-4">
+          {/* NAME — 2x2 hero */}
+          <Card
+            index={0}
+            className="md:col-span-2 md:row-span-2 flex flex-col justify-between bg-gradient-to-br from-toyota-red/[0.06] via-amber-100/40 to-white"
+          >
+            <div className="flex items-start justify-between">
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-toyota-red">
+                BDC Sales / Software / Builds
+              </span>
+              <Sparkles size={14} className="text-toyota-red" />
+            </div>
+
+            <div>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[88px] font-bold tracking-tight leading-[0.92] text-neutral-900">
+                Ryan{" "}
+                <span className="font-display italic font-normal text-gradient-fire">
+                  Rico.
+                </span>
+              </h1>
+              <p className="mt-5 max-w-md text-base md:text-lg text-neutral-600 leading-relaxed">
+                BDC Sales at Round Rock Toyota. I work internet leads by day,
+                build dashboards and AI tools by night, and snap together
+                Gunpla in between.
+              </p>
+
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <Magnetic>
+                  <Button asChild size="lg">
+                    <a href="#contact">
+                      Let&apos;s connect
+                      <ArrowRight size={16} />
+                    </a>
+                  </Button>
+                </Magnetic>
+                <Magnetic strength={0.25}>
+                  <Button asChild variant="outline" size="lg">
+                    <a href="#projects">See projects</a>
+                  </Button>
+                </Magnetic>
+              </div>
+            </div>
+          </Card>
+
+          {/* NOW — 2x1 */}
+          <Card index={1} className="md:col-span-2 flex flex-col justify-between">
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
+                Now
+              </span>
+              <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-emerald-700">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Available
+              </span>
+            </div>
+            <div>
+              <p className="text-2xl md:text-3xl font-semibold tracking-tight text-neutral-900 leading-tight">
+                BDC Sales at{" "}
+                <span className="font-display italic font-normal text-toyota-red">
+                  Round Rock Toyota.
+                </span>
+              </p>
+              <p className="mt-2 text-sm text-neutral-500 inline-flex items-center gap-2">
+                <Building2 size={13} className="text-toyota-red" />
+                3 years on the floor · 150+ vehicles a year
+              </p>
+            </div>
+          </Card>
+
+          {/* STAT 1 — 1x1 */}
+          <Card index={2} className="flex flex-col justify-between">
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
+              Years
+            </span>
+            <p className="text-5xl md:text-6xl font-bold tracking-tight text-neutral-900 leading-none">
+              3
+            </p>
+            <p className="text-xs text-neutral-500 mt-1">in automotive retail</p>
+          </Card>
+
+          {/* STAT 2 — 1x1 */}
+          <Card index={3} className="flex flex-col justify-between bg-gradient-to-br from-amber-50 to-white">
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
+              Per year
+            </span>
+            <p className="text-5xl md:text-6xl font-bold tracking-tight text-toyota-red leading-none">
+              150+
+            </p>
+            <p className="text-xs text-neutral-500 mt-1">vehicles delivered</p>
+          </Card>
+
+          {/* FEATURED PROJECT — 2x2 */}
+          <Card
+            index={4}
+            href="https://github.com/ryewmn/ROUND-ROCK-TOYOTA-LEADERBOARD"
+            className="md:col-span-2 md:row-span-2 flex flex-col justify-between"
+          >
+            <div className="flex items-start justify-between">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-toyota-red/10 text-toyota-red ring-1 ring-toyota-red/20">
+                <Trophy size={20} />
+              </div>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-emerald-700">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                Live
+              </span>
+            </div>
+
+            <div>
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
+                Featured project
+              </span>
+              <h3 className="mt-2 text-2xl md:text-3xl font-semibold tracking-tight text-neutral-900 leading-tight">
+                Round Rock Toyota{" "}
+                <span className="font-display italic font-normal text-toyota-red">
+                  Leaderboard.
+                </span>
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-neutral-600 max-w-md">
+                Internal performance dashboard for the sales floor — tracks
+                appointments, shows, and deliveries by salesperson.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {["TypeScript", "Next.js", "Tailwind"].map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-md bg-neutral-100 px-2 py-0.5 text-[10px] font-medium text-neutral-700 ring-1 ring-neutral-200"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 group-hover:text-toyota-red transition-colors">
+                View on GitHub
+                <ArrowUpRight
+                  size={15}
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </div>
+            </div>
+          </Card>
+
+          {/* BUILDS — 2x2 */}
+          <Card
+            index={5}
+            href="https://www.instagram.com/builds.by.ryry/"
+            className="md:col-span-2 md:row-span-2 flex flex-col justify-between bg-gradient-to-br from-amber-100 via-orange-50 to-white"
+          >
+            <div className="flex items-start justify-between">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-neutral-900 ring-1 ring-neutral-200 shadow-sm">
+                <Instagram size={20} />
+              </div>
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-500">
+                Instagram
+              </span>
+            </div>
+
+            <div>
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-toyota-red">
+                Builds
+              </span>
+              <h3 className="mt-2 text-3xl md:text-4xl font-semibold tracking-tight text-neutral-900 leading-tight">
+                @builds.by.ryry
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-neutral-700 max-w-md">
+                Off-the-clock Gunpla. Master Grade, Real Grade, the occasional
+                kit I should have skipped. Same loop as code — start with
+                parts, end with something that stands on its own.
+              </p>
+              <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 group-hover:text-toyota-red transition-colors">
+                Follow the builds
+                <ArrowUpRight
+                  size={15}
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </div>
+            </div>
+          </Card>
+
+          {/* CURRENT WORK — 2x1 */}
+          <Card index={6} href="#current-work" className="md:col-span-2">
+            <div className="flex items-start justify-between mb-4">
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
+                Current Work
+              </span>
+              <ArrowUpRight
+                size={15}
+                className="text-neutral-400 group-hover:text-toyota-red transition-colors"
+              />
+            </div>
+            <ul className="space-y-2 text-sm text-neutral-800">
+              <li className="flex items-center gap-2.5">
+                <LineChart size={13} className="text-toyota-red shrink-0" />
+                Dashboards for the sales floor
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Bot size={13} className="text-toyota-red shrink-0" />
+                AI agents for lead workups
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Wrench size={13} className="text-toyota-red shrink-0" />
+                Building Gunpla kits
+              </li>
+            </ul>
+          </Card>
+
+          {/* GITHUB */}
+          <Card
+            index={7}
+            href="https://github.com/ryewmn"
+            className="flex flex-col justify-between"
+          >
+            <Github size={20} className="text-neutral-700" />
+            <div>
+              <p className="text-sm font-semibold text-neutral-900">GitHub</p>
+              <p className="text-xs text-neutral-500">@ryewmn</p>
+            </div>
+          </Card>
+
+          {/* LINKEDIN */}
+          <Card
+            index={8}
+            href="https://www.linkedin.com/in/ryanchristopherrico/"
+            className="flex flex-col justify-between"
+          >
+            <Linkedin size={20} className="text-neutral-700" />
+            <div>
+              <p className="text-sm font-semibold text-neutral-900">LinkedIn</p>
+              <p className="text-xs text-neutral-500">Ryan Rico</p>
+            </div>
+          </Card>
+
+          {/* LOCATION */}
+          <Card index={9} className="flex flex-col justify-between">
+            <MapPin size={20} className="text-toyota-red" />
+            <div>
+              <p className="text-sm font-semibold text-neutral-900">Round Rock</p>
+              <p className="text-xs text-neutral-500">Texas</p>
+            </div>
+          </Card>
+
+          {/* EMAIL */}
+          <Card
+            index={10}
+            href="mailto:ryanchristopher.rico@gmail.com"
+            className="flex flex-col justify-between"
+          >
+            <Mail size={20} className="text-neutral-700" />
+            <div>
+              <p className="text-sm font-semibold text-neutral-900">Email</p>
+              <p className="text-xs text-neutral-500 break-all">
+                ryanchristopher.rico@gmail.com
+              </p>
+            </div>
+          </Card>
+
+          {/* CONTACT CTA — 4x1 */}
+          <Card
+            index={11}
+            href="#contact"
+            className="md:col-span-4 bg-gradient-to-r from-toyota-red/10 via-amber-100/60 to-toyota-red/10 flex flex-row items-center justify-between"
+          >
+            <div className="flex items-center gap-4">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-toyota-red/10 text-toyota-red ring-1 ring-toyota-red/30 shrink-0">
+                <Phone size={20} />
+              </div>
+              <div>
+                <p className="text-lg md:text-xl font-semibold text-neutral-900 tracking-tight">
+                  Looking for a vehicle, or want to talk{" "}
+                  <span className="font-display italic font-normal">software?</span>
+                </p>
+                <p className="text-sm text-neutral-600">
+                  (717) 781-4318 · I respond within a business day.
+                </p>
+              </div>
+            </div>
+            <ArrowUpRight
+              size={20}
+              className="text-neutral-500 group-hover:text-toyota-red transition-colors shrink-0 hidden sm:block"
+            />
+          </Card>
+        </div>
+      </div>
     </section>
   );
 }
