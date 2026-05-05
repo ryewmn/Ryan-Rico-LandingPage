@@ -54,7 +54,7 @@ const projects: Project[] = [
   {
     title: "OpsGlass",
     description:
-      "Multimodal AI document assistant that ingests invoices, contracts, and receipts from uploads, Drive, and Gmail, then answers natural-language questions about them.",
+      "AI-powered multimodal document assistant that ingests invoices, contracts, and receipts from uploads, Google Drive, and Gmail, and allows natural language querying using Hugging Face models. Includes semantic search, structured extraction, and anomaly detection.",
     status: "Building",
     tags: ["AI", "Hugging Face", "Semantic Search"],
     icon: FileSearch,

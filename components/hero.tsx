@@ -1,9 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail, MapPin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+
+const HeroScene = dynamic(() => import("@/components/hero-scene"), {
+  ssr: false,
+  loading: () => (
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className="h-40 w-40 rounded-full bg-toyota-red/30 blur-3xl animate-pulse" />
+    </div>
+  ),
+});
 
 export function Hero() {
   return (
@@ -129,36 +139,28 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.9, delay: 0.2 }}
             className="lg:col-span-5"
           >
-            <div className="relative rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur p-6 md:p-8 overflow-hidden">
+            <div className="relative aspect-square w-full max-w-[520px] mx-auto rounded-3xl overflow-hidden border border-white/10 bg-black/40">
+              <HeroScene />
+
+              {/* subtle vignette */}
               <div
-                className="absolute -top-20 -right-20 h-56 w-56 rounded-full bg-toyota-red/30 blur-3xl pointer-events-none"
                 aria-hidden="true"
+                className="pointer-events-none absolute inset-0 rounded-3xl shadow-[inset_0_0_120px_rgba(0,0,0,0.65)]"
               />
 
-              <div className="relative">
-                <p className="text-xs font-mono uppercase tracking-[0.18em] text-white/50">
-                  Now
-                </p>
-                <h3 className="mt-3 text-xl font-semibold tracking-tight">
-                  BDC Sales
-                </h3>
-                <p className="text-sm text-white/60">Round Rock Toyota</p>
+              {/* corner badge */}
+              <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.18em] text-white/70 backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full bg-toyota-red animate-pulse" />
+                Live
+              </div>
 
-                <div className="mt-8 grid grid-cols-3 gap-4">
-                  <Stat label="Years in retail" value="3" />
-                  <Stat label="Vehicles / year" value="150+" />
-                  <Stat label="Tools shipped" value="1" />
-                </div>
-
-                <div className="mt-8 space-y-3 border-t border-white/10 pt-6">
-                  <Tag>Internet Sales &amp; BDC</Tag>
-                  <Tag>Customer Follow-Up</Tag>
-                  <Tag>Internal Software</Tag>
-                  <Tag>AI &amp; Automation</Tag>
-                </div>
+              {/* corner caption */}
+              <div className="pointer-events-none absolute left-4 bottom-4 right-4 flex items-end justify-between text-[11px] font-mono uppercase tracking-[0.18em] text-white/50">
+                <span>BDC Sales</span>
+                <span>Round Rock Toyota</span>
               </div>
             </div>
           </motion.div>
@@ -168,22 +170,3 @@ export function Hero() {
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <p className="text-2xl md:text-3xl font-bold tracking-tight">{value}</p>
-      <p className="mt-1 text-[11px] uppercase tracking-wider text-white/50">
-        {label}
-      </p>
-    </div>
-  );
-}
-
-function Tag({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex items-center gap-2 text-sm text-white/80">
-      <span className="h-1.5 w-1.5 rounded-full bg-toyota-red" />
-      {children}
-    </div>
-  );
-}
