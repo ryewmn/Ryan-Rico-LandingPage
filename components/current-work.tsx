@@ -28,7 +28,7 @@ const areas: Area[] = [
     icon: Wrench,
     title: "Building Gundams",
     description:
-      "Off-the-clock, I build Gunpla kits. Same loop as code: start with parts, end with something that stands on its own. I post the builds on Instagram.",
+      "Off-the-clock Gunpla. Master Grades and Perfect Grades mostly — Real Grades and High Grades when I want a fast build. Posted on Instagram.",
     link: {
       href: "https://www.instagram.com/builds.by.ryry/",
       label: "@builds.by.ryry",
