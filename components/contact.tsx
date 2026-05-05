@@ -10,6 +10,7 @@ import {
   ArrowRight,
   Check,
   Github,
+  Instagram,
   Linkedin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -181,6 +182,15 @@ export function Contact() {
                   aria-label="GitHub"
                 >
                   <Github size={16} />
+                </a>
+                <a
+                  href="https://www.instagram.com/builds.by.ryry/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram size={16} />
                 </a>
                 <a
                   href="mailto:ryanchristopher.rico@gmail.com"

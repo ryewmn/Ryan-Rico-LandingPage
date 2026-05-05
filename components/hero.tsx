@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, Github, Instagram, Linkedin, Mail, MapPin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Magnetic } from "@/components/magnetic";
@@ -140,6 +140,18 @@ export function Hero() {
                 >
                   <Linkedin size={14} />
                   LinkedIn
+                </a>
+              </li>
+              <li className="hidden sm:flex h-4 w-px bg-white/10" />
+              <li>
+                <a
+                  href="https://www.instagram.com/builds.by.ryry/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 hover:text-white transition-colors"
+                >
+                  <Instagram size={14} />
+                  @builds.by.ryry
                 </a>
               </li>
               <li className="hidden sm:flex h-4 w-px bg-white/10" />
