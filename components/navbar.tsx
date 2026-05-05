@@ -33,7 +33,7 @@ export function Navbar() {
       className={cn(
         "fixed top-0 inset-x-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-neutral-950/80 backdrop-blur-xl border-b border-white/10"
+          ? "bg-stone-50/85 backdrop-blur-xl border-b border-neutral-200"
           : "bg-transparent"
       )}
     >
@@ -49,7 +49,7 @@ export function Navbar() {
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-toyota-red text-white font-bold text-sm tracking-tight shadow-red-glow">
             RR
           </span>
-          <span className="font-semibold tracking-tight text-white">
+          <span className="font-semibold tracking-tight text-neutral-900">
             Ryan Rico
           </span>
         </a>
@@ -59,7 +59,7 @@ export function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="px-4 py-2 text-sm font-medium text-white/70 hover:text-white transition-colors rounded-full hover:bg-white/5"
+                className="px-4 py-2 text-sm font-medium text-neutral-700 hover:text-neutral-900 transition-colors rounded-full hover:bg-neutral-100"
               >
                 {link.label}
               </a>
@@ -74,7 +74,7 @@ export function Navbar() {
         </div>
 
         <button
-          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg text-white hover:bg-white/10"
+          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg text-neutral-900 hover:bg-neutral-100"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
@@ -90,7 +90,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden overflow-hidden border-t border-white/10 bg-neutral-950"
+            className="md:hidden overflow-hidden border-t border-neutral-200 bg-stone-50"
           >
             <ul className="container flex flex-col py-4">
               {navLinks.map((link) => (
@@ -98,7 +98,7 @@ export function Navbar() {
                   <a
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block py-3 text-base font-medium text-white/80 hover:text-ember"
+                    className="block py-3 text-base font-medium text-neutral-800 hover:text-toyota-red"
                   >
                     {link.label}
                   </a>

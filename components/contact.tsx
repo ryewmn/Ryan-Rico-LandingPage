@@ -47,29 +47,29 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative bg-neutral-950 py-24 md:py-32 overflow-hidden border-t border-white/5"
+      className="relative bg-white py-24 md:py-32 overflow-hidden border-t border-neutral-100"
     >
       <div
-        className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-ember/15 blur-[120px] pointer-events-none"
+        className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-amber-200/30 blur-[140px] pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-toyota-red/12 blur-[140px] pointer-events-none"
+        className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-toyota-red/[0.06] blur-[140px] pointer-events-none"
         aria-hidden="true"
       />
 
       <div className="container relative">
         <div className="max-w-2xl mb-16">
-          <p className="text-sm font-mono uppercase tracking-[0.18em] text-ember">
+          <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
             Contact
           </p>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-balance leading-[1.05]">
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
             Let&apos;s{" "}
-            <span className="font-display italic font-normal text-ember">
+            <span className="font-display italic font-normal text-toyota-red">
               talk shop.
             </span>
           </h2>
-          <p className="mt-4 text-lg text-white/60">
+          <p className="mt-4 text-lg text-neutral-600">
             Looking to upgrade, sell your vehicle, or talk about software for
             your dealership? Send a note.
           </p>
@@ -82,26 +82,17 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-2 rounded-2xl bg-neutral-950 text-white p-8 md:p-10 relative overflow-hidden"
+            className="lg:col-span-2 rounded-2xl border border-neutral-200 bg-gradient-to-br from-amber-50 via-white to-white p-8 md:p-10 relative overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
           >
-            <div
-              className="absolute inset-0 grid-bg opacity-40 pointer-events-none"
-              aria-hidden="true"
-            />
-            <div
-              className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-toyota-red/30 blur-[80px] pointer-events-none"
-              aria-hidden="true"
-            />
-
             <div className="relative">
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-toyota-red text-white shadow-red-glow">
                 <span className="font-bold text-sm">RR</span>
               </div>
 
-              <h3 className="mt-6 text-2xl font-bold tracking-tight">
+              <h3 className="mt-6 text-2xl font-bold tracking-tight text-neutral-900">
                 Ryan Rico
               </h3>
-              <p className="mt-1 text-sm text-white/60">
+              <p className="mt-1 text-sm text-neutral-500">
                 BDC Sales · Round Rock Toyota
               </p>
 
@@ -112,10 +103,10 @@ export function Contact() {
                     className="mt-0.5 text-toyota-red shrink-0"
                   />
                   <div>
-                    <p className="text-xs font-mono uppercase tracking-widest text-white/50">
+                    <p className="text-xs font-mono uppercase tracking-widest text-neutral-400">
                       Dealership
                     </p>
-                    <p className="mt-1 text-sm font-medium">
+                    <p className="mt-1 text-sm font-medium text-neutral-900">
                       Round Rock Toyota
                     </p>
                   </div>
@@ -126,10 +117,10 @@ export function Contact() {
                     className="mt-0.5 text-toyota-red shrink-0"
                   />
                   <div>
-                    <p className="text-xs font-mono uppercase tracking-widest text-white/50">
+                    <p className="text-xs font-mono uppercase tracking-widest text-neutral-400">
                       Location
                     </p>
-                    <p className="mt-1 text-sm font-medium">
+                    <p className="mt-1 text-sm font-medium text-neutral-900">
                       Round Rock, Texas
                     </p>
                   </div>
@@ -140,12 +131,12 @@ export function Contact() {
                     className="mt-0.5 text-toyota-red shrink-0"
                   />
                   <div>
-                    <p className="text-xs font-mono uppercase tracking-widest text-white/50">
+                    <p className="text-xs font-mono uppercase tracking-widest text-neutral-400">
                       Email
                     </p>
                     <a
                       href="mailto:ryanchristopher.rico@gmail.com"
-                      className="mt-1 block text-sm font-medium hover:text-toyota-red transition-colors break-all"
+                      className="mt-1 block text-sm font-medium text-neutral-900 hover:text-toyota-red transition-colors break-all"
                     >
                       ryanchristopher.rico@gmail.com
                     </a>
@@ -157,12 +148,12 @@ export function Contact() {
                     className="mt-0.5 text-toyota-red shrink-0"
                   />
                   <div>
-                    <p className="text-xs font-mono uppercase tracking-widest text-white/50">
+                    <p className="text-xs font-mono uppercase tracking-widest text-neutral-400">
                       Phone
                     </p>
                     <a
                       href="tel:+17177814318"
-                      className="mt-1 block text-sm font-medium hover:text-toyota-red transition-colors"
+                      className="mt-1 block text-sm font-medium text-neutral-900 hover:text-toyota-red transition-colors"
                     >
                       (717) 781-4318
                     </a>
@@ -170,12 +161,12 @@ export function Contact() {
                 </li>
               </ul>
 
-              <div className="mt-10 flex items-center gap-3 border-t border-white/10 pt-6">
+              <div className="mt-10 flex items-center gap-3 border-t border-neutral-200 pt-6">
                 <a
                   href="https://www.linkedin.com/in/ryanchristopherrico/"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-colors"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 bg-white hover:bg-neutral-50 hover:border-neutral-300 transition-colors text-neutral-700"
                   aria-label="LinkedIn"
                 >
                   <Linkedin size={16} />
@@ -184,7 +175,7 @@ export function Contact() {
                   href="https://github.com/ryewmn"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-colors"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 bg-white hover:bg-neutral-50 hover:border-neutral-300 transition-colors text-neutral-700"
                   aria-label="GitHub"
                 >
                   <Github size={16} />
@@ -193,14 +184,14 @@ export function Contact() {
                   href="https://www.instagram.com/builds.by.ryry/"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-colors"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 bg-white hover:bg-neutral-50 hover:border-neutral-300 transition-colors text-neutral-700"
                   aria-label="Instagram"
                 >
                   <Instagram size={16} />
                 </a>
                 <a
                   href="mailto:ryanchristopher.rico@gmail.com"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-colors"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 bg-white hover:bg-neutral-50 hover:border-neutral-300 transition-colors text-neutral-700"
                   aria-label="Email"
                 >
                   <Mail size={16} />
@@ -215,7 +206,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-3 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur p-8 md:p-10"
+            className="lg:col-span-3 rounded-2xl border border-neutral-200 bg-white p-8 md:p-10 shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
           >
             <form onSubmit={handleSubmit} className="space-y-5" noValidate>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -255,7 +246,7 @@ export function Contact() {
               </div>
 
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
-                <p className="text-xs text-white/45">
+                <p className="text-xs text-neutral-500">
                   I respond within one business day.
                 </p>
                 <Button

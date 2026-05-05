@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
-import { Marquee } from "@/components/marquee";
 import { About } from "@/components/about";
 import { CurrentWork } from "@/components/current-work";
 import { Projects } from "@/components/projects";
@@ -10,10 +9,9 @@ import { Footer } from "@/components/footer";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-neutral-950 text-white">
+    <main className="min-h-screen bg-stone-50 text-neutral-900">
       <Navbar />
       <Hero />
-      <Marquee />
       <About />
       <CurrentWork />
       <Projects />
