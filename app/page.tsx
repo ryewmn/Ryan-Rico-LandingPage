@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
+import { Marquee } from "@/components/marquee";
 import { About } from "@/components/about";
 import { CurrentWork } from "@/components/current-work";
 import { Projects } from "@/components/projects";
@@ -12,6 +13,7 @@ export default function HomePage() {
     <main id="top" className="min-h-screen bg-white">
       <Navbar />
       <Hero />
+      <Marquee />
       <About />
       <CurrentWork />
       <Projects />

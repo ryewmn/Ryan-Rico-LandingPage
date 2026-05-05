@@ -58,8 +58,9 @@ export function Contact() {
           <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
             Contact
           </p>
-          <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 text-balance">
-            Let&apos;s talk shop.
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
+            Let&apos;s{" "}
+            <span className="font-display italic font-normal">talk shop.</span>
           </h2>
           <p className="mt-4 text-lg text-neutral-600">
             Looking to upgrade, sell your vehicle, or talk about software for

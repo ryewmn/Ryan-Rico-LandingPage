@@ -54,8 +54,9 @@ export function Skills() {
           <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
             Skills
           </p>
-          <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 text-balance">
-            Two sides of the same job.
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
+            Two sides of the{" "}
+            <span className="font-display italic font-normal">same job.</span>
           </h2>
           <p className="mt-4 text-lg text-neutral-600">
             Years of automotive operations, paired with the software chops to
