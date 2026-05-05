@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone, Linkedin, Github } from "lucide-react";
+import { Mail, MapPin, Phone, Linkedin, Github, Instagram } from "lucide-react";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -49,6 +49,15 @@ export function Footer() {
                 aria-label="GitHub"
               >
                 <Github size={15} />
+              </a>
+              <a
+                href="https://www.instagram.com/builds.by.ryry/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/30 transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={15} />
               </a>
               <a
                 href="mailto:ryanchristopher.rico@gmail.com"

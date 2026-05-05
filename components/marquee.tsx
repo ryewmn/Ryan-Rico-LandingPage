@@ -4,17 +4,16 @@ import { Star } from "lucide-react";
 
 const items = [
   "BDC Sales",
-  "Customer Follow-Up",
   "Internet Leads",
-  "Vehicle Acquisition",
-  "Toyota CRM",
+  "Dashboards",
+  "AI Automation",
+  "AI Agents",
   "Next.js",
   "TypeScript",
   "Tailwind CSS",
-  "AI Agents",
-  "Hugging Face",
-  "Round Rock, TX",
+  "Gundams",
   "Round Rock Toyota",
+  "Round Rock, TX",
 ];
 
 export function Marquee() {
