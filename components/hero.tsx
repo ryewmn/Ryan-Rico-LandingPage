@@ -1,98 +1,151 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Github, Instagram, Linkedin, Mail, MapPin, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  ChevronDown,
+  Github,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Magnetic } from "@/components/magnetic";
 
-const HeroScene = dynamic(() => import("@/components/hero-scene"), {
+const RoomScene = dynamic(() => import("@/components/room-scene"), {
   ssr: false,
   loading: () => (
     <div className="absolute inset-0 flex items-center justify-center">
-      <div className="h-40 w-40 rounded-full bg-toyota-red/30 blur-3xl animate-pulse" />
+      <div className="h-72 w-72 rounded-full bg-ember/30 blur-3xl animate-pulse" />
     </div>
   ),
 });
 
+const sectionForHotspot: Record<string, string> = {
+  pc: "#projects",
+  legos: "#current-work",
+  gundam: "#current-work",
+  toyota: "#about",
+  phone: "#contact",
+};
+
 export function Hero() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const yText = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const yScene = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
+  const [is3DReady, setIs3DReady] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    const t = setTimeout(() => setIs3DReady(true), 50);
+    return () => clearTimeout(t);
+  }, []);
+
+  const handleHotspot = (key: string) => {
+    const target = sectionForHotspot[key];
+    if (target) {
+      const el = document.querySelector(target);
+      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <section
-      ref={ref}
-      className="relative isolate overflow-hidden bg-neutral-950 text-white"
+      id="top"
+      className="relative isolate min-h-screen w-full overflow-hidden bg-neutral-950 text-white"
     >
+      {/* Background scene (desktop only) */}
+      {isDesktop && is3DReady ? (
+        <div className="absolute inset-0">
+          <RoomScene onSelect={handleHotspot} />
+        </div>
+      ) : (
+        <>
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 grid-bg-fine opacity-60"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[900px] rounded-full bg-toyota-red/20 blur-[160px]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute -bottom-32 -right-20 h-[400px] w-[400px] rounded-full bg-ember/25 blur-[140px]"
+          />
+        </>
+      )}
+
+      {/* Vignette over scene so HUD reads cleanly */}
       <div
-        className="absolute inset-0 grid-bg opacity-60 mask-fade-b pointer-events-none"
         aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-neutral-950/70 via-transparent to-neutral-950"
       />
       <div
-        className="absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[900px] rounded-full bg-toyota-red/20 blur-[160px] pointer-events-none"
         aria-hidden="true"
-      />
-      <div
-        className="absolute -bottom-32 -right-32 h-[400px] w-[400px] rounded-full bg-toyota-red/15 blur-[140px] pointer-events-none"
-        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.55)_100%)]"
       />
 
-      <motion.div
-        style={{ opacity }}
-        className="container relative pt-36 md:pt-44 pb-24 md:pb-32"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <motion.div style={{ y: yText }} className="lg:col-span-7">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Badge variant="dark" className="gap-2">
-                <Sparkles size={12} className="text-toyota-red" />
-                Available for select dealership and software projects
-              </Badge>
-            </motion.div>
+      {/* HUD overlay */}
+      <div className="relative z-10 flex min-h-screen flex-col">
+        {/* Top bar */}
+        <div className="container flex items-start justify-between pt-24 md:pt-28">
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-xs"
+          >
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ember">
+              [ The Workroom ]
+            </p>
+            <p className="mt-2 text-sm text-white/60">
+              {isDesktop
+                ? "Hover the desk to see what I work on. Click to jump to that section."
+                : "BDC Sales · Software · Builds. Tap below to explore."}
+            </p>
+          </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.05 }}
-              className="mt-6 text-5xl sm:text-6xl md:text-7xl lg:text-[88px] font-bold tracking-tight text-balance leading-[1.02]"
-            >
-              Building the systems
-              <br />
-              <span className="font-display italic font-normal bg-gradient-to-r from-white via-white to-neutral-400 bg-clip-text text-transparent">
-                behind the showroom.
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="hidden md:flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-white/50"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-ember animate-pulse" />
+            Live · Round Rock, TX
+          </motion.div>
+        </div>
+
+        {/* Centered title */}
+        <div className="container flex-1 flex items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="max-w-3xl"
+          >
+            <h1 className="text-[14vw] sm:text-[12vw] md:text-[8.5vw] lg:text-[7.2vw] font-bold tracking-tight leading-[0.92]">
+              Ryan{" "}
+              <span className="font-display italic font-normal text-gradient-fire">
+                Rico.
               </span>
-            </motion.h1>
+            </h1>
+            <p className="mt-6 max-w-xl text-base md:text-lg text-white/70 leading-relaxed">
+              BDC Sales at Round Rock Toyota. I work internet leads by day,
+              build dashboards and AI tools by night, and snap together Gunpla
+              kits in between.
+            </p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="mt-8 max-w-xl text-lg md:text-xl text-white/70 leading-relaxed"
-            >
-              I&apos;m Ryan Rico — BDC Sales at Round Rock Toyota. I work
-              internet leads during the day and build software for dealership
-              workflows after hours.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.25 }}
-              className="mt-10 flex flex-wrap items-center gap-4"
-            >
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <Magnetic>
                 <Button asChild size="lg">
                   <a href="#contact">
@@ -106,19 +159,24 @@ export function Hero() {
                   <a href="#projects">See projects</a>
                 </Button>
               </Magnetic>
-            </motion.div>
+            </div>
+          </motion.div>
+        </div>
 
-            <motion.ul
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.35 }}
-              className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-white/60"
-            >
+        {/* Bottom bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="container pb-10"
+        >
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs md:text-sm text-white/55">
               <li className="flex items-center gap-2">
-                <MapPin size={14} className="text-toyota-red" />
-                Round Rock, Texas
+                <MapPin size={13} className="text-ember" />
+                Round Rock, TX
               </li>
-              <li className="hidden sm:flex h-4 w-px bg-white/10" />
+              <li className="hidden sm:flex h-3 w-px bg-white/10" />
               <li>
                 <a
                   href="https://github.com/ryewmn"
@@ -126,11 +184,11 @@ export function Hero() {
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 hover:text-white transition-colors"
                 >
-                  <Github size={14} />
+                  <Github size={13} />
                   github.com/ryewmn
                 </a>
               </li>
-              <li className="hidden sm:flex h-4 w-px bg-white/10" />
+              <li className="hidden sm:flex h-3 w-px bg-white/10" />
               <li>
                 <a
                   href="https://www.linkedin.com/in/ryanchristopherrico/"
@@ -138,11 +196,11 @@ export function Hero() {
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 hover:text-white transition-colors"
                 >
-                  <Linkedin size={14} />
+                  <Linkedin size={13} />
                   LinkedIn
                 </a>
               </li>
-              <li className="hidden sm:flex h-4 w-px bg-white/10" />
+              <li className="hidden sm:flex h-3 w-px bg-white/10" />
               <li>
                 <a
                   href="https://www.instagram.com/builds.by.ryry/"
@@ -150,51 +208,35 @@ export function Hero() {
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 hover:text-white transition-colors"
                 >
-                  <Instagram size={14} />
+                  <Instagram size={13} />
                   @builds.by.ryry
                 </a>
               </li>
-              <li className="hidden sm:flex h-4 w-px bg-white/10" />
+              <li className="hidden sm:flex h-3 w-px bg-white/10" />
               <li>
                 <a
                   href="mailto:ryanchristopher.rico@gmail.com"
                   className="inline-flex items-center gap-2 hover:text-white transition-colors"
                 >
-                  <Mail size={14} />
+                  <Mail size={13} />
                   ryanchristopher.rico@gmail.com
                 </a>
               </li>
-            </motion.ul>
-          </motion.div>
+            </ul>
 
-          <motion.div
-            style={{ y: yScene, scale }}
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
-            className="lg:col-span-5"
-          >
-            <div className="relative aspect-square w-full max-w-[520px] mx-auto rounded-3xl overflow-hidden border border-white/10 bg-black/40">
-              <HeroScene />
-
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 rounded-3xl shadow-[inset_0_0_120px_rgba(0,0,0,0.65)]"
+            <a
+              href="#about"
+              className="group flex items-center gap-2 text-xs font-mono uppercase tracking-[0.22em] text-white/50 hover:text-white transition-colors"
+            >
+              Scroll
+              <ChevronDown
+                size={14}
+                className="transition-transform group-hover:translate-y-0.5 animate-bounce"
               />
-
-              <div className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.18em] text-white/70 backdrop-blur">
-                <span className="h-1.5 w-1.5 rounded-full bg-toyota-red animate-pulse" />
-                Live
-              </div>
-
-              <div className="pointer-events-none absolute left-4 bottom-4 right-4 flex items-end justify-between text-[11px] font-mono uppercase tracking-[0.18em] text-white/50">
-                <span>BDC Sales</span>
-                <span>Round Rock Toyota</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </motion.div>
+            </a>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

@@ -47,23 +47,29 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative bg-white py-24 md:py-32 overflow-hidden"
+      className="relative bg-neutral-950 py-24 md:py-32 overflow-hidden border-t border-white/5"
     >
       <div
-        className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-toyota-red/5 blur-[120px] pointer-events-none"
+        className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-ember/15 blur-[120px] pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-toyota-red/12 blur-[140px] pointer-events-none"
         aria-hidden="true"
       />
 
       <div className="container relative">
         <div className="max-w-2xl mb-16">
-          <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
+          <p className="text-sm font-mono uppercase tracking-[0.18em] text-ember">
             Contact
           </p>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-balance leading-[1.05]">
             Let&apos;s{" "}
-            <span className="font-display italic font-normal">talk shop.</span>
+            <span className="font-display italic font-normal text-ember">
+              talk shop.
+            </span>
           </h2>
-          <p className="mt-4 text-lg text-neutral-600">
+          <p className="mt-4 text-lg text-white/60">
             Looking to upgrade, sell your vehicle, or talk about software for
             your dealership? Send a note.
           </p>
@@ -209,7 +215,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-3 rounded-2xl border border-neutral-200 bg-white p-8 md:p-10 shadow-soft"
+            className="lg:col-span-3 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur p-8 md:p-10"
           >
             <form onSubmit={handleSubmit} className="space-y-5" noValidate>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -249,7 +255,7 @@ export function Contact() {
               </div>
 
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
-                <p className="text-xs text-neutral-500">
+                <p className="text-xs text-white/45">
                   I respond within one business day.
                 </p>
                 <Button

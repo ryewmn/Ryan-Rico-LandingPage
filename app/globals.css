@@ -4,27 +4,27 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 6%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 6%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
 
     --primary: 354 92% 48%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 9%;
+    --accent: 22 100% 55%;
+    --accent-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 354 92% 48%;
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
+    --ring: 22 100% 55%;
 
     --radius: 0.75rem;
   }
@@ -36,6 +36,8 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
+    color-scheme: dark;
+    background: #0a0a0a;
   }
 
   body {
@@ -43,14 +45,8 @@
     font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
   }
 
-  @media (hover: hover) and (pointer: fine) {
-    body, a, button, input, textarea, label, [role="button"] {
-      cursor: none;
-    }
-  }
-
   ::selection {
-    background: #EB0A1E;
+    background: #FF6B1A;
     color: #ffffff;
   }
 }
@@ -69,13 +65,44 @@
 
   .grid-bg-light {
     background-image:
-      linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     background-size: 56px 56px;
+  }
+
+  .grid-bg-fine {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
   .red-glow {
     box-shadow: 0 0 0 1px rgba(235, 10, 30, 0.2), 0 12px 48px rgba(235, 10, 30, 0.15);
+  }
+
+  .ember-glow {
+    box-shadow: 0 0 0 1px rgba(255, 107, 26, 0.25), 0 12px 48px rgba(255, 107, 26, 0.2);
+  }
+
+  .text-gradient-fire {
+    background: linear-gradient(135deg, #ffffff 0%, #FF8A4D 60%, #EB0A1E 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .noise {
+    position: relative;
+  }
+  .noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
 
   .mask-fade-b {
