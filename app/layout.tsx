@@ -3,7 +3,6 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Instrument_Serif } from "next/font/google";
 import { SmoothScroll } from "@/components/smooth-scroll";
-import { Cursor } from "@/components/cursor";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -47,7 +46,6 @@ export default function RootLayout({
     >
       <body className="font-sans">
         <SmoothScroll />
-        <Cursor />
         {children}
       </body>
     </html>
