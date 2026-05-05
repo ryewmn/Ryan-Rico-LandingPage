@@ -1,19 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   ChevronDown,
   Github,
   Instagram,
   Linkedin,
-  Mail,
   MapPin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/magnetic";
+import type { HotspotKey } from "@/components/room-scene";
+
+const RoomPanel = dynamic(
+  () => import("@/components/room-panel").then((m) => m.RoomPanel),
+  { ssr: false }
+);
 
 const RoomScene = dynamic(() => import("@/components/room-scene"), {
   ssr: false,
@@ -24,17 +29,10 @@ const RoomScene = dynamic(() => import("@/components/room-scene"), {
   ),
 });
 
-const sectionForHotspot: Record<string, string> = {
-  pc: "#projects",
-  legos: "#current-work",
-  gundam: "#current-work",
-  toyota: "#about",
-  phone: "#contact",
-};
-
 export function Hero() {
   const [is3DReady, setIs3DReady] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
+  const [focused, setFocused] = useState<HotspotKey | null>(null);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
@@ -49,12 +47,46 @@ export function Hero() {
     return () => clearTimeout(t);
   }, []);
 
-  const handleHotspot = (key: string) => {
-    const target = sectionForHotspot[key];
-    if (target) {
-      const el = document.querySelector(target);
-      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const closeFocus = useCallback(() => setFocused(null), []);
+
+  // Esc to close
+  useEffect(() => {
+    if (!focused) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeFocus();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [focused, closeFocus]);
+
+  // Lock body scroll while focused on desktop
+  useEffect(() => {
+    if (!isDesktop) return;
+    if (focused) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
     }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [focused, isDesktop]);
+
+  const handleHotspot = (key: HotspotKey) => {
+    if (!isDesktop) {
+      // mobile fallback: smooth scroll to corresponding section
+      const map: Record<HotspotKey, string> = {
+        pc: "#projects",
+        legos: "#current-work",
+        gundam: "#current-work",
+        toyota: "#about",
+        phone: "#contact",
+      };
+      const el = document.querySelector(map[key]);
+      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    setFocused(key);
   };
 
   return (
@@ -65,7 +97,7 @@ export function Hero() {
       {/* Background scene (desktop only) */}
       {isDesktop && is3DReady ? (
         <div className="absolute inset-0">
-          <RoomScene onSelect={handleHotspot} />
+          <RoomScene onSelect={handleHotspot} focused={focused} />
         </div>
       ) : (
         <>
@@ -84,7 +116,7 @@ export function Hero() {
         </>
       )}
 
-      {/* Vignette over scene so HUD reads cleanly */}
+      {/* Vignette */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-neutral-950/70 via-transparent to-neutral-950"
@@ -94,14 +126,30 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.55)_100%)]"
       />
 
-      {/* HUD overlay */}
+      {/* Dim when focused */}
+      <AnimatePresence>
+        {focused ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="pointer-events-none absolute inset-0 bg-neutral-950/55 backdrop-blur-[2px]"
+          />
+        ) : null}
+      </AnimatePresence>
+
+      {/* HUD */}
       <div className="relative z-10 flex min-h-screen flex-col">
         {/* Top bar */}
         <div className="container flex items-start justify-between pt-24 md:pt-28">
           <motion.div
             initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            animate={{
+              opacity: focused ? 0.4 : 1,
+              y: 0,
+            }}
+            transition={{ duration: 0.4 }}
             className="max-w-xs"
           >
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ember">
@@ -109,7 +157,7 @@ export function Hero() {
             </p>
             <p className="mt-2 text-sm text-white/60">
               {isDesktop
-                ? "Hover the desk to see what I work on. Click to jump to that section."
+                ? "Hover the desk. Click any object to walk over to it."
                 : "BDC Sales · Software · Builds. Tap below to explore."}
             </p>
           </motion.div>
@@ -125,12 +173,15 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Centered title */}
+        {/* Centered title (fades when focused) */}
         <div className="container flex-1 flex items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            animate={{
+              opacity: focused ? 0 : 1,
+              y: focused ? 30 : 0,
+            }}
+            transition={{ duration: 0.6, delay: focused ? 0 : 0.1 }}
             className="max-w-3xl"
           >
             <h1 className="text-[14vw] sm:text-[12vw] md:text-[8.5vw] lg:text-[7.2vw] font-bold tracking-tight leading-[0.92]">
@@ -147,16 +198,21 @@ export function Hero() {
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Magnetic>
-                <Button asChild size="lg">
-                  <a href="#contact">
-                    Let&apos;s connect
-                    <ArrowRight size={18} />
-                  </a>
+                <Button
+                  size="lg"
+                  onClick={() => isDesktop ? setFocused("phone") : (document.querySelector("#contact") as HTMLElement)?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  Let&apos;s connect
+                  <ArrowRight size={18} />
                 </Button>
               </Magnetic>
               <Magnetic strength={0.25}>
-                <Button asChild variant="outline-light" size="lg">
-                  <a href="#projects">See projects</a>
+                <Button
+                  variant="outline-light"
+                  size="lg"
+                  onClick={() => isDesktop ? setFocused("pc") : (document.querySelector("#projects") as HTMLElement)?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  See projects
                 </Button>
               </Magnetic>
             </div>
@@ -166,8 +222,11 @@ export function Hero() {
         {/* Bottom bar */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.45 }}
+          animate={{
+            opacity: focused ? 0.3 : 1,
+            y: 0,
+          }}
+          transition={{ duration: 0.4 }}
           className="container pb-10"
         >
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -212,16 +271,6 @@ export function Hero() {
                   @builds.by.ryry
                 </a>
               </li>
-              <li className="hidden sm:flex h-3 w-px bg-white/10" />
-              <li>
-                <a
-                  href="mailto:ryanchristopher.rico@gmail.com"
-                  className="inline-flex items-center gap-2 hover:text-white transition-colors"
-                >
-                  <Mail size={13} />
-                  ryanchristopher.rico@gmail.com
-                </a>
-              </li>
             </ul>
 
             <a
@@ -237,6 +286,11 @@ export function Hero() {
           </div>
         </motion.div>
       </div>
+
+      {/* Content panel overlay */}
+      {isDesktop ? (
+        <RoomPanel hotspot={focused} onClose={closeFocus} />
+      ) : null}
     </section>
   );
 }
