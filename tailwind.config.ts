@@ -51,6 +51,11 @@ const config: Config = {
           "red-dark": "#C00818",
           "red-light": "#FF1F33",
         },
+        ember: {
+          DEFAULT: "#FF6B1A",
+          dark: "#D9530A",
+          light: "#FF8A4D",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -66,6 +71,8 @@ const config: Config = {
         soft: "0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06)",
         "soft-lg": "0 2px 4px rgba(0,0,0,0.05), 0 16px 40px rgba(0,0,0,0.08)",
         "red-glow": "0 8px 32px rgba(235, 10, 30, 0.18)",
+        "ember-glow": "0 8px 32px rgba(255, 107, 26, 0.28)",
+        "inner-deep": "inset 0 1px 0 rgba(255,255,255,0.05), inset 0 0 60px rgba(0,0,0,0.4)",
       },
       keyframes: {
         "fade-up": {

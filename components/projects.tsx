@@ -64,21 +64,28 @@ const projects: Project[] = [
 
 export function Projects() {
   return (
-    <section id="projects" className="relative bg-white py-24 md:py-32">
-      <div className="container">
+    <section
+      id="projects"
+      className="relative bg-neutral-950 py-24 md:py-32 overflow-hidden border-t border-white/5"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute -left-40 top-1/4 h-[500px] w-[700px] rounded-full bg-toyota-red/10 blur-[160px] pointer-events-none"
+      />
+      <div className="container relative">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div className="max-w-2xl">
-            <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
+            <p className="text-sm font-mono uppercase tracking-[0.18em] text-ember">
               Featured Projects
             </p>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
+            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-balance leading-[1.05]">
               Software for{" "}
-              <span className="font-display italic font-normal">
+              <span className="font-display italic font-normal text-ember">
                 dealership operations.
               </span>
             </h2>
           </div>
-          <p className="text-base text-neutral-600 max-w-md">
+          <p className="text-base text-white/60 max-w-md">
             A working set of tools focused on appointments, acquisition, and
             retention. Built in production, refined on the floor.
           </p>
@@ -94,10 +101,10 @@ export function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.55, delay: i * 0.06 }}
-                className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white p-7 shadow-soft hover:shadow-soft-lg hover:border-neutral-300 transition-all duration-300"
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur p-7 hover:bg-white/[0.05] hover:border-white/20 transition-colors"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-900 text-white">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-ember/15 text-ember ring-1 ring-ember/30">
                     <Icon size={22} strokeWidth={2} />
                   </div>
                   <Badge variant={statusVariant[project.status]}>
@@ -114,10 +121,10 @@ export function Projects() {
                   </Badge>
                 </div>
 
-                <h3 className="mt-6 text-xl font-semibold tracking-tight text-neutral-900">
+                <h3 className="mt-6 text-xl font-semibold tracking-tight text-white">
                   {project.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+                <p className="mt-3 text-sm leading-relaxed text-white/65">
                   {project.description}
                 </p>
 
@@ -125,20 +132,20 @@ export function Projects() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="inline-flex items-center rounded-md bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-700"
+                      className="inline-flex items-center rounded-md bg-white/5 px-2.5 py-1 text-xs font-medium text-white/70 ring-1 ring-white/10"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="mt-7 flex items-center justify-between border-t border-neutral-100 pt-5">
+                <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
                   {project.url ? (
                     <a
                       href={project.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 hover:text-toyota-red transition-colors"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-ember transition-colors"
                       aria-label={`View ${project.title} on GitHub`}
                     >
                       View on GitHub
@@ -150,7 +157,7 @@ export function Projects() {
                   ) : (
                     <a
                       href="#contact"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 hover:text-toyota-red transition-colors"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-ember transition-colors"
                       aria-label={`Ask about ${project.title}`}
                     >
                       Ask about it
@@ -161,7 +168,7 @@ export function Projects() {
                     </a>
                   )}
                   {project.isPrivate ? (
-                    <span className="inline-flex items-center gap-1 text-xs text-neutral-400">
+                    <span className="inline-flex items-center gap-1 text-xs text-white/40">
                       <Lock size={11} />
                       Private repo
                     </span>
@@ -170,7 +177,7 @@ export function Projects() {
 
                 <div
                   aria-hidden="true"
-                  className="absolute inset-x-0 bottom-0 h-0.5 bg-toyota-red scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100"
+                  className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-ember via-toyota-red to-ember scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100"
                 />
               </motion.article>
             );

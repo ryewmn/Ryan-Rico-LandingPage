@@ -3,7 +3,6 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Instrument_Serif } from "next/font/google";
 import { SmoothScroll } from "@/components/smooth-scroll";
-import { Cursor } from "@/components/cursor";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -17,7 +16,7 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Ryan Rico | BDC Sales & Software",
   description:
-    "Ryan Rico — BDC Sales at Round Rock Toyota. Working internet leads by day and building dealership software by night.",
+    "Ryan Rico — BDC Sales at Round Rock Toyota. Working internet leads by day and building dealership software (and Gundams) by night.",
   keywords: [
     "Ryan Rico",
     "Round Rock Toyota",
@@ -25,6 +24,8 @@ export const metadata: Metadata = {
     "Internet Sales",
     "Automotive Software",
     "Dealership AI",
+    "Gunpla",
+    "Three.js",
   ],
   authors: [{ name: "Ryan Rico" }],
   openGraph: {
@@ -43,11 +44,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable}`}
+      className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable} dark`}
     >
-      <body className="font-sans">
+      <body className="font-sans bg-neutral-950 text-white">
         <SmoothScroll />
-        <Cursor />
         {children}
       </body>
     </html>

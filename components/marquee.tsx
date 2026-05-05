@@ -33,7 +33,7 @@ export function Marquee() {
               </span>
               <Star
                 size={14}
-                className="text-toyota-red shrink-0"
+                className="text-ember shrink-0"
                 strokeWidth={2.5}
               />
             </div>

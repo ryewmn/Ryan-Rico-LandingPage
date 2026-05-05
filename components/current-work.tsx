@@ -40,22 +40,26 @@ export function CurrentWork() {
   return (
     <section
       id="current-work"
-      className="relative bg-neutral-50 py-24 md:py-32 overflow-hidden"
+      className="relative bg-neutral-950 py-24 md:py-32 overflow-hidden border-t border-white/5"
     >
+      <div
+        aria-hidden="true"
+        className="absolute right-0 top-0 h-[400px] w-[600px] rounded-full bg-ember/10 blur-[140px] pointer-events-none"
+      />
       <div className="container relative">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div className="max-w-2xl">
-            <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
+            <p className="text-sm font-mono uppercase tracking-[0.18em] text-ember">
               Current Work
             </p>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
+            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-balance leading-[1.05]">
               Where I{" "}
-              <span className="font-display italic font-normal">
+              <span className="font-display italic font-normal text-ember">
                 spend my time.
               </span>
             </h2>
           </div>
-          <p className="text-base text-neutral-600 max-w-md">
+          <p className="text-base text-white/60 max-w-md">
             A mix of code, AI, and building things with my hands. Most of the
             satisfaction lives in the same place — making something work.
           </p>
@@ -71,15 +75,15 @@ export function CurrentWork() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="group relative flex flex-col rounded-2xl border border-neutral-200 bg-white p-7 shadow-soft hover:shadow-soft-lg hover:border-neutral-300 transition-all duration-300"
+                className="group relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur p-7 hover:bg-white/[0.05] hover:border-white/20 transition-colors"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-toyota-red/10 text-toyota-red group-hover:bg-toyota-red group-hover:text-white transition-colors">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-ember/10 text-ember group-hover:bg-ember group-hover:text-white transition-colors">
                   <Icon size={20} strokeWidth={2} />
                 </div>
-                <h3 className="mt-5 text-lg font-semibold tracking-tight text-neutral-900">
+                <h3 className="mt-5 text-lg font-semibold tracking-tight text-white">
                   {a.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+                <p className="mt-2 text-sm leading-relaxed text-white/65">
                   {a.description}
                 </p>
                 {a.link ? (
@@ -87,7 +91,7 @@ export function CurrentWork() {
                     href={a.link.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 hover:text-toyota-red transition-colors"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-ember transition-colors"
                   >
                     <Instagram size={14} />
                     {a.link.label}
