@@ -77,9 +77,11 @@ function Card({
   return inner;
 }
 
-// Mobile-first stacked, then 4-col layout pinned by grid-template-areas
-const gridStyles: React.CSSProperties = {
-  display: "grid",
+// Inline-style overrides for grid-template-areas. NOTE: do NOT set
+// `display` here — that would beat Tailwind's responsive `hidden`/`grid`
+// classes (inline styles have higher specificity), causing both the
+// mobile and desktop grids to render at once.
+const baseGridStyles: React.CSSProperties = {
   gap: "1rem",
   gridAutoRows: "minmax(200px, auto)",
 };
@@ -142,11 +144,11 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Mobile bento (single col, stacked) */}
+        {/* Mobile bento — single column stack */}
         <div
           className="grid md:hidden"
           style={{
-            ...gridStyles,
+            ...baseGridStyles,
             gridTemplateColumns: "1fr",
             gridTemplateAreas: mobileAreas,
           }}
@@ -154,11 +156,11 @@ export function Hero() {
           <BentoCards />
         </div>
 
-        {/* Desktop bento (4 col, named areas) */}
+        {/* Desktop bento — 4 cols, named areas */}
         <div
           className="hidden md:grid"
           style={{
-            ...gridStyles,
+            ...baseGridStyles,
             gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
             gridTemplateAreas: desktopAreas,
           }}
