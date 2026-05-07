@@ -76,7 +76,7 @@ export function Projects() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div className="max-w-2xl">
             <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
-              Featured Projects
+              <span className="text-neutral-400">03 /</span> Featured Projects
             </p>
             <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
               Software for{" "}

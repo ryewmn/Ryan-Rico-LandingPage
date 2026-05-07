@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Instrument_Serif } from "next/font/google";
+import { ScrollProgress } from "@/components/scroll-progress";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -59,7 +60,16 @@ export default function RootLayout({
       lang="en"
       className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable}`}
     >
-      <body className="font-sans bg-stone-50 text-neutral-900">{children}</body>
+      <body className="font-sans bg-stone-50 text-neutral-900">
+        <a
+          href="#top"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:bg-toyota-red focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"
+        >
+          Skip to content
+        </a>
+        <ScrollProgress />
+        {children}
+      </body>
     </html>
   );
 }
