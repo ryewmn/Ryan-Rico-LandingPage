@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/magnetic";
+import { CountUp } from "@/components/count-up";
 
 const fade = (i: number) => ({
   initial: { opacity: 0, y: 14 },
@@ -174,7 +175,7 @@ export function Hero() {
               Years
             </span>
             <p className="mt-6 text-5xl md:text-6xl font-bold tracking-tight text-neutral-900 leading-none">
-              3
+              <CountUp value={3} />
             </p>
             <p className="mt-3 text-xs text-neutral-500">in automotive retail</p>
           </Card>
@@ -187,7 +188,7 @@ export function Hero() {
               Per year
             </span>
             <p className="mt-6 text-5xl md:text-6xl font-bold tracking-tight text-toyota-red leading-none">
-              150+
+              <CountUp value={150} suffix="+" />
             </p>
             <p className="mt-3 text-xs text-neutral-500">vehicles delivered</p>
           </Card>

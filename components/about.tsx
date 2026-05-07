@@ -2,11 +2,12 @@
 
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import { CountUp } from "@/components/count-up";
 
-const stats = [
-  { value: "3", label: "Years in automotive retail" },
-  { value: "150+", label: "Vehicles a year" },
-  { value: "1", label: "Internal tool shipped" },
+const stats: { value: number; suffix?: string; label: string }[] = [
+  { value: 3, label: "Years in automotive retail" },
+  { value: 150, suffix: "+", label: "Vehicles a year" },
+  { value: 1, label: "Internal tool shipped" },
 ];
 
 export function About() {
@@ -94,7 +95,7 @@ export function About() {
               className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:border-neutral-300 transition-all"
             >
               <p className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900">
-                {s.value}
+                <CountUp value={s.value} suffix={s.suffix ?? ""} />
               </p>
               <p className="mt-2 text-sm text-neutral-500">{s.label}</p>
             </motion.div>

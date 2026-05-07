@@ -49,6 +49,31 @@
     background: #EB0A1E;
     color: #ffffff;
   }
+
+  /* Visible focus rings for keyboard nav (skip on mouse focus) */
+  :focus-visible {
+    outline: 2px solid #EB0A1E;
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+
+  /* Disable global custom focus on inputs/textarea since they have their own */
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+  }
+
+  /* Honor reduced-motion for hover lifts and entry animations */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer utilities {
