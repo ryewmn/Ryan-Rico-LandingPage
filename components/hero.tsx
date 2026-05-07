@@ -110,11 +110,22 @@ export function Hero() {
             index={0}
             className="md:col-span-12 bg-gradient-to-br from-toyota-red/[0.06] via-amber-100/40 to-white"
           >
-            <div className="flex items-start justify-between mb-8">
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-toyota-red">
-                BDC Sales / Software / Builds
-              </span>
-              <Sparkles size={14} className="text-toyota-red" />
+            <div className="flex items-start justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="relative h-12 w-12 shrink-0 rounded-2xl overflow-hidden bg-gradient-to-br from-toyota-red to-ember text-white flex items-center justify-center font-bold text-base tracking-tight shadow-[0_8px_24px_rgba(235,10,30,0.25)] ring-1 ring-white/30">
+                  <span className="absolute inset-0 grid-bg-fine opacity-20" aria-hidden="true" />
+                  <span className="relative">RR</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-toyota-red">
+                    BDC Sales / Software / Builds
+                  </span>
+                  <span className="text-xs text-neutral-500 mt-0.5">
+                    Round Rock Toyota · est. 2023
+                  </span>
+                </div>
+              </div>
+              <Sparkles size={14} className="text-toyota-red mt-1.5" />
             </div>
 
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[88px] font-bold tracking-tight leading-[0.95] text-neutral-900">
