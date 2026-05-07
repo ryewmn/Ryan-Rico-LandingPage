@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/magnetic";
+import { CountUp } from "@/components/count-up";
 
 const fade = (i: number) => ({
   initial: { opacity: 0, y: 14 },
@@ -109,11 +110,22 @@ export function Hero() {
             index={0}
             className="md:col-span-12 bg-gradient-to-br from-toyota-red/[0.06] via-amber-100/40 to-white"
           >
-            <div className="flex items-start justify-between mb-8">
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-toyota-red">
-                BDC Sales / Software / Builds
-              </span>
-              <Sparkles size={14} className="text-toyota-red" />
+            <div className="flex items-start justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="relative h-12 w-12 shrink-0 rounded-2xl overflow-hidden bg-gradient-to-br from-toyota-red to-ember text-white flex items-center justify-center font-bold text-base tracking-tight shadow-[0_8px_24px_rgba(235,10,30,0.25)] ring-1 ring-white/30">
+                  <span className="absolute inset-0 grid-bg-fine opacity-20" aria-hidden="true" />
+                  <span className="relative">RR</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-toyota-red">
+                    BDC Sales / Software / Builds
+                  </span>
+                  <span className="text-xs text-neutral-500 mt-0.5">
+                    Round Rock Toyota · est. 2023
+                  </span>
+                </div>
+              </div>
+              <Sparkles size={14} className="text-toyota-red mt-1.5" />
             </div>
 
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[88px] font-bold tracking-tight leading-[0.95] text-neutral-900">
@@ -128,14 +140,16 @@ export function Hero() {
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <Magnetic>
-                <Button asChild size="lg">
-                  <a href="#contact">
-                    Let&apos;s connect
-                    <ArrowRight size={16} />
-                  </a>
-                </Button>
-              </Magnetic>
+              <div className="relative inline-flex motion-reduce:before:hidden before:absolute before:inset-0 before:rounded-full before:bg-toyota-red/30 before:blur-md before:animate-pulse before:-z-10">
+                <Magnetic>
+                  <Button asChild size="lg">
+                    <a href="#contact">
+                      Let&apos;s connect
+                      <ArrowRight size={16} />
+                    </a>
+                  </Button>
+                </Magnetic>
+              </div>
               <Magnetic strength={0.25}>
                 <Button asChild variant="outline" size="lg">
                   <a href="#projects">See projects</a>
@@ -174,7 +188,7 @@ export function Hero() {
               Years
             </span>
             <p className="mt-6 text-5xl md:text-6xl font-bold tracking-tight text-neutral-900 leading-none">
-              3
+              <CountUp value={3} />
             </p>
             <p className="mt-3 text-xs text-neutral-500">in automotive retail</p>
           </Card>
@@ -187,7 +201,7 @@ export function Hero() {
               Per year
             </span>
             <p className="mt-6 text-5xl md:text-6xl font-bold tracking-tight text-toyota-red leading-none">
-              150+
+              <CountUp value={150} suffix="+" />
             </p>
             <p className="mt-3 text-xs text-neutral-500">vehicles delivered</p>
           </Card>
