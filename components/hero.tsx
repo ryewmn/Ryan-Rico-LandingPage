@@ -129,14 +129,16 @@ export function Hero() {
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <Magnetic>
-                <Button asChild size="lg">
-                  <a href="#contact">
-                    Let&apos;s connect
-                    <ArrowRight size={16} />
-                  </a>
-                </Button>
-              </Magnetic>
+              <div className="relative inline-flex motion-reduce:before:hidden before:absolute before:inset-0 before:rounded-full before:bg-toyota-red/30 before:blur-md before:animate-pulse before:-z-10">
+                <Magnetic>
+                  <Button asChild size="lg">
+                    <a href="#contact">
+                      Let&apos;s connect
+                      <ArrowRight size={16} />
+                    </a>
+                  </Button>
+                </Magnetic>
+              </div>
               <Magnetic strength={0.25}>
                 <Button asChild variant="outline" size="lg">
                   <a href="#projects">See projects</a>

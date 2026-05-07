@@ -5,18 +5,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useActiveSection } from "@/components/use-active-section";
 
 const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#current-work", label: "Current Work" },
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
-  { href: "#contact", label: "Contact" },
+  { href: "#about", id: "about", label: "About" },
+  { href: "#current-work", id: "current-work", label: "Current Work" },
+  { href: "#projects", id: "projects", label: "Projects" },
+  { href: "#skills", id: "skills", label: "Skills" },
+  { href: "#contact", id: "contact", label: "Contact" },
 ];
+
+const SECTION_IDS = navLinks.map((l) => l.id);
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const active = useActiveSection(SECTION_IDS);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -55,16 +59,32 @@ export function Navbar() {
         </a>
 
         <ul className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="px-4 py-2 text-sm font-medium text-neutral-700 hover:text-neutral-900 transition-colors rounded-full hover:bg-neutral-100"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = active === link.id;
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  aria-current={isActive ? "true" : undefined}
+                  className={cn(
+                    "relative px-4 py-2 text-sm font-medium transition-colors rounded-full",
+                    isActive
+                      ? "text-neutral-900 bg-neutral-100"
+                      : "text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100"
+                  )}
+                >
+                  {link.label}
+                  {isActive ? (
+                    <motion.span
+                      layoutId="nav-active-dot"
+                      className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-1 w-1 rounded-full bg-toyota-red"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  ) : null}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="hidden md:flex items-center gap-3">

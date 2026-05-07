@@ -177,7 +177,11 @@ export function Projects() {
 
                 <div
                   aria-hidden="true"
-                  className="absolute inset-x-0 bottom-0 h-0.5 bg-toyota-red scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100"
+                  className="pointer-events-none absolute -top-12 -right-12 h-32 w-32 rounded-full bg-toyota-red/15 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-transparent via-toyota-red to-transparent scale-x-0 origin-center transition-transform duration-500 group-hover:scale-x-100"
                 />
               </motion.article>
             );
