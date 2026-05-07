@@ -9,9 +9,9 @@ import { useActiveSection } from "@/components/use-active-section";
 
 const navLinks = [
   { href: "#about", id: "about", label: "About" },
-  { href: "#current-work", id: "current-work", label: "Current Work" },
   { href: "#projects", id: "projects", label: "Projects" },
   { href: "#skills", id: "skills", label: "Skills" },
+  { href: "#builds", id: "builds", label: "Builds" },
   { href: "#contact", id: "contact", label: "Contact" },
 ];
 
