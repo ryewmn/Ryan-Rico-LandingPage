@@ -25,7 +25,7 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
           <div className="lg:col-span-5">
             <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
-              <span className="text-neutral-400">01 /</span> About
+              <span className="text-neutral-500">01 /</span> About
             </p>
             <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
               Hands on

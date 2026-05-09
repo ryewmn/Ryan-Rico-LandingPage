@@ -1,16 +1,15 @@
 import type { MetadataRoute } from "next";
+import { SITE } from "@/lib/site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://ryanrico.com";
-  const now = new Date();
-
+  // Hash anchors aren't indexed separately — search engines treat the home
+  // page as one URL regardless of fragment. Just list canonical pages.
   return [
-    { url: base, lastModified: now, changeFrequency: "monthly", priority: 1 },
-    { url: `${base}/#about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${base}/#current-work`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${base}/#projects`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${base}/#skills`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${base}/#builds`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${base}/#contact`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    {
+      url: SITE.url,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 1,
+    },
   ];
 }

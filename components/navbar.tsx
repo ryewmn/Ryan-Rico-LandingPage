@@ -6,16 +6,10 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useActiveSection } from "@/components/use-active-section";
+import { NAV_LINKS, SITE } from "@/lib/site-config";
 
-const navLinks = [
-  { href: "#about", id: "about", label: "About" },
-  { href: "#projects", id: "projects", label: "Projects" },
-  { href: "#skills", id: "skills", label: "Skills" },
-  { href: "#builds", id: "builds", label: "Builds" },
-  { href: "#contact", id: "contact", label: "Contact" },
-];
-
-const SECTION_IDS = navLinks.map((l) => l.id);
+const NAV = NAV_LINKS.filter((l) => l.inNav);
+const SECTION_IDS = NAV.map((l) => l.id);
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -48,18 +42,18 @@ export function Navbar() {
         <a
           href="#top"
           className="flex items-center gap-2 group"
-          aria-label="Ryan Rico home"
+          aria-label={`${SITE.name} home`}
         >
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-toyota-red text-white font-bold text-sm tracking-tight shadow-red-glow">
-            RR
+            {SITE.shortName}
           </span>
           <span className="font-semibold tracking-tight text-neutral-900">
-            Ryan Rico
+            {SITE.name}
           </span>
         </a>
 
         <ul className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => {
+          {NAV.map((link) => {
             const isActive = active === link.id;
             return (
               <li key={link.href}>
@@ -98,6 +92,7 @@ export function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="mobile-nav"
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -106,6 +101,7 @@ export function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
+            id="mobile-nav"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -113,7 +109,7 @@ export function Navbar() {
             className="md:hidden overflow-hidden border-t border-neutral-200 bg-white"
           >
             <ul className="container flex flex-col py-4">
-              {navLinks.map((link) => (
+              {NAV.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
