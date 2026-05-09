@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/magnetic";
+import { CountUp } from "@/components/count-up";
 
 const fade = (i: number) => ({
   initial: { opacity: 0, y: 14 },
@@ -71,19 +72,15 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate w-full overflow-hidden bg-stone-50 text-neutral-900"
+      className="relative isolate w-full overflow-hidden bg-white text-neutral-900"
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 grid-bg-soft opacity-50"
+        className="absolute inset-0 dot-pattern-soft mask-edges opacity-80"
       />
       <div
         aria-hidden="true"
-        className="absolute -top-40 -left-20 h-[600px] w-[700px] rounded-full bg-toyota-red/[0.05] blur-[160px]"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute top-40 right-0 h-[500px] w-[500px] rounded-full bg-amber-200/30 blur-[160px]"
+        className="absolute -top-40 -left-20 h-[600px] w-[700px] rounded-full bg-toyota-red/[0.04] blur-[160px]"
       />
 
       <div className="relative z-10 container pt-28 md:pt-32 pb-14">
@@ -107,13 +104,24 @@ export function Hero() {
           {/* Row 1 — Hero name (full width) */}
           <Card
             index={0}
-            className="md:col-span-12 bg-gradient-to-br from-toyota-red/[0.06] via-amber-100/40 to-white"
+            className="md:col-span-12 bg-gradient-to-br from-toyota-red/[0.04] via-white to-neutral-50"
           >
-            <div className="flex items-start justify-between mb-8">
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-toyota-red">
-                BDC Sales / Software / Builds
-              </span>
-              <Sparkles size={14} className="text-toyota-red" />
+            <div className="flex items-start justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="relative h-12 w-12 shrink-0 rounded-2xl overflow-hidden bg-gradient-to-br from-toyota-red to-ember text-white flex items-center justify-center font-bold text-base tracking-tight shadow-[0_8px_24px_rgba(235,10,30,0.25)] ring-1 ring-white/30">
+                  <span className="absolute inset-0 grid-bg-fine opacity-20" aria-hidden="true" />
+                  <span className="relative">RR</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-toyota-red">
+                    BDC Sales / Software / Builds
+                  </span>
+                  <span className="text-xs text-neutral-500 mt-0.5">
+                    Round Rock Toyota · est. 2023
+                  </span>
+                </div>
+              </div>
+              <Sparkles size={14} className="text-toyota-red mt-1.5" />
             </div>
 
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[88px] font-bold tracking-tight leading-[0.95] text-neutral-900">
@@ -128,14 +136,16 @@ export function Hero() {
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <Magnetic>
-                <Button asChild size="lg">
-                  <a href="#contact">
-                    Let&apos;s connect
-                    <ArrowRight size={16} />
-                  </a>
-                </Button>
-              </Magnetic>
+              <div className="relative inline-flex motion-reduce:before:hidden before:absolute before:inset-0 before:rounded-full before:bg-toyota-red/30 before:blur-md before:animate-pulse before:-z-10">
+                <Magnetic>
+                  <Button asChild size="lg">
+                    <a href="#contact">
+                      Let&apos;s connect
+                      <ArrowRight size={16} />
+                    </a>
+                  </Button>
+                </Magnetic>
+              </div>
               <Magnetic strength={0.25}>
                 <Button asChild variant="outline" size="lg">
                   <a href="#projects">See projects</a>
@@ -174,20 +184,20 @@ export function Hero() {
               Years
             </span>
             <p className="mt-6 text-5xl md:text-6xl font-bold tracking-tight text-neutral-900 leading-none">
-              3
+              <CountUp value={3} />
             </p>
             <p className="mt-3 text-xs text-neutral-500">in automotive retail</p>
           </Card>
 
           <Card
             index={3}
-            className="md:col-span-3 justify-between bg-gradient-to-br from-amber-50 to-white"
+            className="md:col-span-3 justify-between bg-gradient-to-br from-toyota-red/[0.03] to-white"
           >
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
               Per year
             </span>
             <p className="mt-6 text-5xl md:text-6xl font-bold tracking-tight text-toyota-red leading-none">
-              150+
+              <CountUp value={150} suffix="+" />
             </p>
             <p className="mt-3 text-xs text-neutral-500">vehicles delivered</p>
           </Card>
@@ -245,7 +255,7 @@ export function Hero() {
           <Card
             index={5}
             href="https://www.instagram.com/builds.by.ryry/"
-            className="md:col-span-6 justify-between bg-gradient-to-br from-amber-100 via-orange-50 to-white"
+            className="md:col-span-6 justify-between bg-gradient-to-br from-neutral-50 via-white to-toyota-red/[0.03]"
           >
             <div className="flex items-start justify-between">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-neutral-900 ring-1 ring-neutral-200 shadow-sm">
@@ -336,7 +346,7 @@ export function Hero() {
           <Card
             index={9}
             href="#contact"
-            className="md:col-span-12 bg-gradient-to-r from-toyota-red/10 via-amber-100/60 to-toyota-red/10"
+            className="md:col-span-12 bg-gradient-to-r from-toyota-red/[0.06] via-neutral-50 to-toyota-red/[0.06]"
           >
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-center gap-4 min-w-0">

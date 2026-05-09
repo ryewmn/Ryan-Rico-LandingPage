@@ -40,13 +40,13 @@ export function CurrentWork() {
   return (
     <section
       id="current-work"
-      className="relative bg-stone-50 py-24 md:py-32 overflow-hidden border-t border-neutral-100"
+      className="relative bg-white py-24 md:py-32 overflow-hidden border-t border-neutral-100"
     >
       <div className="container relative">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div className="max-w-2xl">
             <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
-              Current Work
+              <span className="text-neutral-400">02 /</span> Current Work
             </p>
             <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
               Where I{" "}
@@ -71,7 +71,7 @@ export function CurrentWork() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="group relative flex flex-col rounded-2xl border border-neutral-200 bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:border-neutral-300 transition-all"
+                className="group relative flex flex-col rounded-2xl border border-neutral-200 bg-neutral-50 p-7 shadow-[0_1px_2px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] hover:border-neutral-300 hover:bg-white transition-all"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-toyota-red/10 text-toyota-red ring-1 ring-toyota-red/20 group-hover:bg-toyota-red group-hover:text-white group-hover:ring-toyota-red transition-colors">
                   <Icon size={20} strokeWidth={2} />

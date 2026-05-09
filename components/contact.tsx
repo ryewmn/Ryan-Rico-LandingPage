@@ -1,14 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
   Phone,
   MapPin,
   Building2,
   ArrowRight,
-  Check,
   Github,
   Instagram,
   Linkedin,
@@ -50,18 +49,18 @@ export function Contact() {
       className="relative bg-white py-24 md:py-32 overflow-hidden border-t border-neutral-100"
     >
       <div
-        className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-amber-200/30 blur-[140px] pointer-events-none"
+        className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-toyota-red/[0.04] blur-[140px] pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-toyota-red/[0.06] blur-[140px] pointer-events-none"
+        className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-toyota-red/[0.04] blur-[140px] pointer-events-none"
         aria-hidden="true"
       />
 
       <div className="container relative">
         <div className="max-w-2xl mb-16">
           <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
-            Contact
+            <span className="text-neutral-400">06 /</span> Contact
           </p>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
             Let&apos;s{" "}
@@ -82,7 +81,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-2 rounded-2xl border border-neutral-200 bg-gradient-to-br from-amber-50 via-white to-white p-8 md:p-10 relative overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
+            className="lg:col-span-2 rounded-2xl border border-neutral-200 bg-gradient-to-br from-toyota-red/[0.04] via-white to-white p-8 md:p-10 relative overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
           >
             <div className="relative">
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-toyota-red text-white shadow-red-glow">
@@ -208,7 +207,66 @@ export function Contact() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-3 rounded-2xl border border-neutral-200 bg-white p-8 md:p-10 shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
           >
-            <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+            <AnimatePresence mode="wait">
+              {state === "success" ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex flex-col items-center justify-center text-center min-h-[420px] px-6"
+                >
+                  <svg
+                    viewBox="0 0 64 64"
+                    className="h-20 w-20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <motion.circle
+                      cx="32"
+                      cy="32"
+                      r="29"
+                      stroke="#EB0A1E"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      initial={{ pathLength: 0, opacity: 0.4 }}
+                      animate={{ pathLength: 1, opacity: 1 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                    />
+                    <motion.path
+                      d="M20 33 L29 42 L45 24"
+                      stroke="#EB0A1E"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
+                    />
+                  </svg>
+                  <h3 className="mt-6 text-2xl font-semibold tracking-tight text-neutral-900">
+                    Message{" "}
+                    <span className="font-display italic font-normal text-toyota-red">
+                      sent.
+                    </span>
+                  </h3>
+                  <p className="mt-2 text-sm text-neutral-600 max-w-sm">
+                    Your email client should be open with the note prefilled.
+                    I&apos;ll reply within a business day.
+                  </p>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  onSubmit={handleSubmit}
+                  className="space-y-5"
+                  noValidate
+                >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name</Label>
@@ -255,12 +313,7 @@ export function Contact() {
                   disabled={state === "submitting"}
                   className="sm:w-auto w-full"
                 >
-                  {state === "success" ? (
-                    <>
-                      <Check size={16} />
-                      Message sent
-                    </>
-                  ) : state === "submitting" ? (
+                  {state === "submitting" ? (
                     "Sending..."
                   ) : (
                     <>
@@ -270,7 +323,9 @@ export function Contact() {
                   )}
                 </Button>
               </div>
-            </form>
+                </motion.form>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </div>

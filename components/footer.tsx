@@ -5,6 +5,7 @@ const navLinks = [
   { href: "#current-work", label: "Current Work" },
   { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
+  { href: "#builds", label: "Builds" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -12,7 +13,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-stone-50 text-neutral-700 border-t border-neutral-200">
+    <footer className="relative bg-neutral-50 text-neutral-700 border-t border-neutral-200">
       <div
         className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-toyota-red/40 to-transparent"
         aria-hidden="true"
