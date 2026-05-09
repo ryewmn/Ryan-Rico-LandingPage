@@ -52,7 +52,7 @@ export function Skills() {
       <div className="container relative">
         <div className="max-w-2xl mb-16">
           <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
-            <span className="text-neutral-400">04 /</span> Skills
+            <span className="text-neutral-500">04 /</span> Skills
           </p>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
             Two sides of the{" "}

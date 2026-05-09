@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
@@ -16,31 +16,34 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { SITE } from "@/lib/site-config";
 
 type FormState = "idle" | "submitting" | "success";
 
 export function Contact() {
   const [state, setState] = useState<FormState>("idle");
+  const successHeadingRef = useRef<HTMLHeadingElement>(null);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  // Move focus to the success heading when the form swaps for assistive tech
+  useEffect(() => {
+    if (state === "success") successHeadingRef.current?.focus();
+  }, [state]);
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setState("submitting");
     const form = e.currentTarget;
     const data = new FormData(form);
-    const name = encodeURIComponent(String(data.get("name") || ""));
-    const message = encodeURIComponent(String(data.get("message") || ""));
-    const email = String(data.get("email") || "");
-    const subject = `Hello from ${decodeURIComponent(name) || "your site"}`;
-    const body = `${decodeURIComponent(message)}%0D%0A%0D%0A— ${decodeURIComponent(
-      name
-    )} (${email})`;
-    window.location.href = `mailto:ryanchristopher.rico@gmail.com?subject=${encodeURIComponent(
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const message = String(data.get("message") || "").trim();
+    const subject = `Hello from ${name || "your site"}`;
+    const body = `${message}\n\n— ${name} (${email})`;
+    window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(
       subject
-    )}&body=${body}`;
-    await new Promise((r) => setTimeout(r, 600));
+    )}&body=${encodeURIComponent(body)}`;
     setState("success");
     form.reset();
-    setTimeout(() => setState("idle"), 3000);
+    setTimeout(() => setState("idle"), 4000);
   }
 
   return (
@@ -60,7 +63,7 @@ export function Contact() {
       <div className="container relative">
         <div className="max-w-2xl mb-16">
           <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
-            <span className="text-neutral-400">06 /</span> Contact
+            <span className="text-neutral-500">06 /</span> Contact
           </p>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
             Let&apos;s{" "}
@@ -164,7 +167,7 @@ export function Contact() {
                 <a
                   href="https://www.linkedin.com/in/ryanchristopherrico/"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 bg-white hover:bg-neutral-50 hover:border-neutral-300 transition-colors text-neutral-700"
                   aria-label="LinkedIn"
                 >
@@ -173,7 +176,7 @@ export function Contact() {
                 <a
                   href="https://github.com/ryewmn"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 bg-white hover:bg-neutral-50 hover:border-neutral-300 transition-colors text-neutral-700"
                   aria-label="GitHub"
                 >
@@ -182,7 +185,7 @@ export function Contact() {
                 <a
                   href="https://www.instagram.com/builds.by.ryry/"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 bg-white hover:bg-neutral-50 hover:border-neutral-300 transition-colors text-neutral-700"
                   aria-label="Instagram"
                 >
@@ -245,7 +248,11 @@ export function Contact() {
                       transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
                     />
                   </svg>
-                  <h3 className="mt-6 text-2xl font-semibold tracking-tight text-neutral-900">
+                  <h3
+                    ref={successHeadingRef}
+                    tabIndex={-1}
+                    className="mt-6 text-2xl font-semibold tracking-tight text-neutral-900 focus:outline-none"
+                  >
                     Message{" "}
                     <span className="font-display italic font-normal text-toyota-red">
                       sent.

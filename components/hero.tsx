@@ -136,9 +136,16 @@ export function Hero() {
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <div className="relative inline-flex motion-reduce:before:hidden before:absolute before:inset-0 before:rounded-full before:bg-toyota-red/30 before:blur-md before:animate-pulse before:-z-10">
+              <div className="relative isolate inline-flex">
+                {/* Soft pulse glow behind the CTA. Uses an absolutely
+                    positioned span (not before:-z-10) so it renders
+                    correctly on iOS Safari's stacking context. */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-full bg-toyota-red/30 blur-md animate-pulse motion-reduce:hidden"
+                />
                 <Magnetic>
-                  <Button asChild size="lg">
+                  <Button asChild size="lg" className="relative">
                     <a href="#contact">
                       Let&apos;s connect
                       <ArrowRight size={16} />
@@ -162,7 +169,7 @@ export function Hero() {
               </span>
               <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-emerald-700">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Available
+                Open to software work
               </span>
             </div>
             <div className="mt-6">
