@@ -66,11 +66,11 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative bg-white py-24 md:py-32 overflow-hidden border-t border-neutral-100"
+      className="relative bg-neutral-50 py-24 md:py-32 overflow-hidden border-t border-neutral-100"
     >
       <div
         aria-hidden="true"
-        className="absolute -left-40 top-1/4 h-[500px] w-[700px] rounded-full bg-toyota-red/[0.04] blur-[160px] pointer-events-none"
+        className="absolute -left-40 top-1/4 h-[500px] w-[700px] rounded-full bg-toyota-red/[0.03] blur-[160px] pointer-events-none"
       />
       <div className="container relative">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">

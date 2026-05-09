@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronLeft, ChevronRight, Instagram } from "lucide-react";
+import { LazyInstagramEmbed } from "@/components/lazy-instagram";
 
 /**
  * Drop Instagram post shortcodes into POSTS once you have them — they're
@@ -52,11 +53,11 @@ export function Builds() {
   return (
     <section
       id="builds"
-      className="relative bg-stone-50 py-24 md:py-32 overflow-hidden border-t border-neutral-100"
+      className="relative bg-neutral-50 py-24 md:py-32 overflow-hidden border-t border-neutral-100"
     >
       <div
         aria-hidden="true"
-        className="absolute -right-40 top-1/3 h-[400px] w-[600px] rounded-full bg-amber-200/30 blur-[160px] pointer-events-none"
+        className="absolute -right-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.04] blur-[160px] pointer-events-none"
       />
 
       <div className="container relative">
@@ -110,11 +111,11 @@ export function Builds() {
           {/* Edge fades */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-stone-50 to-transparent"
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-neutral-50 to-transparent"
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-stone-50 to-transparent"
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-neutral-50 to-transparent"
           />
 
           <div
@@ -151,13 +152,7 @@ function BuildSlide({ shortcode, index }: { shortcode: string; index: number }) 
       transition={{ duration: 0.5, delay: 0.05 * index }}
       className="snap-start shrink-0 w-[300px] md:w-[340px] aspect-[4/5] rounded-2xl overflow-hidden border border-neutral-200 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]"
     >
-      <iframe
-        src={`https://www.instagram.com/p/${shortcode}/embed/captioned/`}
-        title={`Instagram build ${shortcode}`}
-        loading="lazy"
-        allow="encrypted-media"
-        className="h-full w-full"
-      />
+      <LazyInstagramEmbed shortcode={shortcode} index={index} />
     </motion.div>
   );
 }
@@ -176,7 +171,7 @@ function PlaceholderSlide({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, delay: 0.05 * index }}
-      className="snap-start shrink-0 w-[300px] md:w-[340px] aspect-[4/5] relative rounded-2xl overflow-hidden border border-neutral-200 bg-gradient-to-br from-amber-50 via-white to-toyota-red/5 p-6 flex flex-col justify-between"
+      className="snap-start shrink-0 w-[300px] md:w-[340px] aspect-[4/5] relative rounded-2xl overflow-hidden border border-neutral-200 bg-gradient-to-br from-white via-neutral-50 to-toyota-red/[0.04] p-6 flex flex-col justify-between"
     >
       <div className="flex items-start justify-between">
         <Instagram size={18} className="text-neutral-400" />

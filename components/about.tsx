@@ -14,11 +14,11 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative bg-white py-24 md:py-32 overflow-hidden border-t border-neutral-100"
+      className="relative bg-neutral-50 py-24 md:py-32 overflow-hidden border-t border-neutral-100"
     >
       <div
         aria-hidden="true"
-        className="absolute -left-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.04] blur-[140px] pointer-events-none"
+        className="absolute -left-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.03] blur-[140px] pointer-events-none"
       />
 
       <div className="container relative">
@@ -70,7 +70,7 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="relative rounded-2xl border border-neutral-200 bg-stone-50 p-6 md:p-8"
+              className="relative rounded-2xl border border-neutral-200 bg-white p-6 md:p-8"
             >
               <Quote
                 size={28}

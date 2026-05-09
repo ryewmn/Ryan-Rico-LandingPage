@@ -3,18 +3,14 @@ import { ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen relative isolate flex items-center bg-stone-50 text-neutral-900 overflow-hidden">
+    <main className="min-h-screen relative isolate flex items-center bg-white text-neutral-900 overflow-hidden">
       <div
         aria-hidden="true"
-        className="absolute inset-0 grid-bg-soft opacity-50"
+        className="absolute inset-0 dot-pattern-soft mask-edges opacity-80"
       />
       <div
         aria-hidden="true"
-        className="absolute -top-40 -left-20 h-[600px] w-[700px] rounded-full bg-toyota-red/[0.06] blur-[160px]"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute top-40 right-0 h-[500px] w-[500px] rounded-full bg-amber-200/30 blur-[160px]"
+        className="absolute -top-40 -left-20 h-[600px] w-[700px] rounded-full bg-toyota-red/[0.05] blur-[160px]"
       />
 
       <div className="relative z-10 container py-24">

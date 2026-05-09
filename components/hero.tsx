@@ -72,19 +72,15 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate w-full overflow-hidden bg-stone-50 text-neutral-900"
+      className="relative isolate w-full overflow-hidden bg-white text-neutral-900"
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 grid-bg-soft opacity-50"
+        className="absolute inset-0 dot-pattern-soft mask-edges opacity-80"
       />
       <div
         aria-hidden="true"
-        className="absolute -top-40 -left-20 h-[600px] w-[700px] rounded-full bg-toyota-red/[0.05] blur-[160px]"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute top-40 right-0 h-[500px] w-[500px] rounded-full bg-amber-200/30 blur-[160px]"
+        className="absolute -top-40 -left-20 h-[600px] w-[700px] rounded-full bg-toyota-red/[0.04] blur-[160px]"
       />
 
       <div className="relative z-10 container pt-28 md:pt-32 pb-14">
@@ -108,7 +104,7 @@ export function Hero() {
           {/* Row 1 — Hero name (full width) */}
           <Card
             index={0}
-            className="md:col-span-12 bg-gradient-to-br from-toyota-red/[0.06] via-amber-100/40 to-white"
+            className="md:col-span-12 bg-gradient-to-br from-toyota-red/[0.04] via-white to-neutral-50"
           >
             <div className="flex items-start justify-between mb-6">
               <div className="flex items-center gap-3">
@@ -195,7 +191,7 @@ export function Hero() {
 
           <Card
             index={3}
-            className="md:col-span-3 justify-between bg-gradient-to-br from-amber-50 to-white"
+            className="md:col-span-3 justify-between bg-gradient-to-br from-toyota-red/[0.03] to-white"
           >
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
               Per year
@@ -259,7 +255,7 @@ export function Hero() {
           <Card
             index={5}
             href="https://www.instagram.com/builds.by.ryry/"
-            className="md:col-span-6 justify-between bg-gradient-to-br from-amber-100 via-orange-50 to-white"
+            className="md:col-span-6 justify-between bg-gradient-to-br from-neutral-50 via-white to-toyota-red/[0.03]"
           >
             <div className="flex items-start justify-between">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-neutral-900 ring-1 ring-neutral-200 shadow-sm">
@@ -350,7 +346,7 @@ export function Hero() {
           <Card
             index={9}
             href="#contact"
-            className="md:col-span-12 bg-gradient-to-r from-toyota-red/10 via-amber-100/60 to-toyota-red/10"
+            className="md:col-span-12 bg-gradient-to-r from-toyota-red/[0.06] via-neutral-50 to-toyota-red/[0.06]"
           >
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-center gap-4 min-w-0">

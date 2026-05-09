@@ -49,11 +49,11 @@ export function Contact() {
       className="relative bg-white py-24 md:py-32 overflow-hidden border-t border-neutral-100"
     >
       <div
-        className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-amber-200/30 blur-[140px] pointer-events-none"
+        className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-toyota-red/[0.04] blur-[140px] pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-toyota-red/[0.06] blur-[140px] pointer-events-none"
+        className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-toyota-red/[0.04] blur-[140px] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -81,7 +81,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-2 rounded-2xl border border-neutral-200 bg-gradient-to-br from-amber-50 via-white to-white p-8 md:p-10 relative overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
+            className="lg:col-span-2 rounded-2xl border border-neutral-200 bg-gradient-to-br from-toyota-red/[0.04] via-white to-white p-8 md:p-10 relative overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
           >
             <div className="relative">
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-toyota-red text-white shadow-red-glow">

@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: 40 20% 98%;
-    --foreground: 0 0% 8%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 6%;
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 8%;
@@ -93,6 +93,23 @@
       linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
     background-size: 56px 56px;
+  }
+
+  /* Modern subtle dot pattern (replaces grid for the "pro" look) */
+  .dot-pattern {
+    background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .dot-pattern-soft {
+    background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* Top-edge fade so the dotted pattern feels like it dissolves */
+  .mask-edges {
+    mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, black 40%, transparent 90%);
+    -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, black 40%, transparent 90%);
   }
 
   .text-gradient-fire {

@@ -47,7 +47,7 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="relative bg-stone-50 py-24 md:py-32 overflow-hidden border-t border-neutral-100"
+      className="relative bg-white py-24 md:py-32 overflow-hidden border-t border-neutral-100"
     >
       <div className="container relative">
         <div className="max-w-2xl mb-16">
@@ -76,7 +76,7 @@ export function Skills() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.55, delay: i * 0.06 }}
-                className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
+                className="rounded-2xl border border-neutral-200 bg-neutral-50 p-8 shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
               >
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-toyota-red/10 text-toyota-red ring-1 ring-toyota-red/20">
@@ -94,7 +94,7 @@ export function Skills() {
                   {g.items.map((item) => (
                     <li
                       key={item}
-                      className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-stone-50 px-3 py-2 text-sm text-neutral-800"
+                      className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm text-neutral-800"
                     >
                       <span className="h-1.5 w-1.5 rounded-full bg-toyota-red" />
                       {item}
