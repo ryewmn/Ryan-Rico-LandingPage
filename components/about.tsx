@@ -1,13 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
 import { CountUp } from "@/components/count-up";
 import { SectionLabel } from "@/components/ui/section-label";
 
 const stats: { value: number; suffix?: string; label: string }[] = [
-  { value: 3, label: "Years in automotive retail" },
-  { value: 200, suffix: "+", label: "Vehicles a year" },
+  { value: 3, label: "Years on the floor" },
+  { value: 200, suffix: "+", label: "Vehicles last year" },
   { value: 1, label: "Internal tool shipped" },
 ];
 
@@ -15,35 +14,22 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
+      className="relative bg-background py-28 md:py-36 border-t border-white/10"
     >
-      <div
-        aria-hidden="true"
-        className="absolute -left-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.06] blur-[140px] pointer-events-none"
-      />
-
-      <div className="container relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
           <div className="lg:col-span-5">
-            <SectionLabel number="01">About</SectionLabel>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
-              Hands on
+            <SectionLabel>About</SectionLabel>
+            <h2 className="mt-5 text-4xl md:text-5xl lg:text-[3.75rem] font-semibold tracking-[-0.025em] leading-[1.02] text-white">
+              Hands on the floor.
               <br />
-              <span className="font-display italic font-normal text-gradient-ember">
-                the floor.
-              </span>
-              <br />
-              Hands on
-              <br />
-              <span className="font-display italic font-normal text-white/70">
-                the keyboard.
-              </span>
+              Hands on the keyboard.
             </h2>
           </div>
 
-          <div className="lg:col-span-7 space-y-6 text-[17px] leading-relaxed text-white/70">
+          <div className="lg:col-span-7 space-y-7 text-[17px] leading-[1.65] text-white/65">
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6 }}
@@ -54,52 +40,48 @@ export function About() {
               vehicles through that funnel.
             </motion.p>
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: 0.05 }}
             >
               After hours I build software for the same workflows I run during
               the day. The first tool I shipped — a leaderboard for the sales
-              floor — is live. The next ones (a BDC toolkit and an AI-assisted
-              car-buying agent) are in progress.
+              floor — is live. A BDC toolkit and an AI-assisted car-buying
+              agent are in progress.
             </motion.p>
-            <motion.figure
-              initial={{ opacity: 0, y: 16 }}
+            <motion.blockquote
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="relative border-l-2 border-toyota-red/70 pl-6 md:pl-8 py-2"
+              className="font-display text-2xl md:text-[1.75rem] italic text-white leading-[1.3] pt-2"
             >
-              <Quote
-                size={22}
-                className="absolute -left-[12px] -top-1 text-toyota-red bg-background rounded-full p-1 ring-1 ring-white/10"
-              />
-              <blockquote className="font-display text-xl md:text-2xl italic text-white/90 leading-snug">
-                Software shouldn&apos;t replace what works on the floor — it
-                should give the team time back so they can do more of it.
-              </blockquote>
-            </motion.figure>
+              &ldquo;Software shouldn&apos;t replace what works on the floor —
+              it should give the team time back so they can do more of it.&rdquo;
+            </motion.blockquote>
           </div>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <dl className="mt-24 grid grid-cols-1 sm:grid-cols-3 border-t border-white/10">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all hover:bg-white/[0.05] hover:border-white/20"
+              className={`py-8 ${i > 0 ? "sm:border-l border-white/10 sm:pl-8" : ""}`}
             >
-              <p className="text-4xl md:text-5xl font-semibold tracking-tight text-white">
+              <dt className="text-xs font-mono uppercase tracking-[0.22em] text-white/40">
+                {s.label}
+              </dt>
+              <dd className="mt-3 text-5xl md:text-6xl font-semibold tracking-[-0.04em] text-white tabular-nums">
                 <CountUp value={s.value} suffix={s.suffix ?? ""} />
-              </p>
-              <p className="mt-2 text-sm text-white/50">{s.label}</p>
+              </dd>
             </motion.div>
           ))}
-        </div>
+        </dl>
       </div>
     </section>
   );

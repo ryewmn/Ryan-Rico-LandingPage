@@ -37,10 +37,10 @@ export function CurrentWork() {
   return (
     <section
       id="current-work"
-      className="relative bg-white/[0.015] py-24 md:py-32 overflow-hidden border-t border-white/10"
+      className="relative bg-white/[0.015] py-28 md:py-36 border-t border-white/10"
     >
-      <div className="container relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           {/* Photo column — left on desktop */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -67,15 +67,15 @@ export function CurrentWork() {
 
           {/* Text column */}
           <div className="lg:col-span-7 order-1 lg:order-2">
-            <SectionLabel number="02">Current Work</SectionLabel>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
+            <SectionLabel>Current Work</SectionLabel>
+            <h2 className="mt-5 text-4xl md:text-5xl lg:text-[3.75rem] font-semibold tracking-[-0.025em] text-white leading-[1.02]">
               Where I{" "}
-              <span className="font-display italic font-normal text-gradient-ember">
+              <span className="font-display italic font-normal text-white">
                 spend my time.
               </span>
             </h2>
 
-            <ul className="mt-12 border-t border-white/10">
+            <ul className="mt-14 border-t border-white/10">
               {areas.map((a, i) => {
                 const Icon = a.icon;
                 return (
@@ -85,18 +85,18 @@ export function CurrentWork() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.45, delay: i * 0.05 }}
-                    className="flex items-center gap-5 border-b border-white/10 py-5"
+                    className="flex items-baseline gap-6 border-b border-white/10 py-6"
                   >
                     <Icon
-                      size={18}
+                      size={16}
                       strokeWidth={2}
-                      className="shrink-0 text-toyota-red/80"
+                      className="shrink-0 translate-y-1 text-toyota-red/70"
                     />
-                    <div className="min-w-0 flex-1">
-                      <h3 className="text-base md:text-lg font-medium tracking-tight text-white">
+                    <div className="min-w-0 flex-1 flex items-baseline gap-x-4 gap-y-1 flex-wrap">
+                      <h3 className="text-lg md:text-xl font-medium tracking-[-0.01em] text-white">
                         {a.title}
                       </h3>
-                      <p className="text-xs text-white/45">{a.description}</p>
+                      <p className="text-sm text-white/45">{a.description}</p>
                     </div>
                     {a.link ? (
                       <a

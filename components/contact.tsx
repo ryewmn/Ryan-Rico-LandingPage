@@ -76,7 +76,7 @@ export function Contact() {
 
       <div className="container relative">
         <div className="max-w-2xl mb-16">
-          <SectionLabel number="06">Contact</SectionLabel>
+          <SectionLabel>Contact</SectionLabel>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
             Let&apos;s{" "}
             <span className="font-display italic font-normal text-gradient-ember">

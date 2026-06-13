@@ -58,25 +58,21 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
+      className="relative bg-background py-28 md:py-36 border-t border-white/10"
     >
-      <div
-        aria-hidden="true"
-        className="absolute -left-40 top-1/4 h-[500px] w-[700px] rounded-full bg-toyota-red/[0.06] blur-[160px] pointer-events-none"
-      />
-      <div className="container relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           {/* Text column */}
           <div className="lg:col-span-7">
-            <SectionLabel number="03">Featured Projects</SectionLabel>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
+            <SectionLabel>Selected Work</SectionLabel>
+            <h2 className="mt-5 text-4xl md:text-5xl lg:text-[3.75rem] font-semibold tracking-[-0.025em] text-white leading-[1.02]">
               Software for{" "}
-              <span className="font-display italic font-normal text-gradient-ember">
+              <span className="font-display italic font-normal text-white">
                 dealership operations.
               </span>
             </h2>
 
-            <ul className="mt-12 border-t border-white/10">
+            <ul className="mt-14 border-t border-white/10">
               {projects.map((project, i) => {
                 const Icon = project.icon;
                 const href = project.url ?? "#contact";
@@ -94,22 +90,22 @@ export function Projects() {
                       href={href}
                       target={ext ? "_blank" : undefined}
                       rel={ext ? "noopener noreferrer" : undefined}
-                      className="group flex items-center gap-5 py-5 transition-colors"
+                      className="group flex items-baseline gap-6 py-6"
                     >
                       <Icon
-                        size={18}
+                        size={16}
                         strokeWidth={2}
-                        className="shrink-0 text-toyota-red/80 group-hover:text-toyota-red transition-colors"
+                        className="shrink-0 translate-y-1 text-toyota-red/70 group-hover:text-toyota-red transition-colors"
                       />
-                      <div className="min-w-0 flex-1">
-                        <h3 className="text-base md:text-lg font-medium tracking-tight text-white group-hover:text-ember transition-colors">
+                      <div className="min-w-0 flex-1 flex items-baseline gap-x-4 gap-y-1 flex-wrap">
+                        <h3 className="text-lg md:text-xl font-medium tracking-[-0.01em] text-white">
                           {project.title}
                         </h3>
-                        <p className="text-xs text-white/45">
+                        <p className="text-sm text-white/45">
                           {project.description}
                         </p>
                       </div>
-                      <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-white/55">
+                      <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-[0.15em] text-white/50">
                         <span
                           className={`h-1.5 w-1.5 rounded-full ${dotColor[project.status]}`}
                         />
@@ -117,14 +113,14 @@ export function Projects() {
                       </span>
                       {project.isPrivate ? (
                         <Lock
-                          size={12}
-                          className="hidden sm:block text-white/30"
+                          size={11}
+                          className="hidden sm:block text-white/25"
                           aria-label="Private"
                         />
                       ) : null}
                       <ArrowUpRight
                         size={16}
-                        className="shrink-0 text-white/40 group-hover:text-ember group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                        className="shrink-0 text-white/35 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
                       />
                     </a>
                   </motion.li>

@@ -48,54 +48,42 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="relative bg-white/[0.015] py-24 md:py-32 overflow-hidden border-t border-white/10"
+      className="relative bg-white/[0.015] py-28 md:py-36 border-t border-white/10"
     >
-      <div className="container relative">
-        <div className="max-w-2xl mb-16">
-          <SectionLabel number="04">Skills</SectionLabel>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
+      <div className="container">
+        <div className="max-w-2xl mb-20">
+          <SectionLabel>Skills</SectionLabel>
+          <h2 className="mt-5 text-4xl md:text-5xl lg:text-[3.75rem] font-semibold tracking-[-0.025em] text-white leading-[1.02]">
             Two sides of the{" "}
-            <span className="font-display italic font-normal text-gradient-ember">
+            <span className="font-display italic font-normal text-white">
               same job.
             </span>
           </h2>
-          <p className="mt-4 text-lg text-white/55">
-            Years of automotive operations, paired with the software chops to
-            automate what shouldn&apos;t need a human anymore.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-16">
           {groups.map((g, i) => {
             const Icon = g.icon;
             return (
               <motion.div
                 key={g.title}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.55, delay: i * 0.06 }}
-                className="rounded-2xl border border-white/10 bg-white/[0.03] p-8"
               >
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-toyota-red/15 text-toyota-red ring-1 ring-toyota-red/25">
-                    <Icon size={22} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold tracking-tight text-white">
-                      {g.title}
-                    </h3>
-                    <p className="text-sm text-white/50">{g.description}</p>
-                  </div>
+                <div className="flex items-baseline gap-3 border-b border-white/10 pb-4">
+                  <Icon size={16} className="text-toyota-red/70" />
+                  <h3 className="text-xs font-mono uppercase tracking-[0.22em] text-white">
+                    {g.title}
+                  </h3>
                 </div>
-
-                <ul className="mt-7 grid grid-cols-2 gap-2">
+                <p className="mt-5 text-base text-white/55 max-w-md">
+                  {g.description}
+                </p>
+                <ul className="mt-6 columns-2 gap-x-8 space-y-2 text-[15px] text-white/80">
                   {g.items.map((item) => (
-                    <li
-                      key={item}
-                      className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.02] px-3 py-2 text-sm text-white/80"
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-toyota-red" />
+                    <li key={item} className="break-inside-avoid">
                       {item}
                     </li>
                   ))}
