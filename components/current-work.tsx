@@ -51,8 +51,8 @@ export function CurrentWork() {
           >
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl ring-1 ring-white/10">
               <Image
-                src="/hero/grgt-chassis.webp"
-                alt="Toyota GR GT chassis"
+                src="/hero/gundam.jpg"
+                alt="RX-78-2 Gundam"
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"
@@ -60,7 +60,7 @@ export function CurrentWork() {
               />
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent"
+                className="absolute inset-0 bg-gradient-to-t from-background/75 via-background/20 to-transparent"
               />
             </div>
           </motion.div>
