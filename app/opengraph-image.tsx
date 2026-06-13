@@ -78,7 +78,7 @@ export default function OG() {
                 background: "#EB0A1E",
               }}
             />
-            Live · Round Rock, TX
+            Live · Austin, TX
           </div>
         </div>
 

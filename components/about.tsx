@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { CountUp } from "@/components/count-up";
 import { SectionLabel } from "@/components/ui/section-label";
+import { SectionBackdrop } from "@/components/ui/section-backdrop";
 
 const stats: { value: number; suffix?: string; label: string }[] = [
   { value: 3, label: "Years in automotive retail" },
-  { value: 150, suffix: "+", label: "Vehicles a year" },
+  { value: 200, suffix: "+", label: "Vehicles a year" },
   { value: 1, label: "Internal tool shipped" },
 ];
 
@@ -15,11 +16,12 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
+      className="relative isolate bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
+      <SectionBackdrop src="/hero/landcruiser.jpg" alt="Toyota Land Cruiser 300" focus="right" />
       <div
         aria-hidden="true"
-        className="absolute -left-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.08] blur-[140px] pointer-events-none"
+        className="absolute -left-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.08] blur-[140px] pointer-events-none -z-10"
       />
 
       <div className="container relative">
@@ -50,7 +52,7 @@ export function About() {
             >
               Three years in at Round Rock Toyota. I work BDC Sales — handling
               internet leads, setting appointments, and walking customers from
-              first message to first vehicle. Last year I helped move 150+
+              first message to first vehicle. Last year I helped move 200+
               vehicles through that funnel.
             </motion.p>
             <motion.p
