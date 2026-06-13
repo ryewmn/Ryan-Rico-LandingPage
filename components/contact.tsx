@@ -17,7 +17,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SectionLabel } from "@/components/ui/section-label";
-import { SectionBackdrop } from "@/components/ui/section-backdrop";
 import { SITE } from "@/lib/site-config";
 
 type FormState = "idle" | "submitting" | "success";
@@ -64,15 +63,14 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative isolate bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
+      className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
-      <SectionBackdrop src="/hero/supra.jpg" alt="" focus="left" intensity="deep" />
       <div
-        className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-toyota-red/[0.08] blur-[140px] pointer-events-none -z-10"
+        className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-toyota-red/[0.08] blur-[140px] pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-ember/[0.06] blur-[140px] pointer-events-none -z-10"
+        className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-ember/[0.06] blur-[140px] pointer-events-none"
         aria-hidden="true"
       />
 

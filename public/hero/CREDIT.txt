@@ -1,13 +1,5 @@
 Hero photography — Wikimedia Commons (CC BY-SA 4.0)
 
-supra.jpg
-  2021 Toyota GR Supra — Dietmar Rabich
-  File: "Dülmen, Auto Bertels, Toyota GR Supra -- 2021 -- 9564.jpg"
-
-gr-gt3.jpg
-  Toyota GR GT3 prototype, side view, Osaka Auto Messe 2026
-  File: "Toyota GR GT3 prototype (side view) at Osaka Auto Messe 2026.jpg"
-
-lc300-gr-sport.jpg
-  Toyota Land Cruiser 300 GR Sport
-  File: "Toyota Land Cruiser GR Sport.jpg"
+gr-gt.jpg
+  Toyota GR GT prototype, front view, Osaka Auto Messe 2026
+  File: "Toyota GR GT prototype (front view) at Osaka Auto Messe 2026.jpg"

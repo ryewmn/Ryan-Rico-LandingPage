@@ -26,7 +26,7 @@ export function Hero() {
       id="top"
       className="relative isolate min-h-[100svh] w-full overflow-hidden grain bg-neutral-950"
     >
-      {/* Toyota GR Supra — cinematic background with slow Ken Burns drift */}
+      {/* Toyota GR GT — cinematic background with slow Ken Burns drift */}
       <motion.div
         initial={{ scale: 1.08 }}
         animate={{ scale: 1.0 }}
@@ -34,12 +34,12 @@ export function Hero() {
         className="absolute inset-0"
       >
         <Image
-          src="/hero/supra.jpg"
-          alt="Toyota GR Supra"
+          src="/hero/gr-gt.jpg"
+          alt="Toyota GR GT"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[58%_center]"
+          className="object-cover object-[70%_center]"
         />
       </motion.div>
 

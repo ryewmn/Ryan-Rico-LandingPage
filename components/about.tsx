@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { CountUp } from "@/components/count-up";
 import { SectionLabel } from "@/components/ui/section-label";
-import { SectionBackdrop } from "@/components/ui/section-backdrop";
 
 const stats: { value: number; suffix?: string; label: string }[] = [
   { value: 3, label: "Years in automotive retail" },
@@ -16,12 +15,11 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative isolate bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
+      className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
-      <SectionBackdrop src="/hero/lc300-gr-sport.jpg" alt="Toyota Land Cruiser 300 GR Sport" focus="right" />
       <div
         aria-hidden="true"
-        className="absolute -left-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.08] blur-[140px] pointer-events-none -z-10"
+        className="absolute -left-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.06] blur-[140px] pointer-events-none"
       />
 
       <div className="container relative">
@@ -93,7 +91,7 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="rounded-2xl border border-white/10 bg-neutral-950/65 backdrop-blur-sm p-6 transition-all hover:bg-neutral-950/75 hover:border-white/20"
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all hover:bg-white/[0.05] hover:border-white/20"
             >
               <p className="text-4xl md:text-5xl font-semibold tracking-tight text-white">
                 <CountUp value={s.value} suffix={s.suffix ?? ""} />
