@@ -3,27 +3,27 @@ import { ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen relative isolate flex items-center bg-white text-neutral-900 overflow-hidden">
+    <main className="min-h-screen relative isolate flex items-center bg-background text-white overflow-hidden">
       <div
         aria-hidden="true"
-        className="absolute inset-0 dot-pattern-soft mask-edges opacity-80"
+        className="absolute inset-0 dot-grid mask-fade-y opacity-60"
       />
       <div
         aria-hidden="true"
-        className="absolute -top-40 -left-20 h-[600px] w-[700px] rounded-full bg-toyota-red/[0.05] blur-[160px]"
+        className="absolute -top-40 -left-20 h-[600px] w-[700px] rounded-full bg-toyota-red/[0.1] blur-[160px]"
       />
 
       <div className="relative z-10 container py-24">
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-toyota-red">
           [ 404 ] · Off the lot
         </p>
-        <h1 className="mt-5 text-6xl sm:text-7xl md:text-8xl lg:text-[120px] font-bold tracking-tight leading-[0.92] text-neutral-900">
+        <h1 className="mt-5 text-6xl sm:text-7xl md:text-8xl lg:text-[120px] font-semibold tracking-[-0.03em] leading-[0.92] text-white">
           Wrong{" "}
-          <span className="font-display italic font-normal text-gradient-fire">
+          <span className="font-display italic font-normal text-gradient-ember">
             turn.
           </span>
         </h1>
-        <p className="mt-6 max-w-xl text-lg text-neutral-600 leading-relaxed">
+        <p className="mt-6 max-w-xl text-lg text-white/55 leading-relaxed">
           This page isn&apos;t in the inventory. Maybe a typo, maybe it
           hasn&apos;t been built yet. Either way — let&apos;s get you back.
         </p>

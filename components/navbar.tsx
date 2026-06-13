@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useActiveSection } from "@/components/use-active-section";
+import { ArrowPill } from "@/components/ui/arrow-pill";
 import { NAV_LINKS, SITE } from "@/lib/site-config";
 
 const NAV = NAV_LINKS.filter((l) => l.inNav);
@@ -27,32 +27,32 @@ export function Navbar() {
     <motion.header
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
-        "fixed top-0 inset-x-0 z-50 transition-all duration-300",
+        "fixed top-0 inset-x-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-white/85 backdrop-blur-xl border-b border-neutral-200"
+          ? "bg-neutral-950/60 backdrop-blur-xl border-b border-white/10"
           : "bg-transparent"
       )}
     >
       <nav
-        className="container flex h-16 items-center justify-between"
+        className="container relative flex h-[72px] items-center justify-between"
         aria-label="Primary"
       >
         <a
           href="#top"
-          className="flex items-center gap-2 group"
+          className="flex items-center gap-2.5 group shrink-0"
           aria-label={`${SITE.name} home`}
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-toyota-red text-white font-bold text-sm tracking-tight shadow-red-glow">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-toyota-red to-ember text-white font-bold text-[13px] tracking-tight shadow-[0_4px_16px_rgba(235,10,30,0.4)]">
             {SITE.shortName}
           </span>
-          <span className="font-semibold tracking-tight text-neutral-900">
+          <span className="font-semibold tracking-tight text-white text-[15px]">
             {SITE.name}
           </span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-1">
+        <ul className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
           {NAV.map((link) => {
             const isActive = active === link.id;
             return (
@@ -61,34 +61,25 @@ export function Navbar() {
                   href={link.href}
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
-                    "relative px-4 py-2 text-sm font-medium transition-colors rounded-full",
-                    isActive
-                      ? "text-neutral-900 bg-neutral-100"
-                      : "text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100"
+                    "px-3.5 py-2 text-[13.5px] font-medium rounded-full transition-colors",
+                    isActive ? "text-white" : "text-white/55 hover:text-white"
                   )}
                 >
                   {link.label}
-                  {isActive ? (
-                    <motion.span
-                      layoutId="nav-active-dot"
-                      className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-1 w-1 rounded-full bg-toyota-red"
-                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                    />
-                  ) : null}
                 </a>
               </li>
             );
           })}
         </ul>
 
-        <div className="hidden md:flex items-center gap-3">
-          <Button asChild size="sm">
-            <a href="#contact">Get in touch</a>
-          </Button>
+        <div className="hidden md:block shrink-0">
+          <ArrowPill href="#contact" tone="light" size="sm">
+            Get in touch
+          </ArrowPill>
         </div>
 
         <button
-          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg text-neutral-900 hover:bg-neutral-100"
+          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg text-white hover:bg-white/10"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
@@ -105,8 +96,8 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden overflow-hidden border-t border-neutral-200 bg-white"
+            transition={{ duration: 0.25 }}
+            className="md:hidden overflow-hidden border-t border-white/10 bg-neutral-950/95 backdrop-blur-xl"
           >
             <ul className="container flex flex-col py-4">
               {NAV.map((link) => (
@@ -114,18 +105,20 @@ export function Navbar() {
                   <a
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block py-3 text-base font-medium text-neutral-800 hover:text-toyota-red"
+                    className="block py-3 text-base font-medium text-white/80 hover:text-white"
                   >
                     {link.label}
                   </a>
                 </li>
               ))}
               <li className="pt-3">
-                <Button asChild className="w-full">
-                  <a href="#contact" onClick={() => setOpen(false)}>
-                    Get in touch
-                  </a>
-                </Button>
+                <ArrowPill
+                  href="#contact"
+                  tone="red"
+                  className="w-full justify-between"
+                >
+                  Get in touch
+                </ArrowPill>
               </li>
             </ul>
           </motion.div>

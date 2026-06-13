@@ -11,10 +11,10 @@ import { Footer } from "@/components/footer";
 // Builds defers IG iframe loaders until scrolled to.
 const Builds = dynamic(() => import("@/components/builds").then((m) => m.Builds), {
   loading: () => (
-    <section className="bg-white py-24 md:py-32 border-t border-neutral-100">
+    <section className="bg-background py-24 md:py-32 border-t border-white/10">
       <div className="container">
-        <div className="h-7 w-32 rounded bg-neutral-100 animate-pulse" />
-        <div className="mt-4 h-12 w-2/3 rounded bg-neutral-100 animate-pulse" />
+        <div className="h-7 w-32 rounded bg-white/5 animate-pulse" />
+        <div className="mt-4 h-12 w-2/3 rounded bg-white/5 animate-pulse" />
       </div>
     </section>
   ),
@@ -22,7 +22,7 @@ const Builds = dynamic(() => import("@/components/builds").then((m) => m.Builds)
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-white text-neutral-900">
+    <main className="min-h-screen bg-background text-white">
       <Navbar />
       <Hero />
       <About />

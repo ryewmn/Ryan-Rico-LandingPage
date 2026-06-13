@@ -46,10 +46,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-  ],
+  themeColor: "#070a0f",
 };
 
 const personSchema = {
@@ -78,7 +75,7 @@ export default function RootLayout({
       lang="en"
       className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable}`}
     >
-      <body className="font-sans bg-white text-neutral-900">
+      <body className="font-sans bg-background text-white">
         <a
           href="#top"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:bg-toyota-red focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"
