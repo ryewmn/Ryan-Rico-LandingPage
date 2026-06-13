@@ -12,6 +12,11 @@ const socials = [
   { href: SITE.instagram, label: "Instagram", Icon: Instagram },
 ];
 
+const photos = [
+  { src: "/hero/grgt.webp", alt: "Toyota GR GT, front view", focus: "50%" },
+  { src: "/hero/grgt-chassis.webp", alt: "Toyota GR GT chassis, exploded view", focus: "50%" },
+];
+
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export function Hero() {
@@ -20,18 +25,32 @@ export function Hero() {
       id="top"
       className="relative isolate min-h-[100svh] w-full overflow-hidden grain bg-neutral-950"
     >
-      {/* Single hero photo — clean Supra headlight macro */}
-      <div aria-hidden="true" className="absolute inset-0">
-        <Image
-          src="/hero/supra.jpg"
-          alt="Toyota GR Supra"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-          style={{ objectPosition: "58% center" }}
-        />
-      </div>
+      {/* Crossfading background — GR GT exterior ↔ GR GT chassis */}
+      {photos.map((p, i) => (
+        <motion.div
+          key={p.src}
+          aria-hidden="true"
+          initial={{ opacity: i === 0 ? 1 : 0 }}
+          animate={{ opacity: [i === 0 ? 1 : 0, i === 0 ? 0 : 1, i === 0 ? 1 : 0] }}
+          transition={{
+            duration: 18,
+            times: [0, 0.5, 1],
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={p.src}
+            alt={p.alt}
+            fill
+            priority={i === 0}
+            sizes="100vw"
+            className="object-cover"
+            style={{ objectPosition: `${p.focus} center` }}
+          />
+        </motion.div>
+      ))}
 
       {/* Overlays — darken left for text, deepen bottom for mood */}
       <div
