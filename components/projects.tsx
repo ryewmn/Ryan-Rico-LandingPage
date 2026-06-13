@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Trophy, Bot, Wrench, FileSearch, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -75,6 +76,19 @@ export function Projects() {
       id="projects"
       className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
+      {/* Section backdrop — GR Supra headlight macro */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+        <Image
+          src="/hero/supra.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.5]"
+          style={{ objectPosition: "right center" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-l from-background/30 via-background/75 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-transparent to-background/90" />
+      </div>
       <div
         aria-hidden="true"
         className="absolute -left-40 top-1/4 h-[500px] w-[700px] rounded-full bg-toyota-red/[0.06] blur-[160px] pointer-events-none"
