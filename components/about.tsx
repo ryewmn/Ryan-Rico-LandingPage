@@ -18,7 +18,7 @@ export function About() {
       id="about"
       className="relative isolate bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
-      <SectionBackdrop src="/hero/landcruiser.jpg" alt="Toyota Land Cruiser 300" focus="right" />
+      <SectionBackdrop src="/hero/lc300-gr-sport.jpg" alt="Toyota Land Cruiser 300 GR Sport" focus="right" />
       <div
         aria-hidden="true"
         className="absolute -left-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.08] blur-[140px] pointer-events-none -z-10"
@@ -93,7 +93,7 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all hover:bg-white/[0.05] hover:border-white/20"
+              className="rounded-2xl border border-white/10 bg-neutral-950/65 backdrop-blur-sm p-6 transition-all hover:bg-neutral-950/75 hover:border-white/20"
             >
               <p className="text-4xl md:text-5xl font-semibold tracking-tight text-white">
                 <CountUp value={s.value} suffix={s.suffix ?? ""} />

@@ -76,7 +76,7 @@ export function Projects() {
       id="projects"
       className="relative isolate bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
-      <SectionBackdrop src="/hero/tundra.jpg" alt="Toyota Tundra TRD Pro" focus="right" intensity="deep" />
+      <SectionBackdrop src="/hero/gr-gt3.jpg" alt="Toyota GR GT3" focus="right" intensity="deep" />
       <div
         aria-hidden="true"
         className="absolute -left-40 top-1/4 h-[500px] w-[700px] rounded-full bg-toyota-red/[0.07] blur-[160px] pointer-events-none -z-10"
@@ -109,7 +109,7 @@ export function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.55, delay: i * 0.06 }}
-                className={`group relative overflow-hidden rounded-2xl border bg-white/[0.03] p-7 transition-all hover:bg-white/[0.05] hover:border-white/20 hover:-translate-y-0.5 ${
+                className={`group relative overflow-hidden rounded-2xl border bg-neutral-950/65 backdrop-blur-sm p-7 transition-all hover:bg-neutral-950/75 hover:border-white/20 hover:-translate-y-0.5 ${
                   featured ? "border-toyota-red/30" : "border-white/10"
                 }`}
               >

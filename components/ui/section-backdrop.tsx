@@ -36,13 +36,14 @@ export function SectionBackdrop({
       ? "object-[72%_center]"
       : "object-center";
 
-  // Where to bias the dark overlay (away from the photo focal point)
-  const darkSide =
+  // Hard side gradient — solid black on the text side, fully transparent
+  // on the photo side, so the vehicle is clearly visible at the focus.
+  const sideGradient =
     focus === "left"
-      ? "bg-gradient-to-l from-neutral-950 via-neutral-950/85 to-neutral-950/30"
+      ? "bg-[linear-gradient(to_right,rgba(7,10,15,1)_0%,rgba(7,10,15,0.95)_30%,rgba(7,10,15,0.35)_65%,rgba(7,10,15,0)_100%)]"
       : focus === "right"
-      ? "bg-gradient-to-r from-neutral-950 via-neutral-950/85 to-neutral-950/30"
-      : "bg-gradient-to-b from-neutral-950 via-neutral-950/70 to-neutral-950/85";
+      ? "bg-[linear-gradient(to_left,rgba(7,10,15,1)_0%,rgba(7,10,15,0.95)_30%,rgba(7,10,15,0.35)_65%,rgba(7,10,15,0)_100%)]"
+      : "bg-[linear-gradient(to_top,rgba(7,10,15,1),rgba(7,10,15,0.55)_50%,rgba(7,10,15,0.85))]";
 
   return (
     <div
@@ -54,19 +55,19 @@ export function SectionBackdrop({
         alt={alt ?? ""}
         fill
         sizes="100vw"
-        className={cn("object-cover", object, "opacity-60")}
+        className={cn("object-cover", object)}
       />
-      <div className={cn("absolute inset-0", darkSide)} />
+      {/* Solid → transparent gradient pushing darkness to the text side */}
+      <div className={cn("absolute inset-0", sideGradient)} />
+      {/* Top + bottom fade so the section seams into its neighbors */}
       <div
         className={cn(
-          "absolute inset-0 bg-gradient-to-t",
+          "absolute inset-0",
           intensity === "deep"
-            ? "from-neutral-950 via-neutral-950/40 to-neutral-950/70"
-            : "from-neutral-950 via-neutral-950/30 to-neutral-950/60"
+            ? "bg-[linear-gradient(to_bottom,rgba(7,10,15,0.75)_0%,rgba(7,10,15,0.35)_30%,rgba(7,10,15,0.35)_70%,rgba(7,10,15,0.85)_100%)]"
+            : "bg-[linear-gradient(to_bottom,rgba(7,10,15,0.7)_0%,rgba(7,10,15,0.2)_30%,rgba(7,10,15,0.2)_70%,rgba(7,10,15,0.8)_100%)]"
         )}
       />
-      {/* Edge vignette to seam into the next section */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_90%_at_50%_50%,transparent_25%,rgba(7,10,15,0.55)_100%)]" />
     </div>
   );
 }
