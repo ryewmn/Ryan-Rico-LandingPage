@@ -13,7 +13,6 @@ type Project = {
   title: string;
   description: string;
   status: Status;
-  tags: string[];
   icon: LucideIcon;
   url?: string;
   isPrivate?: boolean;
@@ -35,36 +34,32 @@ const projects: Project[] = [
   {
     title: "Round Rock Toyota Leaderboard",
     description:
-      "Internal performance dashboard for the sales floor. Tracks appointments, shows, and deliveries by salesperson with daily and monthly views.",
+      "Sales floor dashboard tracking appointments, shows, and deliveries.",
     status: "Live",
-    tags: ["TypeScript", "Next.js", "Tailwind"],
     icon: Trophy,
     url: "https://github.com/ryewmn/ROUND-ROCK-TOYOTA-LEADERBOARD",
   },
   {
     title: "BDC Toolkit",
     description:
-      "A working set of tools for the Round Rock Toyota BDC — script libraries, lead workups, and follow-up helpers built around how the team actually works.",
+      "Script libraries, lead workups, and follow-up helpers for the BDC team.",
     status: "Building",
-    tags: ["Internal", "BDC", "Workflow"],
     icon: Wrench,
     isPrivate: true,
   },
   {
     title: "Car Sales AI Agent",
     description:
-      "Experimenting with AI agents that help customers find the right car and the right deal — the tedious back-and-forth, automated.",
+      "AI agents that help customers find the right car and the right deal.",
     status: "Building",
-    tags: ["AI Agents", "JavaScript", "Automation"],
     icon: Bot,
     isPrivate: true,
   },
   {
     title: "OpsGlass",
     description:
-      "AI-powered multimodal document assistant that ingests invoices, contracts, and receipts from uploads, Google Drive, and Gmail, and allows natural language querying using Hugging Face models. Includes semantic search, structured extraction, and anomaly detection.",
+      "Multimodal document assistant for invoices, contracts, and receipts — natural-language querying with Hugging Face.",
     status: "Building",
-    tags: ["AI", "Hugging Face", "Semantic Search"],
     icon: FileSearch,
     isPrivate: true,
   },
@@ -94,20 +89,14 @@ export function Projects() {
         className="absolute -left-40 top-1/4 h-[500px] w-[700px] rounded-full bg-toyota-red/[0.06] blur-[160px] pointer-events-none"
       />
       <div className="container relative">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-          <div className="max-w-2xl">
-            <SectionLabel number="03">Featured Projects</SectionLabel>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
-              Software for{" "}
-              <span className="font-display italic font-normal text-gradient-ember">
-                dealership operations.
-              </span>
-            </h2>
-          </div>
-          <p className="text-base text-white/55 max-w-md">
-            A working set of tools focused on appointments, acquisition, and
-            retention. Built in production, refined on the floor.
-          </p>
+        <div className="max-w-2xl mb-16">
+          <SectionLabel number="03">Featured Projects</SectionLabel>
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
+            Software for{" "}
+            <span className="font-display italic font-normal text-gradient-ember">
+              dealership operations.
+            </span>
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -158,17 +147,6 @@ export function Projects() {
                 <p className="mt-3 text-sm leading-relaxed text-white/60">
                   {project.description}
                 </p>
-
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="inline-flex items-center rounded-md bg-white/[0.06] px-2.5 py-1 text-xs font-medium text-white/65 ring-1 ring-white/10"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
 
                 <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
                   {project.url ? (

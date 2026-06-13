@@ -17,20 +17,17 @@ const areas: Area[] = [
   {
     icon: LineChart,
     title: "Dashboards",
-    description:
-      "Building dashboards for the sales floor — leaderboards, performance trackers, anything that gives the team a clearer signal of where the day is going.",
+    description: "Leaderboards and performance trackers for the sales floor.",
   },
   {
     icon: Bot,
     title: "AI Automation",
-    description:
-      "Wiring AI agents into the workflows that eat my team's day — lead workups, follow-up drafts, and the back-and-forth that doesn't need a human.",
+    description: "AI agents handling the back-and-forth that doesn't need a human.",
   },
   {
     icon: Wrench,
     title: "Building Gundams",
-    description:
-      "Off-the-clock Gunpla. Master Grades and Perfect Grades mostly — Real Grades and High Grades when I want a fast build. Posted on Instagram.",
+    description: "Off-the-clock Gunpla. Master and Perfect Grades mostly.",
     link: { href: SITE.instagram, label: SITE.instagramHandle },
   },
 ];
@@ -42,20 +39,14 @@ export function CurrentWork() {
       className="relative bg-white/[0.015] py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
       <div className="container relative">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-          <div className="max-w-2xl">
-            <SectionLabel number="02">Current Work</SectionLabel>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
-              Where I{" "}
-              <span className="font-display italic font-normal text-gradient-ember">
-                spend my time.
-              </span>
-            </h2>
-          </div>
-          <p className="text-base text-white/55 max-w-md">
-            A mix of code, AI, and building things with my hands. Most of the
-            satisfaction lives in the same place — making something work.
-          </p>
+        <div className="max-w-2xl mb-16">
+          <SectionLabel number="02">Current Work</SectionLabel>
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
+            Where I{" "}
+            <span className="font-display italic font-normal text-gradient-ember">
+              spend my time.
+            </span>
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
