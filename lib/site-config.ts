@@ -22,6 +22,7 @@ export const SITE = {
   linkedin: "https://www.linkedin.com/in/ryanchristopherrico/",
   instagram: "https://www.instagram.com/builds.by.ryry/",
   instagramHandle: "@builds.by.ryry",
+  dealership: "https://www.roundrocktoyota.com/",
 } as const;
 
 export const NAV_LINKS = [

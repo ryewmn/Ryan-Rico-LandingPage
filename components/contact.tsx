@@ -87,6 +87,20 @@ export function Contact() {
             Looking to upgrade, sell your vehicle, or talk about software for
             your dealership? Send a note.
           </p>
+          <a
+            href={SITE.dealership}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-5 inline-flex items-center gap-2 text-sm font-medium text-white hover:text-toyota-red transition-colors"
+          >
+            <span className="border-b border-toyota-red/40 group-hover:border-toyota-red">
+              Or buy a car from me at Round Rock Toyota
+            </span>
+            <ArrowRight
+              size={15}
+              className="transition-transform group-hover:translate-x-0.5"
+            />
+          </a>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
@@ -107,7 +121,15 @@ export function Contact() {
                 {SITE.name}
               </h3>
               <p className="mt-1 text-sm text-white/50">
-                {SITE.role} · {SITE.employer}
+                {SITE.role} ·{" "}
+                <a
+                  href={SITE.dealership}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/70 underline decoration-toyota-red/40 underline-offset-[3px] hover:text-white hover:decoration-toyota-red transition-colors"
+                >
+                  {SITE.employer}
+                </a>
               </p>
 
               <ul className="mt-10 space-y-5">
