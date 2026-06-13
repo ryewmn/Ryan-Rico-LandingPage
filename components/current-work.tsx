@@ -49,33 +49,40 @@ export function CurrentWork() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <ul className="border-t border-white/10">
           {areas.map((a, i) => {
             const Icon = a.icon;
             return (
-              <motion.article
+              <motion.li
                 key={a.title}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="group relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-7 transition-all hover:bg-white/[0.06] hover:border-white/20"
+                className="group grid grid-cols-12 items-start gap-x-6 gap-y-2 border-b border-white/10 py-7 md:py-9 transition-colors hover:bg-white/[0.025]"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-toyota-red/15 text-toyota-red ring-1 ring-toyota-red/25 group-hover:bg-toyota-red group-hover:text-white group-hover:ring-toyota-red transition-colors">
-                  <Icon size={20} strokeWidth={2} />
+                <span className="col-span-2 md:col-span-1 pt-1 text-xs font-mono text-white/35 tracking-widest">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <Icon
+                  size={20}
+                  strokeWidth={2}
+                  className="hidden md:block col-span-1 mt-1 text-toyota-red"
+                />
+                <div className="col-span-10 md:col-span-7">
+                  <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-white">
+                    {a.title}
+                  </h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-white/55 max-w-xl">
+                    {a.description}
+                  </p>
                 </div>
-                <h3 className="mt-5 text-lg font-semibold tracking-tight text-white">
-                  {a.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">
-                  {a.description}
-                </p>
                 {a.link ? (
                   <a
                     href={a.link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-ember transition-colors"
+                    className="col-span-12 md:col-span-3 flex items-center justify-start md:justify-end gap-1.5 text-sm font-medium text-white/80 hover:text-ember transition-colors"
                   >
                     <Instagram size={14} />
                     {a.link.label}
@@ -84,11 +91,13 @@ export function CurrentWork() {
                       className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     />
                   </a>
-                ) : null}
-              </motion.article>
+                ) : (
+                  <span className="hidden md:block md:col-span-3" />
+                )}
+              </motion.li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );

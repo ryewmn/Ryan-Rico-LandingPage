@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Trophy, Bot, Wrench, FileSearch, Lock } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { SectionLabel } from "@/components/ui/section-label";
 import type { LucideIcon } from "lucide-react";
 
@@ -16,12 +15,6 @@ type Project = {
   icon: LucideIcon;
   url?: string;
   isPrivate?: boolean;
-};
-
-const statusVariant: Record<Status, "live" | "building" | "planning"> = {
-  Live: "live",
-  Building: "building",
-  Planning: "planning",
 };
 
 const dotColor: Record<Status, string> = {
@@ -99,103 +92,67 @@ export function Projects() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <ul className="border-t border-white/10">
           {projects.map((project, i) => {
             const Icon = project.icon;
-            const featured = project.status === "Live";
+            const href = project.url ?? "#contact";
+            const cta = project.url ? "View on GitHub" : "Ask about it";
+            const ext = Boolean(project.url);
             return (
-              <motion.article
+              <motion.li
                 key={project.title}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.55, delay: i * 0.06 }}
-                className={`group relative overflow-hidden rounded-2xl border bg-white/[0.03] p-7 transition-all hover:bg-white/[0.05] hover:border-white/20 hover:-translate-y-0.5 ${
-                  featured ? "border-toyota-red/30" : "border-white/10"
-                }`}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className="border-b border-white/10"
               >
-                {featured ? (
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-toyota-red to-transparent"
-                  />
-                ) : null}
-
-                {featured ? (
-                  <span className="absolute right-7 top-7 inline-flex items-center gap-1.5 rounded-full border border-toyota-red/30 bg-toyota-red/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-toyota-red">
-                    ★ Featured
+                <a
+                  href={href}
+                  target={ext ? "_blank" : undefined}
+                  rel={ext ? "noopener noreferrer" : undefined}
+                  className="group grid grid-cols-12 items-start gap-x-6 gap-y-2 py-7 md:py-9 transition-colors hover:bg-white/[0.025]"
+                >
+                  <span className="col-span-2 md:col-span-1 pt-1 text-xs font-mono text-white/35 tracking-widest">
+                    {String(i + 1).padStart(2, "0")}
                   </span>
-                ) : null}
-
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-toyota-red/15 text-toyota-red ring-1 ring-toyota-red/25">
-                    <Icon size={22} strokeWidth={2} />
+                  <Icon
+                    size={20}
+                    strokeWidth={2}
+                    className="hidden md:block col-span-1 mt-1 text-toyota-red"
+                  />
+                  <div className="col-span-10 md:col-span-6">
+                    <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-white">
+                      {project.title}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-white/55 max-w-xl">
+                      {project.description}
+                    </p>
                   </div>
-                  {!featured ? (
-                    <Badge variant={statusVariant[project.status]}>
-                      <span
-                        className={`mr-1.5 h-1.5 w-1.5 rounded-full inline-block ${dotColor[project.status]}`}
-                      />
-                      {project.status}
-                    </Badge>
-                  ) : null}
-                </div>
-
-                <h3 className="mt-6 text-xl font-semibold tracking-tight text-white">
-                  {project.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/60">
-                  {project.description}
-                </p>
-
-                <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
-                  {project.url ? (
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-ember transition-colors"
-                      aria-label={`View ${project.title} on GitHub`}
-                    >
-                      View on GitHub
-                      <ArrowUpRight
-                        size={16}
-                        className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      />
-                    </a>
-                  ) : (
-                    <a
-                      href="#contact"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-ember transition-colors"
-                      aria-label={`Ask about ${project.title}`}
-                    >
-                      Ask about it
-                      <ArrowUpRight
-                        size={16}
-                        className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      />
-                    </a>
-                  )}
-                  {project.isPrivate ? (
-                    <span className="inline-flex items-center gap-1 text-xs text-white/40">
-                      <Lock size={11} />
-                      Private repo
-                    </span>
-                  ) : null}
-                </div>
-
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -top-12 -right-12 h-32 w-32 rounded-full bg-toyota-red/25 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                />
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-transparent via-toyota-red to-transparent scale-x-0 origin-center transition-transform duration-500 group-hover:scale-x-100"
-                />
-              </motion.article>
+                  <div className="col-span-6 md:col-span-2 flex items-center gap-2 text-xs text-white/55">
+                    <span
+                      className={`h-1.5 w-1.5 rounded-full ${dotColor[project.status]}`}
+                    />
+                    {project.status}
+                    {project.isPrivate ? (
+                      <span className="ml-2 inline-flex items-center gap-1 text-white/35">
+                        <Lock size={10} />
+                        Private
+                      </span>
+                    ) : null}
+                  </div>
+                  <span className="col-span-6 md:col-span-2 flex items-center justify-end gap-1.5 text-sm font-medium text-white/80 group-hover:text-ember transition-colors">
+                    {cta}
+                    <ArrowUpRight
+                      size={16}
+                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
+                  </span>
+                </a>
+              </motion.li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );
