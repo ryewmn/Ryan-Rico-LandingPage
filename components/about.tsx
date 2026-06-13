@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { CountUp } from "@/components/count-up";
@@ -18,19 +17,6 @@ export function About() {
       id="about"
       className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
-      {/* Section backdrop — GR GT chassis */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        <Image
-          src="/hero/grgt-chassis.webp"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover opacity-[0.55]"
-          style={{ objectPosition: "right center" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/15" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-transparent to-background/85" />
-      </div>
       <div
         aria-hidden="true"
         className="absolute -left-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.06] blur-[140px] pointer-events-none"
