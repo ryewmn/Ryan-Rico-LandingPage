@@ -62,16 +62,16 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative bg-background py-28 md:py-36 border-t border-white/10"
+      className="relative bg-background py-28 md:py-36 border-t border-foreground/10"
     >
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-14 lg:gap-24">
           {/* Text column */}
           <div className="order-1">
             <SectionLabel>Selected Work</SectionLabel>
-            <h2 className="mt-5 text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-[-0.025em] text-white leading-[1.02]">
+            <h2 className="mt-5 text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-[-0.025em] text-foreground leading-[1.02]">
               Software for{" "}
-              <span className="font-display italic font-normal text-white">
+              <span className="font-display italic font-normal text-foreground">
                 dealership operations.
               </span>
             </h2>
@@ -99,10 +99,10 @@ export function Projects() {
                         strokeWidth={2}
                         className="text-toyota-red/70"
                       />
-                      <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-white/40">
+                      <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-foreground/40">
                         0{i + 1}
                       </span>
-                      <span className="inline-flex items-center gap-1.5 ml-2 text-[10px] font-mono uppercase tracking-[0.18em] text-white/55">
+                      <span className="inline-flex items-center gap-1.5 ml-2 text-[10px] font-mono uppercase tracking-[0.18em] text-foreground/55">
                         <span
                           className={`h-1 w-1 rounded-full ${dotColor[project.status]}`}
                         />
@@ -111,21 +111,21 @@ export function Projects() {
                       {project.isPrivate ? (
                         <Lock
                           size={10}
-                          className="text-white/30"
+                          className="text-foreground/30"
                           aria-label="Private"
                         />
                       ) : null}
                     </div>
                     <div className="flex items-baseline justify-between gap-4">
-                      <h3 className="text-xl md:text-2xl font-medium tracking-[-0.01em] text-white group-hover:text-toyota-red transition-colors">
+                      <h3 className="text-xl md:text-2xl font-medium tracking-[-0.01em] text-foreground group-hover:text-toyota-red transition-colors">
                         {project.title}
                       </h3>
                       <ArrowUpRight
                         size={18}
-                        className="shrink-0 text-white/35 group-hover:text-toyota-red group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                        className="shrink-0 text-foreground/35 group-hover:text-toyota-red group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
                       />
                     </div>
-                    <p className="mt-2 text-sm md:text-base leading-relaxed text-white/55 max-w-md">
+                    <p className="mt-2 text-sm md:text-base leading-relaxed text-foreground/55 max-w-md">
                       {project.description}
                     </p>
                   </motion.a>
@@ -142,7 +142,7 @@ export function Projects() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="relative order-2 group"
           >
-            <div className="relative p-2 rounded-xl border border-white/5 bg-white/[0.02]">
+            <div className="relative p-2 rounded-xl border border-foreground/5 bg-foreground/[0.02]">
               <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
                 <Image
                   src="/hero/supra.jpg"

@@ -74,8 +74,17 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable}`}
+      suppressHydrationWarning
     >
-      <body className="font-sans bg-background text-white">
+      <head>
+        {/* Set theme class before paint to avoid flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||(t===null&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d||t==='dark'){document.documentElement.classList.add('dark');}}catch(e){document.documentElement.classList.add('dark');}})();`,
+          }}
+        />
+      </head>
+      <body className="font-sans bg-background text-foreground">
         <a
           href="#top"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:bg-toyota-red focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"

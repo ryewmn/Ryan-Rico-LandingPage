@@ -37,7 +37,7 @@ export function CurrentWork() {
   return (
     <section
       id="current-work"
-      className="relative bg-white/[0.015] py-28 md:py-36 border-t border-white/10"
+      className="relative bg-foreground/[0.015] py-28 md:py-36 border-t border-foreground/10"
     >
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-14 lg:gap-24">
@@ -49,7 +49,7 @@ export function CurrentWork() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="relative order-2 lg:order-1 group"
           >
-            <div className="relative p-2 rounded-xl border border-white/5 bg-white/[0.02]">
+            <div className="relative p-2 rounded-xl border border-foreground/5 bg-foreground/[0.02]">
               <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
                 <Image
                   src="/hero/gundam.jpg"
@@ -75,9 +75,9 @@ export function CurrentWork() {
           {/* Text column */}
           <div className="order-1 lg:order-2">
             <SectionLabel>Current Work</SectionLabel>
-            <h2 className="mt-5 text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-[-0.025em] text-white leading-[1.02]">
+            <h2 className="mt-5 text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-[-0.025em] text-foreground leading-[1.02]">
               Where I{" "}
-              <span className="font-display italic font-normal text-white">
+              <span className="font-display italic font-normal text-foreground">
                 spend my time.
               </span>
             </h2>
@@ -100,14 +100,14 @@ export function CurrentWork() {
                         strokeWidth={2}
                         className="text-toyota-red/70"
                       />
-                      <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-white/40">
+                      <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-foreground/40">
                         0{i + 1}
                       </span>
                     </div>
-                    <h3 className="text-xl md:text-2xl font-medium tracking-[-0.01em] text-white group-hover:text-toyota-red transition-colors">
+                    <h3 className="text-xl md:text-2xl font-medium tracking-[-0.01em] text-foreground group-hover:text-toyota-red transition-colors">
                       {a.title}
                     </h3>
-                    <p className="mt-2 text-sm md:text-base leading-relaxed text-white/55 max-w-md">
+                    <p className="mt-2 text-sm md:text-base leading-relaxed text-foreground/55 max-w-md">
                       {a.description}
                     </p>
                     {a.link ? (
@@ -115,7 +115,7 @@ export function CurrentWork() {
                         href={a.link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-3 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.18em] text-white/55 hover:text-toyota-red transition-colors"
+                        className="mt-3 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.18em] text-foreground/55 hover:text-toyota-red transition-colors"
                       >
                         <Instagram size={12} />
                         {a.link.label}

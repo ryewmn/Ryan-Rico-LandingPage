@@ -63,7 +63,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
+      className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-foreground/10"
     >
       <div
         className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-toyota-red/[0.08] blur-[140px] pointer-events-none"
@@ -77,13 +77,13 @@ export function Contact() {
       <div className="container relative">
         <div className="max-w-2xl mb-16">
           <SectionLabel>Contact</SectionLabel>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-foreground text-balance leading-[1.05]">
             Let&apos;s{" "}
             <span className="font-display italic font-normal text-gradient-ember">
               talk shop.
             </span>
           </h2>
-          <p className="mt-4 text-lg text-white/55">
+          <p className="mt-4 text-lg text-foreground/55">
             Looking to upgrade, sell your vehicle, or talk about software for
             your dealership? Send a note.
           </p>
@@ -91,7 +91,7 @@ export function Contact() {
             href={SITE.dealership}
             target="_blank"
             rel="noopener noreferrer"
-            className="group mt-5 inline-flex items-center gap-2 text-sm font-medium text-white hover:text-toyota-red transition-colors"
+            className="group mt-5 inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-toyota-red transition-colors"
           >
             <span className="border-b border-toyota-red/40 group-hover:border-toyota-red">
               Or buy a car from me at Round Rock Toyota
@@ -110,23 +110,23 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-2 rounded-2xl border border-white/10 bg-gradient-to-br from-toyota-red/[0.12] via-white/[0.03] to-white/[0.02] p-8 md:p-10 relative overflow-hidden"
+            className="lg:col-span-2 rounded-2xl border border-foreground/10 bg-gradient-to-br from-toyota-red/[0.12] via-foreground/[0.03] to-foreground/[0.02] p-8 md:p-10 relative overflow-hidden"
           >
             <div className="relative">
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-toyota-red to-ember text-white shadow-red-glow">
                 <span className="font-bold text-sm">{SITE.shortName}</span>
               </div>
 
-              <h3 className="mt-6 text-2xl font-bold tracking-tight text-white">
+              <h3 className="mt-6 text-2xl font-bold tracking-tight text-foreground">
                 {SITE.name}
               </h3>
-              <p className="mt-1 text-sm text-white/50">
+              <p className="mt-1 text-sm text-foreground/50">
                 {SITE.role} ·{" "}
                 <a
                   href={SITE.dealership}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/70 underline decoration-toyota-red/40 underline-offset-[3px] hover:text-white hover:decoration-toyota-red transition-colors"
+                  className="text-foreground/70 underline decoration-toyota-red/40 underline-offset-[3px] hover:text-foreground hover:decoration-toyota-red transition-colors"
                 >
                   {SITE.employer}
                 </a>
@@ -137,18 +137,18 @@ export function Contact() {
                   <li key={label} className="flex items-start gap-3">
                     <Icon size={18} className="mt-0.5 text-toyota-red shrink-0" />
                     <div className="min-w-0">
-                      <p className="text-xs font-mono uppercase tracking-widest text-white/40">
+                      <p className="text-xs font-mono uppercase tracking-widest text-foreground/40">
                         {label}
                       </p>
                       {href ? (
                         <a
                           href={href}
-                          className="mt-1 block text-sm font-medium text-white hover:text-ember transition-colors break-all"
+                          className="mt-1 block text-sm font-medium text-foreground hover:text-ember transition-colors break-all"
                         >
                           {value}
                         </a>
                       ) : (
-                        <p className="mt-1 text-sm font-medium text-white">
+                        <p className="mt-1 text-sm font-medium text-foreground">
                           {value}
                         </p>
                       )}
@@ -157,7 +157,7 @@ export function Contact() {
                 ))}
               </ul>
 
-              <div className="mt-10 flex items-center gap-3 border-t border-white/10 pt-6">
+              <div className="mt-10 flex items-center gap-3 border-t border-foreground/10 pt-6">
                 {socialLinks.map(({ Icon, href, label }) => {
                   const ext = href.startsWith("http");
                   return (
@@ -166,7 +166,7 @@ export function Contact() {
                       href={href}
                       target={ext ? "_blank" : undefined}
                       rel={ext ? "noopener noreferrer" : undefined}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white hover:border-white/30 transition-colors"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-foreground/15 bg-foreground/5 text-foreground/70 hover:bg-foreground/10 hover:text-foreground hover:border-foreground/30 transition-colors"
                       aria-label={label}
                     >
                       <Icon size={16} />
@@ -183,7 +183,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-3 rounded-2xl border border-white/10 bg-white/[0.03] p-8 md:p-10"
+            className="lg:col-span-3 rounded-2xl border border-foreground/10 bg-foreground/[0.03] p-8 md:p-10"
           >
             <AnimatePresence mode="wait">
               {state === "success" ? (
@@ -221,14 +221,14 @@ export function Contact() {
                   <h3
                     ref={successHeadingRef}
                     tabIndex={-1}
-                    className="mt-6 text-2xl font-semibold tracking-tight text-white focus:outline-none"
+                    className="mt-6 text-2xl font-semibold tracking-tight text-foreground focus:outline-none"
                   >
                     Message{" "}
                     <span className="font-display italic font-normal text-gradient-ember">
                       sent.
                     </span>
                   </h3>
-                  <p className="mt-2 text-sm text-white/60 max-w-sm">
+                  <p className="mt-2 text-sm text-foreground/60 max-w-sm">
                     Your email client should be open with the note prefilled.
                     I&apos;ll reply within a business day.
                   </p>
@@ -267,7 +267,7 @@ export function Contact() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
-                    <p className="text-xs text-white/45">
+                    <p className="text-xs text-foreground/45">
                       I respond within one business day.
                     </p>
                     <Button type="submit" size="lg" className="sm:w-auto w-full">

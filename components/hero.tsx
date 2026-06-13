@@ -18,7 +18,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate min-h-[100svh] w-full overflow-hidden grain bg-neutral-950"
+      className="dark relative isolate min-h-[100svh] w-full overflow-hidden grain bg-neutral-950 text-foreground"
     >
       {/* Hero photo — GR GT front macro on pure black */}
       <div aria-hidden="true" className="absolute inset-0">
