@@ -17,13 +17,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SectionLabel } from "@/components/ui/section-label";
+import { SectionBackdrop } from "@/components/ui/section-backdrop";
 import { SITE } from "@/lib/site-config";
 
 type FormState = "idle" | "submitting" | "success";
 
 const detailRows = [
   { Icon: Building2, label: "Dealership", value: SITE.employer },
-  { Icon: MapPin, label: "Location", value: "Round Rock, Texas" },
+  { Icon: MapPin, label: "Location", value: "Austin, Texas" },
   { Icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
   { Icon: Phone, label: "Phone", value: SITE.phone, href: `tel:${SITE.phoneTel}` },
 ];
@@ -63,14 +64,15 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative bg-white/[0.015] py-24 md:py-32 overflow-hidden border-t border-white/10"
+      className="relative isolate bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
+      <SectionBackdrop src="/hero/supra.jpg" alt="" focus="left" intensity="deep" />
       <div
-        className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-toyota-red/[0.1] blur-[140px] pointer-events-none"
+        className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-toyota-red/[0.08] blur-[140px] pointer-events-none -z-10"
         aria-hidden="true"
       />
       <div
-        className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-ember/[0.08] blur-[140px] pointer-events-none"
+        className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-ember/[0.06] blur-[140px] pointer-events-none -z-10"
         aria-hidden="true"
       />
 

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Trophy, Bot, Wrench, FileSearch, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SectionLabel } from "@/components/ui/section-label";
+import { SectionBackdrop } from "@/components/ui/section-backdrop";
 import type { LucideIcon } from "lucide-react";
 
 type Status = "Live" | "Building" | "Planning";
@@ -73,11 +74,12 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
+      className="relative isolate bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
+      <SectionBackdrop src="/hero/tundra.jpg" alt="Toyota Tundra TRD Pro" focus="right" intensity="deep" />
       <div
         aria-hidden="true"
-        className="absolute -left-40 top-1/4 h-[500px] w-[700px] rounded-full bg-toyota-red/[0.07] blur-[160px] pointer-events-none"
+        className="absolute -left-40 top-1/4 h-[500px] w-[700px] rounded-full bg-toyota-red/[0.07] blur-[160px] pointer-events-none -z-10"
       />
       <div className="container relative">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">

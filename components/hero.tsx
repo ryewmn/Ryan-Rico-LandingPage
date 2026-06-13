@@ -14,8 +14,8 @@ const socials = [
 
 const trustStats = [
   { value: "3 yrs", label: "On the floor" },
-  { value: "150+", label: "Vehicles a year" },
-  { value: "Live", label: "Round Rock, TX" },
+  { value: "200+", label: "Vehicles a year" },
+  { value: "Live", label: "Austin, TX" },
 ];
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
