@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ChevronDown, Github, Instagram, Linkedin, Sparkles } from "lucide-react";
+import { Github, Instagram, Linkedin, Sparkles } from "lucide-react";
 import { ArrowPill } from "@/components/ui/arrow-pill";
 import { SITE } from "@/lib/site-config";
 
@@ -12,10 +12,9 @@ const socials = [
   { href: SITE.instagram, label: "Instagram", Icon: Instagram },
 ];
 
-const trustStats = [
-  { value: "3 yrs", label: "On the floor" },
-  { value: "200+", label: "Vehicles a year" },
-  { value: "Live", label: "Austin, TX" },
+const photos = [
+  { src: "/hero/gr-gt.jpg", alt: "Toyota GR GT", focus: "70%" },
+  { src: "/hero/supra.jpg", alt: "Toyota GR Supra", focus: "58%" },
 ];
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -26,22 +25,32 @@ export function Hero() {
       id="top"
       className="relative isolate min-h-[100svh] w-full overflow-hidden grain bg-neutral-950"
     >
-      {/* Toyota GR GT — cinematic background with slow Ken Burns drift */}
-      <motion.div
-        initial={{ scale: 1.08 }}
-        animate={{ scale: 1.0 }}
-        transition={{ duration: 14, ease: "easeOut" }}
-        className="absolute inset-0"
-      >
-        <Image
-          src="/hero/gr-gt.jpg"
-          alt="Toyota GR GT"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[70%_center]"
-        />
-      </motion.div>
+      {/* Crossfading background — GR GT ↔ GR Supra */}
+      {photos.map((p, i) => (
+        <motion.div
+          key={p.src}
+          aria-hidden="true"
+          initial={{ opacity: i === 0 ? 1 : 0 }}
+          animate={{ opacity: [i === 0 ? 1 : 0, i === 0 ? 0 : 1, i === 0 ? 1 : 0] }}
+          transition={{
+            duration: 16,
+            times: [0, 0.5, 1],
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={p.src}
+            alt={p.alt}
+            fill
+            priority={i === 0}
+            sizes="100vw"
+            className="object-cover"
+            style={{ objectPosition: `${p.focus} center` }}
+          />
+        </motion.div>
+      ))}
 
       {/* Overlays — darken left for text, deepen bottom for mood */}
       <div
@@ -60,6 +69,7 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 container flex min-h-[100svh] flex-col justify-end pb-14 pt-28">
         <div className="flex-1 flex flex-col justify-center">
+          {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -72,6 +82,7 @@ export function Hero() {
             </span>
           </motion.div>
 
+          {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -86,6 +97,7 @@ export function Hero() {
             </span>
           </motion.h1>
 
+          {/* CTA + social cluster */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -118,40 +130,16 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Trust strip — replaces the standalone footer text */}
-        <motion.div
+        {/* Bottom descriptive paragraph — single line of footer text, matching Hydraoo */}
+        <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.28, ease }}
-          className="mt-16 flex flex-wrap items-end justify-between gap-8"
+          className="mt-16 max-w-md text-sm leading-relaxed text-white/50"
         >
-          <ul className="flex flex-wrap items-stretch gap-x-10 gap-y-4">
-            {trustStats.map((s) => (
-              <li
-                key={s.label}
-                className="flex items-baseline gap-2.5 border-l border-white/15 pl-4"
-              >
-                <span className="text-2xl font-semibold tracking-tight text-white">
-                  {s.value}
-                </span>
-                <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-white/45">
-                  {s.label}
-                </span>
-              </li>
-            ))}
-          </ul>
-
-          <a
-            href="#about"
-            className="group inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.22em] text-white/55 hover:text-white transition-colors"
-            aria-label="Scroll to next section"
-          >
-            <span>Scroll</span>
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/20 transition-transform group-hover:translate-y-0.5 motion-reduce:transition-none">
-              <ChevronDown size={13} />
-            </span>
-          </a>
-        </motion.div>
+          Three years selling Toyotas and running BDC in Austin — now building
+          dashboards, AI tools, and the software I wished the floor had.
+        </motion.p>
       </div>
     </section>
   );
