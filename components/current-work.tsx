@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Bot, Instagram, LineChart, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { SITE } from "@/lib/site-config";
 
 type Area = {
   icon: LucideIcon;
@@ -29,10 +30,7 @@ const areas: Area[] = [
     title: "Building Gundams",
     description:
       "Off-the-clock Gunpla. Master Grades and Perfect Grades mostly — Real Grades and High Grades when I want a fast build. Posted on Instagram.",
-    link: {
-      href: "https://www.instagram.com/builds.by.ryry/",
-      label: "@builds.by.ryry",
-    },
+    link: { href: SITE.instagram, label: SITE.instagramHandle },
   },
 ];
 
@@ -40,22 +38,22 @@ export function CurrentWork() {
   return (
     <section
       id="current-work"
-      className="relative bg-white py-24 md:py-32 overflow-hidden border-t border-neutral-100"
+      className="relative bg-white/[0.015] py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
       <div className="container relative">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div className="max-w-2xl">
             <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
-              <span className="text-neutral-500">02 /</span> Current Work
+              <span className="text-white/40">02 /</span> Current Work
             </p>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
+            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
               Where I{" "}
-              <span className="font-display italic font-normal text-toyota-red">
+              <span className="font-display italic font-normal text-gradient-ember">
                 spend my time.
               </span>
             </h2>
           </div>
-          <p className="text-base text-neutral-600 max-w-md">
+          <p className="text-base text-white/55 max-w-md">
             A mix of code, AI, and building things with my hands. Most of the
             satisfaction lives in the same place — making something work.
           </p>
@@ -71,15 +69,15 @@ export function CurrentWork() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="group relative flex flex-col rounded-2xl border border-neutral-200 bg-neutral-50 p-7 shadow-[0_1px_2px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] hover:border-neutral-300 hover:bg-white transition-all"
+                className="group relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-7 transition-all hover:bg-white/[0.06] hover:border-white/20"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-toyota-red/10 text-toyota-red ring-1 ring-toyota-red/20 group-hover:bg-toyota-red group-hover:text-white group-hover:ring-toyota-red transition-colors">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-toyota-red/15 text-toyota-red ring-1 ring-toyota-red/25 group-hover:bg-toyota-red group-hover:text-white group-hover:ring-toyota-red transition-colors">
                   <Icon size={20} strokeWidth={2} />
                 </div>
-                <h3 className="mt-5 text-lg font-semibold tracking-tight text-neutral-900">
+                <h3 className="mt-5 text-lg font-semibold tracking-tight text-white">
                   {a.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+                <p className="mt-2 text-sm leading-relaxed text-white/60">
                   {a.description}
                 </p>
                 {a.link ? (
@@ -87,7 +85,7 @@ export function CurrentWork() {
                     href={a.link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 hover:text-toyota-red transition-colors"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-ember transition-colors"
                   >
                     <Instagram size={14} />
                     {a.link.label}

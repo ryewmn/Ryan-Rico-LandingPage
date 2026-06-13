@@ -43,7 +43,7 @@ export function LazyInstagramEmbed({
   }, [shouldLoad]);
 
   return (
-    <div ref={ref} className="relative h-full w-full bg-white">
+    <div ref={ref} className="relative h-full w-full bg-neutral-900">
       {/* Poster — only interactive while iframe hasn't loaded yet,
           so screen readers don't announce "link, frame" once the
           embed is showing. */}
@@ -54,26 +54,26 @@ export function LazyInstagramEmbed({
         aria-label={`Open Instagram post ${index + 1} of ${total}`}
         aria-hidden={loaded ? "true" : undefined}
         tabIndex={loaded ? -1 : 0}
-        className={`absolute inset-0 flex flex-col justify-between p-5 bg-gradient-to-br from-white via-neutral-50 to-toyota-red/[0.04] transition-opacity ${
+        className={`absolute inset-0 flex flex-col justify-between p-5 bg-gradient-to-br from-neutral-900 via-neutral-900 to-toyota-red/[0.12] transition-opacity ${
           loaded ? "pointer-events-none opacity-0" : "opacity-100"
         }`}
       >
         <div className="flex items-center justify-between">
-          <Instagram size={18} className="text-neutral-500" />
-          <span className="font-mono text-[10px] uppercase tracking-wider text-neutral-500">
+          <Instagram size={18} className="text-white/60" />
+          <span className="font-mono text-[10px] uppercase tracking-wider text-white/50">
             {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
           </span>
         </div>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="flex items-center justify-center h-12 w-12 rounded-full bg-white/80 backdrop-blur ring-1 ring-neutral-200 shadow-md">
-            <Play size={18} className="text-toyota-red translate-x-0.5" fill="currentColor" />
+          <div className="flex items-center justify-center h-12 w-12 rounded-full bg-white/10 backdrop-blur ring-1 ring-white/20">
+            <Play size={18} className="text-white translate-x-0.5" fill="currentColor" />
           </div>
         </div>
         <div>
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-toyota-red">
             {SITE.instagramHandle}
           </p>
-          <p className="mt-1 text-xs text-neutral-500">Tap to load post</p>
+          <p className="mt-1 text-xs text-white/50">Tap to load post</p>
         </div>
       </a>
 

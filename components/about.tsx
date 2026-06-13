@@ -14,35 +14,35 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative bg-neutral-50 py-24 md:py-32 overflow-hidden border-t border-neutral-100"
+      className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
       <div
         aria-hidden="true"
-        className="absolute -left-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.03] blur-[140px] pointer-events-none"
+        className="absolute -left-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.08] blur-[140px] pointer-events-none"
       />
 
       <div className="container relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
           <div className="lg:col-span-5">
             <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
-              <span className="text-neutral-500">01 /</span> About
+              <span className="text-white/40">01 /</span> About
             </p>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
+            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
               Hands on
               <br />
-              <span className="font-display italic font-normal text-toyota-red">
+              <span className="font-display italic font-normal text-gradient-ember">
                 the floor.
               </span>
               <br />
               Hands on
               <br />
-              <span className="font-display italic font-normal text-neutral-900">
+              <span className="font-display italic font-normal text-white/70">
                 the keyboard.
               </span>
             </h2>
           </div>
 
-          <div className="lg:col-span-7 space-y-6 text-[17px] leading-relaxed text-neutral-700">
+          <div className="lg:col-span-7 space-y-6 text-[17px] leading-relaxed text-white/70">
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -70,13 +70,13 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="relative rounded-2xl border border-neutral-200 bg-white p-6 md:p-8"
+              className="relative rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-8"
             >
               <Quote
                 size={28}
-                className="absolute -top-4 left-6 text-toyota-red bg-white rounded-full p-1 ring-1 ring-neutral-200"
+                className="absolute -top-4 left-6 text-toyota-red bg-background rounded-full p-1 ring-1 ring-white/10"
               />
-              <p className="text-neutral-800 italic">
+              <p className="text-white/85 italic">
                 Software shouldn&apos;t replace what works on the floor — it
                 should give the team time back so they can do more of it.
               </p>
@@ -92,12 +92,12 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:border-neutral-300 transition-all"
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all hover:bg-white/[0.05] hover:border-white/20"
             >
-              <p className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900">
+              <p className="text-4xl md:text-5xl font-semibold tracking-tight text-white">
                 <CountUp value={s.value} suffix={s.suffix ?? ""} />
               </p>
-              <p className="mt-2 text-sm text-neutral-500">{s.label}</p>
+              <p className="mt-2 text-sm text-white/50">{s.label}</p>
             </motion.div>
           ))}
         </div>

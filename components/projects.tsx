@@ -23,6 +23,12 @@ const statusVariant: Record<Status, "live" | "building" | "planning"> = {
   Planning: "planning",
 };
 
+const dotColor: Record<Status, string> = {
+  Live: "bg-emerald-400",
+  Building: "bg-amber-400",
+  Planning: "bg-neutral-400",
+};
+
 const projects: Project[] = [
   {
     title: "Round Rock Toyota Leaderboard",
@@ -66,26 +72,26 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative bg-neutral-50 py-24 md:py-32 overflow-hidden border-t border-neutral-100"
+      className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
       <div
         aria-hidden="true"
-        className="absolute -left-40 top-1/4 h-[500px] w-[700px] rounded-full bg-toyota-red/[0.03] blur-[160px] pointer-events-none"
+        className="absolute -left-40 top-1/4 h-[500px] w-[700px] rounded-full bg-toyota-red/[0.07] blur-[160px] pointer-events-none"
       />
       <div className="container relative">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div className="max-w-2xl">
             <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
-              <span className="text-neutral-500">03 /</span> Featured Projects
+              <span className="text-white/40">03 /</span> Featured Projects
             </p>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]">
+            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
               Software for{" "}
-              <span className="font-display italic font-normal text-toyota-red">
+              <span className="font-display italic font-normal text-gradient-ember">
                 dealership operations.
               </span>
             </h2>
           </div>
-          <p className="text-base text-neutral-600 max-w-md">
+          <p className="text-base text-white/55 max-w-md">
             A working set of tools focused on appointments, acquisition, and
             retention. Built in production, refined on the floor.
           </p>
@@ -101,30 +107,24 @@ export function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.55, delay: i * 0.06 }}
-                className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:border-neutral-300 transition-all"
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-7 transition-all hover:bg-white/[0.05] hover:border-white/20"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-toyota-red/10 text-toyota-red ring-1 ring-toyota-red/20">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-toyota-red/15 text-toyota-red ring-1 ring-toyota-red/25">
                     <Icon size={22} strokeWidth={2} />
                   </div>
                   <Badge variant={statusVariant[project.status]}>
                     <span
-                      className={
-                        project.status === "Live"
-                          ? "mr-1.5 h-1.5 w-1.5 rounded-full bg-emerald-500 inline-block"
-                          : project.status === "Building"
-                          ? "mr-1.5 h-1.5 w-1.5 rounded-full bg-amber-500 inline-block"
-                          : "mr-1.5 h-1.5 w-1.5 rounded-full bg-neutral-400 inline-block"
-                      }
+                      className={`mr-1.5 h-1.5 w-1.5 rounded-full inline-block ${dotColor[project.status]}`}
                     />
                     {project.status}
                   </Badge>
                 </div>
 
-                <h3 className="mt-6 text-xl font-semibold tracking-tight text-neutral-900">
+                <h3 className="mt-6 text-xl font-semibold tracking-tight text-white">
                   {project.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+                <p className="mt-3 text-sm leading-relaxed text-white/60">
                   {project.description}
                 </p>
 
@@ -132,20 +132,20 @@ export function Projects() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="inline-flex items-center rounded-md bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-700 ring-1 ring-neutral-200"
+                      className="inline-flex items-center rounded-md bg-white/[0.06] px-2.5 py-1 text-xs font-medium text-white/65 ring-1 ring-white/10"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="mt-7 flex items-center justify-between border-t border-neutral-100 pt-5">
+                <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
                   {project.url ? (
                     <a
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 hover:text-toyota-red transition-colors"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-ember transition-colors"
                       aria-label={`View ${project.title} on GitHub`}
                     >
                       View on GitHub
@@ -157,7 +157,7 @@ export function Projects() {
                   ) : (
                     <a
                       href="#contact"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 hover:text-toyota-red transition-colors"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-ember transition-colors"
                       aria-label={`Ask about ${project.title}`}
                     >
                       Ask about it
@@ -168,7 +168,7 @@ export function Projects() {
                     </a>
                   )}
                   {project.isPrivate ? (
-                    <span className="inline-flex items-center gap-1 text-xs text-neutral-400">
+                    <span className="inline-flex items-center gap-1 text-xs text-white/40">
                       <Lock size={11} />
                       Private repo
                     </span>
@@ -177,7 +177,7 @@ export function Projects() {
 
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute -top-12 -right-12 h-32 w-32 rounded-full bg-toyota-red/15 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="pointer-events-none absolute -top-12 -right-12 h-32 w-32 rounded-full bg-toyota-red/25 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 />
                 <div
                   aria-hidden="true"

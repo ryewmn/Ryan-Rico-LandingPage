@@ -4,40 +4,40 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 6%;
+    --background: 222 30% 5%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 8%;
+    --card: 222 26% 8%;
+    --card-foreground: 0 0% 98%;
 
     --primary: 354 92% 48%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 40 10% 95%;
-    --secondary-foreground: 0 0% 12%;
+    --secondary: 222 20% 12%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 40 10% 95%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 222 20% 12%;
+    --muted-foreground: 0 0% 64%;
 
-    --accent: 22 100% 55%;
+    --accent: 354 92% 48%;
     --accent-foreground: 0 0% 100%;
 
-    --border: 30 10% 90%;
-    --input: 30 10% 90%;
-    --ring: 354 92% 48%;
+    --border: 0 0% 100%;
+    --input: 0 0% 100%;
+    --ring: 354 92% 55%;
 
     --radius: 0.75rem;
   }
 
   * {
-    @apply border-border;
+    border-color: rgba(255, 255, 255, 0.1);
   }
 
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
-    color-scheme: light;
-    background: hsl(var(--background));
+    color-scheme: dark;
+    background: #070a0f;
   }
 
   body {
@@ -46,24 +46,21 @@
   }
 
   ::selection {
-    background: #EB0A1E;
+    background: #eb0a1e;
     color: #ffffff;
   }
 
-  /* Visible focus rings for keyboard nav (skip on mouse focus) */
   :focus-visible {
-    outline: 2px solid #EB0A1E;
+    outline: 2px solid #ff3546;
     outline-offset: 3px;
     border-radius: 8px;
   }
 
-  /* Disable global custom focus on inputs/textarea since they have their own */
   input:focus-visible,
   textarea:focus-visible {
     outline: none;
   }
 
-  /* Honor reduced-motion for hover lifts and entry animations */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -81,45 +78,43 @@
     text-wrap: balance;
   }
 
-  .grid-bg-fine {
-    background-image:
-      linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-    background-size: 28px 28px;
+  /* Fine film grain for the cinematic look */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  .grid-bg-soft {
-    background-image:
-      linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
-    background-size: 56px 56px;
+  /* Subtle dot grid for dark surfaces */
+  .dot-grid {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 26px 26px;
   }
 
-  /* Modern subtle dot pattern (replaces grid for the "pro" look) */
-  .dot-pattern {
-    background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px);
-    background-size: 22px 22px;
+  .mask-fade-y {
+    mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
   }
 
-  .dot-pattern-soft {
-    background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-    background-size: 28px 28px;
-  }
-
-  /* Top-edge fade so the dotted pattern feels like it dissolves */
-  .mask-edges {
-    mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, black 40%, transparent 90%);
-    -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, black 40%, transparent 90%);
-  }
-
-  .text-gradient-fire {
-    background: linear-gradient(135deg, #c8141d 0%, #FF6B1A 60%, #1a1a1a 100%);
+  .text-gradient-ember {
+    background: linear-gradient(120deg, #ffd9a3 0%, #ff8a4d 45%, #eb0a1e 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  .red-glow-soft {
-    box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 8px 28px rgba(235, 10, 30, 0.08);
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee 32s linear infinite;
   }
 }

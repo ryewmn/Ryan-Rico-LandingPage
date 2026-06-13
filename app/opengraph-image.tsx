@@ -14,11 +14,11 @@ export default function OG() {
           display: "flex",
           flexDirection: "column",
           padding: "80px",
-          background: "#fafaf7",
+          background: "#070a0f",
           backgroundImage:
-            "radial-gradient(ellipse 800px 600px at 80% 20%, rgba(255,179,71,0.35), transparent 60%), radial-gradient(ellipse 700px 500px at 10% 90%, rgba(235,10,30,0.12), transparent 60%)",
+            "radial-gradient(ellipse 900px 600px at 80% 15%, rgba(255,138,77,0.22), transparent 60%), radial-gradient(ellipse 800px 600px at 0% 100%, rgba(235,10,30,0.22), transparent 60%)",
           fontFamily: "system-ui, sans-serif",
-          color: "#0a0a0a",
+          color: "#ffffff",
         }}
       >
         {/* Top row */}
@@ -121,7 +121,7 @@ export default function OG() {
                 fontStyle: "italic",
                 fontWeight: 400,
                 background:
-                  "linear-gradient(135deg, #c8141d 0%, #FF6B1A 60%, #1a1a1a 100%)",
+                  "linear-gradient(120deg, #ffd9a3 0%, #FF8A4D 50%, #EB0A1E 100%)",
                 backgroundClip: "text",
                 color: "transparent",
               }}
@@ -132,7 +132,7 @@ export default function OG() {
           <div
             style={{
               fontSize: 32,
-              color: "#525252",
+              color: "#a3a3a3",
               marginTop: 28,
               maxWidth: 920,
               lineHeight: 1.35,
@@ -150,7 +150,7 @@ export default function OG() {
             alignItems: "center",
             justifyContent: "space-between",
             fontSize: 18,
-            color: "#525252",
+            color: "#8a8a8a",
             marginTop: 24,
           }}
         >
@@ -159,7 +159,7 @@ export default function OG() {
             <span>linkedin.com/in/ryanchristopherrico</span>
             <span>@builds.by.ryry</span>
           </div>
-          <div style={{ color: "#0a0a0a", fontWeight: 600 }}>
+          <div style={{ color: "#ffffff", fontWeight: 600 }}>
             ryanchristopher.rico@gmail.com
           </div>
         </div>

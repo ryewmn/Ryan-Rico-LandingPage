@@ -41,29 +41,29 @@ export function Builds() {
     <section
       id="builds"
       aria-labelledby="builds-heading"
-      className="relative bg-neutral-50 py-24 md:py-32 overflow-hidden border-t border-neutral-100"
+      className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-white/10"
     >
       <div
         aria-hidden="true"
-        className="absolute -right-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.04] blur-[160px] pointer-events-none"
+        className="absolute -right-40 top-1/3 h-[400px] w-[600px] rounded-full bg-toyota-red/[0.08] blur-[160px] pointer-events-none"
       />
 
       <div className="container relative">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div className="max-w-2xl">
             <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
-              <span className="text-neutral-500">05 /</span> Builds
+              <span className="text-white/40">05 /</span> Builds
             </p>
             <h2
               id="builds-heading"
-              className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 text-balance leading-[1.05]"
+              className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]"
             >
               From the{" "}
-              <span className="font-display italic font-normal text-toyota-red">
+              <span className="font-display italic font-normal text-gradient-ember">
                 workbench.
               </span>
             </h2>
-            <p className="mt-4 text-base text-neutral-600 max-w-md">
+            <p className="mt-4 text-base text-white/55 max-w-md">
               Master Grades and Perfect Grades mostly. Real Grades and High
               Grades when I want a fast build. Latest kits posted on Instagram.
             </p>
@@ -75,7 +75,7 @@ export function Builds() {
               onClick={() => scrollBy("prev")}
               aria-label="Previous build"
               aria-controls="builds-track"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50 hover:border-neutral-300 transition-colors"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white transition-colors"
             >
               <ChevronLeft size={18} />
             </button>
@@ -84,7 +84,7 @@ export function Builds() {
               onClick={() => scrollBy("next")}
               aria-label="Next build"
               aria-controls="builds-track"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50 hover:border-neutral-300 transition-colors"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white transition-colors"
             >
               <ChevronRight size={18} />
             </button>
@@ -103,11 +103,11 @@ export function Builds() {
         <div className="relative -mx-4 md:-mx-6">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-neutral-50 to-transparent"
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-background to-transparent"
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-neutral-50 to-transparent"
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-background to-transparent"
           />
 
           <div
@@ -152,7 +152,7 @@ function BuildSlide({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, delay: 0.05 * index }}
-      className="snap-start shrink-0 w-[300px] md:w-[340px] aspect-[4/5] rounded-2xl overflow-hidden border border-neutral-200 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.04)]"
+      className="snap-start shrink-0 w-[300px] md:w-[340px] aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 bg-white/[0.03]"
     >
       <LazyInstagramEmbed shortcode={shortcode} index={index} total={total} />
     </motion.div>
