@@ -6,15 +6,15 @@ type Tone = "light" | "dark" | "red" | "ghost";
 
 const tones: Record<Tone, { pill: string; coin: string }> = {
   light: {
-    pill: "bg-white text-neutral-950 hover:bg-white/90",
+    pill: "bg-white text-neutral-950 hover:bg-white/95 shadow-[0_1px_0_rgba(255,255,255,0.4)_inset,0_8px_24px_rgba(0,0,0,0.25)]",
     coin: "bg-neutral-950 text-white",
   },
   dark: {
-    pill: "bg-neutral-950/80 text-white border border-white/15 backdrop-blur hover:bg-neutral-900",
+    pill: "bg-neutral-950/80 text-white border border-white/15 backdrop-blur hover:bg-neutral-900 shadow-[0_1px_0_rgba(255,255,255,0.06)_inset]",
     coin: "bg-white text-neutral-950",
   },
   red: {
-    pill: "bg-toyota-red text-white hover:bg-toyota-red-dark shadow-[0_8px_30px_rgba(235,10,30,0.35)]",
+    pill: "bg-toyota-red text-white hover:bg-toyota-red-dark shadow-[0_1px_0_rgba(255,255,255,0.25)_inset,0_8px_30px_rgba(235,10,30,0.4)]",
     coin: "bg-white text-toyota-red",
   },
   ghost: {
@@ -59,7 +59,7 @@ export function ArrowPill({
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
       className={cn(
-        "group inline-flex items-center gap-3 rounded-full font-medium tracking-tight transition-all active:scale-[0.98]",
+        "group inline-flex items-center gap-3 rounded-full font-medium tracking-tight transition-all hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
         dims,
         t.pill,
         className

@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { SectionLabel } from "@/components/ui/section-label";
 import { SITE } from "@/lib/site-config";
 
 type FormState = "idle" | "submitting" | "success";
@@ -75,9 +76,7 @@ export function Contact() {
 
       <div className="container relative">
         <div className="max-w-2xl mb-16">
-          <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
-            <span className="text-white/40">06 /</span> Contact
-          </p>
+          <SectionLabel number="06">Contact</SectionLabel>
           <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
             Let&apos;s{" "}
             <span className="font-display italic font-normal text-gradient-ember">

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Bot, Instagram, LineChart, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SITE } from "@/lib/site-config";
+import { SectionLabel } from "@/components/ui/section-label";
 
 type Area = {
   icon: LucideIcon;
@@ -43,9 +44,7 @@ export function CurrentWork() {
       <div className="container relative">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div className="max-w-2xl">
-            <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
-              <span className="text-white/40">02 /</span> Current Work
-            </p>
+            <SectionLabel number="02">Current Work</SectionLabel>
             <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
               Where I{" "}
               <span className="font-display italic font-normal text-gradient-ember">

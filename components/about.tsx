@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { CountUp } from "@/components/count-up";
+import { SectionLabel } from "@/components/ui/section-label";
 
 const stats: { value: number; suffix?: string; label: string }[] = [
   { value: 3, label: "Years in automotive retail" },
@@ -24,9 +25,7 @@ export function About() {
       <div className="container relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
           <div className="lg:col-span-5">
-            <p className="text-sm font-mono uppercase tracking-[0.18em] text-toyota-red">
-              <span className="text-white/40">01 /</span> About
-            </p>
+            <SectionLabel number="01">About</SectionLabel>
             <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
               Hands on
               <br />
@@ -65,22 +64,22 @@ export function About() {
               floor — is live. The next ones (a BDC toolkit and an AI-assisted
               car-buying agent) are in progress.
             </motion.p>
-            <motion.div
+            <motion.figure
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="relative rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-8"
+              className="relative border-l-2 border-toyota-red/70 pl-6 md:pl-8 py-2"
             >
               <Quote
-                size={28}
-                className="absolute -top-4 left-6 text-toyota-red bg-background rounded-full p-1 ring-1 ring-white/10"
+                size={22}
+                className="absolute -left-[12px] -top-1 text-toyota-red bg-background rounded-full p-1 ring-1 ring-white/10"
               />
-              <p className="text-white/85 italic">
+              <blockquote className="font-display text-xl md:text-2xl italic text-white/90 leading-snug">
                 Software shouldn&apos;t replace what works on the floor — it
                 should give the team time back so they can do more of it.
-              </p>
-            </motion.div>
+              </blockquote>
+            </motion.figure>
           </div>
         </div>
 

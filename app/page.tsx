@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
+import { TechMarquee } from "@/components/tech-marquee";
 import { About } from "@/components/about";
 import { CurrentWork } from "@/components/current-work";
 import { Projects } from "@/components/projects";
@@ -25,6 +26,7 @@ export default function HomePage() {
     <main className="min-h-screen bg-background text-white">
       <Navbar />
       <Hero />
+      <TechMarquee />
       <About />
       <CurrentWork />
       <Projects />
