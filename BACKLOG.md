@@ -50,10 +50,10 @@ Done means: the change is implemented, and `npm run build`, `npm test`, and `npm
 
 ## P3 polish
 
-- [ ] Add a custom 404 page. Done: unknown routes render it with a path home.
-- [ ] Add loading and error states to the contact or signup form. Done: submit shows progress, failure shows a clear message.
-- [ ] Add a cookie or analytics consent banner if you serve EU traffic. Done: tracking only fires after consent.
-- [ ] Add a favicon set and web app manifest. Done: favicon shows in tabs and the manifest validates.
+- [x] Add a custom 404 page. Done: unknown routes render it with a path home. — `app/not-found.tsx` renders a styled "Wrong turn." page with a `Back to home` link. Swept to use theme tokens during this pass so it inverts cleanly in both modes.
+- [x] Add loading and error states to the contact or signup form. Done: submit shows progress, failure shows a clear message. — `components/contact.tsx` carries an idle/submitting/success state machine and a `motion.div` success card with focused heading. A user-facing error path is N/A under the current mailto: paradigm (the handler opens `window.location` and cannot fail in-page). Re-open if the form moves to a server endpoint where a 4xx/5xx response is possible.
+- [x] Add a cookie or analytics consent banner if you serve EU traffic. Done: tracking only fires after consent. — **N/A**: the site loads no analytics, no third-party trackers, and sets no cookies. The only client-side storage is the `theme` key in `localStorage`, which is functional and not personal data. Re-open if analytics are added.
+- [x] Add a favicon set and web app manifest. Done: favicon shows in tabs and the manifest validates. — `app/icon.tsx` + `app/apple-icon.tsx` were already in place. Added `app/manifest.ts` with name, short_name, description, start_url, display=standalone, background/theme colors, icons, and categories. Verified: `/manifest.webmanifest` serves with the right JSON.
 
 ## Scan findings (loop appends here)
 
