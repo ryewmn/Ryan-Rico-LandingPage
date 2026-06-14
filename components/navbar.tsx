@@ -63,7 +63,7 @@ export function Navbar() {
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
                     "px-3.5 py-2 text-[13.5px] font-medium rounded-full transition-colors",
-                    isActive ? "text-foreground" : "text-foreground/55 hover:text-foreground"
+                    isActive ? "text-foreground" : "text-foreground/65 hover:text-foreground"
                   )}
                 >
                   {link.label}

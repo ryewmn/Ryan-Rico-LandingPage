@@ -99,10 +99,10 @@ export function Projects() {
                         strokeWidth={2}
                         className="text-toyota-red/70"
                       />
-                      <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-foreground/40">
+                      <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-muted-foreground">
                         0{i + 1}
                       </span>
-                      <span className="inline-flex items-center gap-1.5 ml-2 text-[10px] font-mono uppercase tracking-[0.18em] text-foreground/55">
+                      <span className="inline-flex items-center gap-1.5 ml-2 text-[10px] font-mono uppercase tracking-[0.18em] text-foreground/65">
                         <span
                           className={`h-1 w-1 rounded-full ${dotColor[project.status]}`}
                         />
@@ -125,7 +125,7 @@ export function Projects() {
                         className="shrink-0 text-foreground/35 group-hover:text-toyota-red group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
                       />
                     </div>
-                    <p className="mt-2 text-sm md:text-base leading-relaxed text-foreground/55 max-w-md">
+                    <p className="mt-2 text-sm md:text-base leading-relaxed text-foreground/65 max-w-md">
                       {project.description}
                     </p>
                   </motion.a>

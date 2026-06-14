@@ -73,7 +73,7 @@ export function About() {
               transition={{ duration: 0.5, delay: i * 0.05 }}
               className={`py-8 ${i > 0 ? "sm:border-l border-foreground/10 sm:pl-8" : ""}`}
             >
-              <dt className="text-xs font-mono uppercase tracking-[0.22em] text-foreground/40">
+              <dt className="text-xs font-mono uppercase tracking-[0.22em] text-muted-foreground">
                 {s.label}
               </dt>
               <dd className="mt-3 text-5xl md:text-6xl font-semibold tracking-[-0.04em] text-foreground tabular-nums">

@@ -111,7 +111,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.24, ease }}
-          className="mt-16 max-w-sm text-sm leading-relaxed text-foreground/55"
+          className="mt-16 max-w-sm text-sm leading-relaxed text-foreground/65"
         >
           BDC Sales at Round Rock Toyota, building the software the floor wishes
           it had.

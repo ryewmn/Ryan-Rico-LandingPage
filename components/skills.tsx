@@ -78,7 +78,7 @@ export function Skills() {
                     {g.title}
                   </h3>
                 </div>
-                <p className="mt-5 text-base text-foreground/55 max-w-md">
+                <p className="mt-5 text-base text-foreground/65 max-w-md">
                   {g.description}
                 </p>
                 <ul className="mt-6 columns-2 gap-x-8 space-y-2 text-[15px] text-foreground/80">

@@ -31,7 +31,7 @@ export function Footer() {
                 {SITE.name}
               </span>
             </div>
-            <p className="mt-5 text-sm leading-relaxed text-foreground/55 max-w-sm">
+            <p className="mt-5 text-sm leading-relaxed text-foreground/65 max-w-sm">
               Automotive Operations &middot; Retail Retention &middot; Software
               Development. Based in {SITE.location}.
             </p>
@@ -55,7 +55,7 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <p className="text-xs font-mono uppercase tracking-[0.18em] text-foreground/40">
+            <p className="text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
               Navigate
             </p>
             <ul className="mt-5 space-y-3">
@@ -73,7 +73,7 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-4">
-            <p className="text-xs font-mono uppercase tracking-[0.18em] text-foreground/40">
+            <p className="text-xs font-mono uppercase tracking-[0.18em] text-muted-foreground">
               Contact
             </p>
             <ul className="mt-5 space-y-3">
@@ -104,10 +104,10 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-8 border-t border-foreground/10">
-          <p className="text-xs text-foreground/40">
+          <p className="text-xs text-muted-foreground">
             &copy; {year} {SITE.name}. All rights reserved.
           </p>
-          <p className="text-xs text-foreground/40">
+          <p className="text-xs text-muted-foreground">
             Built with Next.js, Tailwind CSS, and Framer Motion.
           </p>
         </div>

@@ -100,14 +100,14 @@ export function CurrentWork() {
                         strokeWidth={2}
                         className="text-toyota-red/70"
                       />
-                      <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-foreground/40">
+                      <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-muted-foreground">
                         0{i + 1}
                       </span>
                     </div>
                     <h3 className="text-xl md:text-2xl font-medium tracking-[-0.01em] text-foreground group-hover:text-toyota-red transition-colors">
                       {a.title}
                     </h3>
-                    <p className="mt-2 text-sm md:text-base leading-relaxed text-foreground/55 max-w-md">
+                    <p className="mt-2 text-sm md:text-base leading-relaxed text-foreground/65 max-w-md">
                       {a.description}
                     </p>
                     {a.link ? (
@@ -115,7 +115,7 @@ export function CurrentWork() {
                         href={a.link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-3 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.18em] text-foreground/55 hover:text-toyota-red transition-colors"
+                        className="mt-3 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.18em] text-foreground/65 hover:text-toyota-red transition-colors"
                       >
                         <Instagram size={12} />
                         {a.link.label}

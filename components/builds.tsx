@@ -62,7 +62,7 @@ export function Builds() {
                 workbench.
               </span>
             </h2>
-            <p className="mt-4 text-base text-foreground/55 max-w-md">
+            <p className="mt-4 text-base text-foreground/65 max-w-md">
               Master Grades and Perfect Grades mostly. Real Grades and High
               Grades when I want a fast build. Latest kits posted on Instagram.
             </p>

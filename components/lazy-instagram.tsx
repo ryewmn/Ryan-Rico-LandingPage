@@ -60,7 +60,7 @@ export function LazyInstagramEmbed({
       >
         <div className="flex items-center justify-between">
           <Instagram size={18} className="text-foreground/60" />
-          <span className="font-mono text-[10px] uppercase tracking-wider text-foreground/50">
+          <span className="font-mono text-[10px] uppercase tracking-wider text-foreground/65">
             {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
           </span>
         </div>
@@ -73,7 +73,7 @@ export function LazyInstagramEmbed({
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-toyota-red">
             {SITE.instagramHandle}
           </p>
-          <p className="mt-1 text-xs text-foreground/50">Tap to load post</p>
+          <p className="mt-1 text-xs text-foreground/65">Tap to load post</p>
         </div>
       </a>
 

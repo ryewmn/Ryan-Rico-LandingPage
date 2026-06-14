@@ -83,7 +83,7 @@ export function Contact() {
               talk shop.
             </span>
           </h2>
-          <p className="mt-4 text-lg text-foreground/55">
+          <p className="mt-4 text-lg text-foreground/65">
             Looking to upgrade, sell your vehicle, or talk about software for
             your dealership? Send a note.
           </p>
@@ -120,7 +120,7 @@ export function Contact() {
               <h3 className="mt-6 text-2xl font-bold tracking-tight text-foreground">
                 {SITE.name}
               </h3>
-              <p className="mt-1 text-sm text-foreground/50">
+              <p className="mt-1 text-sm text-foreground/65">
                 {SITE.role} ·{" "}
                 <a
                   href={SITE.dealership}
@@ -137,7 +137,7 @@ export function Contact() {
                   <li key={label} className="flex items-start gap-3">
                     <Icon size={18} className="mt-0.5 text-toyota-red shrink-0" />
                     <div className="min-w-0">
-                      <p className="text-xs font-mono uppercase tracking-widest text-foreground/40">
+                      <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
                         {label}
                       </p>
                       {href ? (
@@ -267,7 +267,7 @@ export function Contact() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
-                    <p className="text-xs text-foreground/45">
+                    <p className="text-xs text-foreground/65">
                       I respond within one business day.
                     </p>
                     <Button type="submit" size="lg" className="sm:w-auto w-full">
