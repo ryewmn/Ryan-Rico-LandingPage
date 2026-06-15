@@ -1,28 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/ui/section-label";
 
 export function Spotlight() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  // Pause the video when it scrolls off screen — saves a decode loop on the
-  // GPU and keeps the page snappier without affecting the cinematic feel.
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) v.play().catch(() => {});
-        else v.pause();
-      },
-      { threshold: 0.1 }
-    );
-    obs.observe(v);
-    return () => obs.disconnect();
-  }, []);
-
   return (
     <section
       id="spotlight"
@@ -50,28 +31,46 @@ export function Spotlight() {
           In the codebase. After hours, with a Master Grade kit and a hobby
           knife.
         </p>
-        <p className="mt-10 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-          Video: Toyota Gazoo Racing — GR GT
-        </p>
       </motion.div>
 
-      {/* Video panel */}
-      <div className="relative bg-neutral-950 min-h-[60vh] md:min-h-[80vh]">
-        <video
-          ref={videoRef}
-          src="/videos/grgt-special.mp4"
-          poster="/hero/grgt.webp"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+      {/* Drive-by panel — Supra body translates across, wheels spin in place */}
+      <div className="relative bg-foreground/[0.015] min-h-[40vh] md:min-h-[60vh] overflow-hidden">
+        {/* Faint road line so the drive-by has a horizon */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-r from-foreground/[0.03] via-transparent to-transparent pointer-events-none"
+          className="absolute left-0 right-0 top-1/2 mt-[4%] h-px bg-foreground/15"
         />
+        {/* Car rig — drives left→right on a 7s loop. The wheel positions
+            are expressed as percentages of the body so the rig scales
+            cleanly with the responsive width. */}
+        <div
+          aria-hidden="true"
+          className="car-drive absolute top-1/2 -translate-y-1/2 w-[260px] sm:w-[340px] md:w-[400px] lg:w-[460px]"
+        >
+          <div className="relative">
+            {/* eslint-disable @next/next/no-img-element */}
+            <img
+              src="/cars/car-without-wheels.png"
+              alt=""
+              className="block w-full select-none"
+              draggable={false}
+            />
+            <img
+              src="/cars/rear-wheel-only.png"
+              alt=""
+              className="wheel-spin absolute select-none"
+              draggable={false}
+              style={{ left: "12.6%", top: "53.6%", width: "14.4%" }}
+            />
+            <img
+              src="/cars/front-wheel-only.png"
+              alt=""
+              className="wheel-spin absolute select-none"
+              draggable={false}
+              style={{ left: "71.7%", top: "53.6%", width: "14.4%" }}
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

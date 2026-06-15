@@ -199,12 +199,26 @@
   .assembly-chassis { animation: assembly-chassis 22s ease-in-out infinite; }
   .assembly-grgt    { animation: assembly-grgt    22s ease-in-out infinite; }
 
+  /* Supra drive-by — the car body translates left→right across the
+     panel on a loop; the wheels spin in place on the body. */
+  @keyframes car-drive {
+    0%   { transform: translate3d(-110%, 0, 0); }
+    100% { transform: translate3d(110%, 0, 0); }
+  }
+  @keyframes wheel-spin {
+    to { transform: rotate(360deg); }
+  }
+  .car-drive  { animation: car-drive 7s linear infinite; }
+  .wheel-spin { animation: wheel-spin 0.5s linear infinite; }
+
   @media (prefers-reduced-motion: reduce) {
     .ken-burns,
     .drift,
     .turntable,
     .assembly-chassis,
     .assembly-grgt,
+    .car-drive,
+    .wheel-spin,
     .animate-marquee {
       animation: none !important;
     }
