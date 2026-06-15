@@ -199,16 +199,20 @@
   .assembly-chassis { animation: assembly-chassis 22s ease-in-out infinite; }
   .assembly-grgt    { animation: assembly-grgt    22s ease-in-out infinite; }
 
-  /* Supra drive-by — the car body translates left→right across the
-     panel on a loop; the wheels spin in place on the body. */
-  @keyframes car-drive {
-    0%   { transform: translate3d(-110%, 0, 0); }
-    100% { transform: translate3d(110%, 0, 0); }
+  /* Supra accelerating drive-by — slow off-the-left, then accelerates
+     out to the right and disappears. One-shot; the parent unmounts the
+     rig when the animation ends so the next scroll can retrigger.
+     Ease lifted from Toyota's engage.toyota.com cool-car-animation. */
+  @keyframes car-drive-accel {
+    0%   { transform: translateX(-110%); }
+    100% { transform: translateX(100vw); }
+  }
+  .car-drive-accel {
+    animation: car-drive-accel 9s cubic-bezier(.32, .9, .9, 1.4) forwards;
   }
   @keyframes wheel-spin {
     to { transform: rotate(360deg); }
   }
-  .car-drive  { animation: car-drive 7s linear infinite; }
   .wheel-spin { animation: wheel-spin 0.5s linear infinite; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -217,7 +221,7 @@
     .turntable,
     .assembly-chassis,
     .assembly-grgt,
-    .car-drive,
+    .car-drive-accel,
     .wheel-spin,
     .animate-marquee {
       animation: none !important;

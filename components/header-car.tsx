@@ -1,69 +1,93 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
- * Scroll-tied Supra in the header. Lives in a thin band right under the
- * navbar (fixed). Its horizontal position tracks total page scroll
- * progress — at the top of the page it sits at the left edge, at the
- * bottom it's at the right. Wheels spin continuously.
+ * Header Supra — slowly rolls out from the left, accelerates to the
+ * right, and disappears. Triggered when the user scrolls; only one
+ * drive-by runs at a time. After the animation ends, the next scroll
+ * can retrigger it.
  *
- * Wheel anchors were measured against the source PNG (313×98). The
- * rear arch center sits at x≈56 (17.9% of width), the front at x≈251
- * (80.2%); both at y≈73 (74%). The wheels themselves are 45×45
- * (14.4% wide), so their top-left coords land at:
- *   rear  left=10.7%  top=51.6%
- *   front left=73.0%  top=51.6%
+ * Wheel anchors mirror Toyota's engage.toyota.com cool-car-animation:
+ *   rear-x: 23.3%, front-x: 78.7%, y: 73.5%, size: 15%
+ * Wheels are centered with translate(-50%, -50%) so the spin keyframes
+ * only rotate and don't fight the position.
+ *
+ * Ease (cubic-bezier(.32, .9, .9, 1.4)) is lifted from Toyota's CSS —
+ * slow off-the-left, hard accel out to the right.
  */
 export function HeaderCar() {
-  const [progress, setProgress] = useState(0);
+  const [running, setRunning] = useState(false);
+  const runningRef = useRef(false);
 
   useEffect(() => {
     const onScroll = () => {
-      const max =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-      setProgress(p);
+      if (runningRef.current) return;
+      runningRef.current = true;
+      setRunning(true);
     };
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  function handleEnd() {
+    runningRef.current = false;
+    setRunning(false);
+  }
+
   return (
     <div
       aria-hidden="true"
-      className="fixed top-[72px] inset-x-0 z-40 h-12 pointer-events-none overflow-hidden"
+      className="fixed top-[72px] inset-x-0 z-40 h-10 pointer-events-none overflow-hidden"
     >
-      <div
-        className="absolute top-1/2 -translate-y-1/2 w-[110px] sm:w-[140px] md:w-[170px]"
-        style={{
-          left: `calc(${progress * 100}% - ${progress * 170}px)`,
-          transition: "left 80ms linear",
-        }}
-      >
-        {/* eslint-disable @next/next/no-img-element */}
-        <img
-          src="/cars/car-without-wheels.png"
-          alt=""
-          className="block w-full select-none drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)]"
-          draggable={false}
-        />
-        <img
-          src="/cars/rear-wheel-only.png"
-          alt=""
-          className="wheel-spin absolute select-none"
-          draggable={false}
-          style={{ left: "10.7%", top: "51.6%", width: "14.4%" }}
-        />
-        <img
-          src="/cars/front-wheel-only.png"
-          alt=""
-          className="wheel-spin absolute select-none"
-          draggable={false}
-          style={{ left: "73.0%", top: "51.6%", width: "14.4%" }}
-        />
-      </div>
+      {running ? (
+        <div
+          onAnimationEnd={handleEnd}
+          className="car-drive-accel absolute top-1/2 -translate-y-1/2 left-0 w-[78px] sm:w-[96px] md:w-[112px]"
+        >
+          <div className="relative">
+            {/* eslint-disable @next/next/no-img-element */}
+            <img
+              src="/cars/car-without-wheels.png"
+              alt=""
+              className="block w-full select-none drop-shadow-[0_2px_5px_rgba(0,0,0,0.4)]"
+              draggable={false}
+            />
+            <div
+              className="absolute"
+              style={{
+                left: "23.3%",
+                top: "73.5%",
+                width: "15%",
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <img
+                src="/cars/rear-wheel-only.png"
+                alt=""
+                className="wheel-spin block w-full select-none"
+                draggable={false}
+              />
+            </div>
+            <div
+              className="absolute"
+              style={{
+                left: "78.7%",
+                top: "73.5%",
+                width: "15%",
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <img
+                src="/cars/front-wheel-only.png"
+                alt=""
+                className="wheel-spin block w-full select-none"
+                draggable={false}
+              />
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
