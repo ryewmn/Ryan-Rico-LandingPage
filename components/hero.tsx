@@ -31,7 +31,7 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover ken-burns"
           style={{ objectPosition: "50% center" }}
         />
         {/* Dark overlays */}
@@ -51,7 +51,7 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover ken-burns"
           style={{ objectPosition: "60% center" }}
         />
         {/* Light overlays — wash the photo with cream so text reads */}

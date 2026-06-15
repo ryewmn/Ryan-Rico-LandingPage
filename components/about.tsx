@@ -15,7 +15,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative bg-background py-28 md:py-36 border-t border-foreground/10 overflow-hidden"
+      className="relative bg-background py-28 md:py-36 border-t border-foreground/10 overflow-hidden grain"
     >
       {/* Chassis backdrop — silhouettes the right edge, washed to ~12% */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
@@ -24,7 +24,7 @@ export function About() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover opacity-[0.18] dark:opacity-[0.32]"
+          className="object-cover drift opacity-[0.18] dark:opacity-[0.32]"
           style={{ objectPosition: "right center" }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />

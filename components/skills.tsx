@@ -58,7 +58,7 @@ export function Skills() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover opacity-[0.20] dark:opacity-[0.30]"
+          className="object-cover drift opacity-[0.20] dark:opacity-[0.30]"
           style={{ objectPosition: "right center" }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />

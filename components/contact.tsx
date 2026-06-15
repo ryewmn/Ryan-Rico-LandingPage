@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
@@ -63,8 +64,21 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-foreground/10"
+      className="relative bg-background py-24 md:py-32 overflow-hidden border-t border-foreground/10 grain"
     >
+      {/* GR GT backdrop — bookends the hero, low opacity for atmosphere */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+        <Image
+          src="/hero/grgt.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover drift opacity-[0.15] dark:opacity-[0.35]"
+          style={{ objectPosition: "left center" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-l from-background via-background/85 to-background/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/65 via-transparent to-background/85" />
+      </div>
       <div
         className="absolute -top-20 right-0 h-96 w-96 rounded-full bg-toyota-red/[0.08] blur-[140px] pointer-events-none"
         aria-hidden="true"
