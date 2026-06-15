@@ -17,14 +17,19 @@ export function About() {
       id="about"
       className="relative bg-background py-28 md:py-36 border-t border-foreground/10 overflow-hidden grain"
     >
-      {/* Chassis backdrop — silhouettes the right edge, washed to ~12% */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+      {/* Chassis backdrop — 3D turntable on the right edge. The parent
+          holds the perspective so rotateY reads in space. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{ perspective: "1500px" }}
+      >
         <Image
           src="/hero/grgt-chassis.webp"
           alt=""
           fill
           sizes="100vw"
-          className="object-cover drift opacity-[0.18] dark:opacity-[0.32]"
+          className="object-cover turntable opacity-[0.18] dark:opacity-[0.32]"
           style={{ objectPosition: "right center" }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
