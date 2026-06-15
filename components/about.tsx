@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { CountUp } from "@/components/count-up";
 import { SectionLabel } from "@/components/ui/section-label";
@@ -16,6 +17,34 @@ export function About() {
       id="about"
       className="relative bg-background py-28 md:py-36 border-t border-foreground/10 overflow-hidden grain"
     >
+      {/* Background assembly — chassis spins on a turntable, cross-fades into
+          the assembled GR GT, then cross-fades back. Both layers are
+          full-bleed behind the text content. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{ perspective: "1500px" }}
+      >
+        <Image
+          src="/hero/grgt-chassis.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover turntable assembly-chassis opacity-[0.18] dark:opacity-[0.32]"
+          style={{ objectPosition: "right center" }}
+        />
+        <Image
+          src="/hero/grgt.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover turntable assembly-grgt opacity-[0.20] dark:opacity-[0.38]"
+          style={{ objectPosition: "right center" }}
+        />
+        {/* Directional gradient washes — keep the text column readable */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/35" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/60" />
+      </div>
       <div className="container relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
           <div className="lg:col-span-5">

@@ -181,10 +181,30 @@
     will-change: transform;
   }
 
+  /* Assembly cycle — paired with .turntable on two stacked images. The
+     chassis is visible for the first half of the loop, fades into the
+     assembled GR GT for the second half, then fades back. Both keep
+     spinning the whole time so the handoff feels like a model coming
+     together on a stage. */
+  @keyframes assembly-chassis {
+    0%, 35%   { opacity: 1; }
+    50%, 85%  { opacity: 0; }
+    100%      { opacity: 1; }
+  }
+  @keyframes assembly-grgt {
+    0%, 35%   { opacity: 0; }
+    50%, 85%  { opacity: 1; }
+    100%      { opacity: 0; }
+  }
+  .assembly-chassis { animation: assembly-chassis 22s ease-in-out infinite; }
+  .assembly-grgt    { animation: assembly-grgt    22s ease-in-out infinite; }
+
   @media (prefers-reduced-motion: reduce) {
     .ken-burns,
     .drift,
     .turntable,
+    .assembly-chassis,
+    .assembly-grgt,
     .animate-marquee {
       animation: none !important;
     }

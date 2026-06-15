@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowUpRight, Bot, Instagram, LineChart, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SITE } from "@/lib/site-config";
@@ -35,28 +34,6 @@ const areas: Area[] = [
 ];
 
 export function CurrentWork() {
-  // Scroll-tied assembly — chassis fades down + scales out, GR GT fades in
-  // + scales up, as the photo column passes through the viewport.
-  const photoRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: photoRef,
-    offset: ["start end", "end start"],
-  });
-
-  const chassisOpacity = useTransform(
-    scrollYProgress,
-    [0.15, 0.4, 0.6],
-    [1, 0.75, 0]
-  );
-  const chassisScale = useTransform(scrollYProgress, [0.15, 0.6], [1, 0.92]);
-
-  const grgtOpacity = useTransform(
-    scrollYProgress,
-    [0.35, 0.55, 0.8],
-    [0, 0.6, 1]
-  );
-  const grgtScale = useTransform(scrollYProgress, [0.35, 0.8], [1.08, 1]);
-
   return (
     <section
       id="current-work"
@@ -64,61 +41,32 @@ export function CurrentWork() {
     >
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-14 lg:gap-24">
-          {/* Photo column — chassis → GR GT, scroll-tied */}
+          {/* Photo column */}
           <motion.div
-            ref={photoRef}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="relative order-2 lg:order-1"
+            className="relative order-2 lg:order-1 group"
           >
             <div className="relative p-2 rounded-xl border border-foreground/5 bg-foreground/[0.02]">
-              <div
-                className="relative aspect-[4/5] overflow-hidden rounded-lg"
-                style={{ perspective: "1500px" }}
-              >
-                {/* Chassis exploded — present at top of section */}
-                <motion.div
-                  className="absolute inset-0"
-                  style={{ opacity: chassisOpacity, scale: chassisScale }}
-                >
-                  <Image
-                    src="/hero/grgt-chassis.webp"
-                    alt="Toyota GR GT chassis, exploded view"
-                    fill
-                    sizes="(min-width: 1024px) 45vw, 100vw"
-                    className="object-cover"
-                    style={{ objectPosition: "center" }}
-                  />
-                </motion.div>
-                {/* Assembled GR GT — emerges as you scroll past */}
-                <motion.div
-                  className="absolute inset-0"
-                  style={{ opacity: grgtOpacity, scale: grgtScale }}
-                >
-                  <Image
-                    src="/hero/grgt.webp"
-                    alt="Toyota GR GT, assembled"
-                    fill
-                    sizes="(min-width: 1024px) 45vw, 100vw"
-                    className="object-cover"
-                    style={{ objectPosition: "50% 30%" }}
-                  />
-                </motion.div>
-                {/* Bottom gradient — keeps the floating accent legible */}
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/40 to-transparent pointer-events-none"
+              <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
+                <Image
+                  src="/hero/gundam.jpg"
+                  alt="RX-78-2 Gundam"
+                  fill
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className="object-cover transition-all duration-[1.2s] grayscale-[0.6] opacity-85 group-hover:grayscale-0 group-hover:opacity-100"
+                  style={{ objectPosition: "center" }}
                 />
               </div>
-              {/* Floating accent — names the assembly story */}
+              {/* Floating accent — sticks out top-right like the reference */}
               <div className="absolute top-10 -right-5 bg-toyota-red px-5 py-3.5 rounded shadow-2xl shadow-toyota-red/30 z-10">
                 <p className="text-[9px] font-mono uppercase tracking-[0.18em] text-white/70">
-                  Assembly
+                  After hours
                 </p>
                 <p className="mt-1 text-base font-semibold text-white leading-none">
-                  GR / GT
+                  Gunpla
                 </p>
               </div>
             </div>

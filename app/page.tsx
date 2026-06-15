@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
+import { Spotlight } from "@/components/spotlight";
 import { CurrentWork } from "@/components/current-work";
 import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
@@ -26,6 +27,7 @@ export default function HomePage() {
       <Navbar />
       <Hero />
       <About />
+      <Spotlight />
       <CurrentWork />
       <Projects />
       <Skills />
