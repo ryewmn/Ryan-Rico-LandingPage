@@ -202,10 +202,13 @@
   /* Supra accelerating drive-by — slow off-the-left, then accelerates
      out to the right and disappears. One-shot; the parent unmounts the
      rig when the animation ends so the next scroll can retrigger.
-     Ease lifted from Toyota's engage.toyota.com cool-car-animation. */
+     Ease lifted from Toyota's engage.toyota.com cool-car-animation.
+     The Y translate is baked in so it doesn't get overridden by the X
+     keyframe (the rig is vertically centered via top:50% on its
+     parent). */
   @keyframes car-drive-accel {
-    0%   { transform: translateX(-110%); }
-    100% { transform: translateX(100vw); }
+    0%   { transform: translate(-110%, -50%); }
+    100% { transform: translate(100vw,  -50%); }
   }
   .car-drive-accel {
     animation: car-drive-accel 9s cubic-bezier(.32, .9, .9, 1.4) forwards;
