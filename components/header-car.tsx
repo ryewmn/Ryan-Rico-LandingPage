@@ -50,7 +50,7 @@ export function HeaderCar() {
       {running ? (
         <div
           onAnimationEnd={handleEnd}
-          className="car-drive-accel absolute top-1/2 left-0 w-[130px] sm:w-[160px] md:w-[180px]"
+          className="car-drive-accel absolute top-1/2 left-0 w-[55px] sm:w-[70px] md:w-[85px]"
         >
           <div className="relative w-full">
             {/* eslint-disable @next/next/no-img-element */}
