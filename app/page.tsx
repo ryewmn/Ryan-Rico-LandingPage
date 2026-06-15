@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { Navbar } from "@/components/navbar";
+import { HeaderCar } from "@/components/header-car";
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
 import { Spotlight } from "@/components/spotlight";
@@ -25,6 +26,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-background text-white">
       <Navbar />
+      <HeaderCar />
       <Hero />
       <About />
       <Spotlight />
