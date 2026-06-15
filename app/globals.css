@@ -199,19 +199,21 @@
   .assembly-chassis { animation: assembly-chassis 22s ease-in-out infinite; }
   .assembly-grgt    { animation: assembly-grgt    22s ease-in-out infinite; }
 
-  /* Supra accelerating drive-by — slow roll-out across the left third
-     of the screen for the first ~3s, then a hard zoom off the right
-     in the remaining ~1s. One-shot.
+  /* Supra drive-by — three-phase one-shot animation:
+       1. Slow roll-out from off-left to mid-screen   (0% → 50% time)
+       2. Brief pause in the middle                   (50% → 65% time)
+       3. Hard zoom off the right                     (65% → 100% time)
      All stops use viewport units so the linear interpolation between
      them stays predictable across the duration. Y translate is baked
-     in so it never gets overridden by the X keyframe. */
+     in so the X keyframe doesn't override the centering. */
   @keyframes car-drive-accel {
     0%   { transform: translate(-20vw, -50%); }
-    75%  { transform: translate(25vw,  -50%); }
+    50%  { transform: translate(35vw,  -50%); }
+    65%  { transform: translate(35vw,  -50%); }
     100% { transform: translate(120vw, -50%); }
   }
   .car-drive-accel {
-    animation: car-drive-accel 4s linear forwards;
+    animation: car-drive-accel 4.5s linear forwards;
   }
   @keyframes wheel-spin {
     to { transform: rotate(360deg); }

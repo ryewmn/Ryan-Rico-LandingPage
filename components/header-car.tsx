@@ -3,35 +3,41 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Header Supra — slowly appears on the left, accelerates out to the
- * right, and disappears. One-shot per page load: the first scroll
- * event after page load triggers it; once the animation has played
- * the rig stays hidden until the page is refreshed.
+ * Header Supra — fires the first time the About section enters the
+ * viewport. The animation has three phases (driven by the keyframe
+ * stops in globals.css, 4.5s total):
  *
- * Wheel anchors mirror Toyota's engage.toyota.com cool-car-animation:
- *   rear-x: 23.3%, front-x: 78.7%, y: 73.5%, size: 15%
- * Wheels are centered with translate(-50%, -50%) so the spin keyframes
- * only rotate.
+ *   1. Slow roll-out from off-left to mid-screen   (0 → 2.25s)
+ *   2. Brief pause in the middle                   (2.25 → 2.93s)
+ *   3. Hard zoom off the right                     (2.93 → 4.5s)
  *
- * Ease: cubic-bezier(.32, .9, .9, 1.4) over 9s, lifted from Toyota's
- * own CSS — slow start, hard accel out.
+ * One-shot per page load; a page refresh re-arms it. Wheel anchors
+ * mirror Toyota's engage.toyota.com cool-car-animation.
  */
 export function HeaderCar() {
   const [running, setRunning] = useState(false);
   const triggeredRef = useRef(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      if (triggeredRef.current) return;
-      triggeredRef.current = true;
-      setRunning(true);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    if (triggeredRef.current) return;
+    const target = document.querySelector("#about");
+    if (!target) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !triggeredRef.current) {
+          triggeredRef.current = true;
+          setRunning(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(target);
+    return () => obs.disconnect();
   }, []);
 
   // After the animation ends just unmount the rig. We deliberately do
-  // NOT reset triggeredRef — only a page refresh re-arms the drive-by.
+  // NOT reset triggeredRef — only a page refresh re-arms it.
   function handleEnd() {
     setRunning(false);
   }
