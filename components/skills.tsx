@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Car, Code2 } from "lucide-react";
 import { SectionLabel } from "@/components/ui/section-label";
+import { TechLogo } from "@/components/ui/tech-logo";
 
 type SkillGroup = {
   icon: typeof Car;
@@ -97,7 +98,17 @@ export function Skills() {
                 </p>
                 <ul className="mt-6 columns-2 gap-x-8 space-y-2 text-[15px] text-foreground/80">
                   {g.items.map((item) => (
-                    <li key={item} className="break-inside-avoid">
+                    <li
+                      key={item}
+                      className="break-inside-avoid flex items-center gap-2.5"
+                    >
+                      {g.title === "Software" ? (
+                        <TechLogo
+                          name={item}
+                          size={14}
+                          className="shrink-0 text-foreground/70"
+                        />
+                      ) : null}
                       {item}
                     </li>
                   ))}
