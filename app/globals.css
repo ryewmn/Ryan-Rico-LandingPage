@@ -199,19 +199,17 @@
   .assembly-chassis { animation: assembly-chassis 22s ease-in-out infinite; }
   .assembly-grgt    { animation: assembly-grgt    22s ease-in-out infinite; }
 
-  /* Supra accelerating drive-by — slow off-the-left, then accelerates
-     out to the right and disappears. One-shot; the parent unmounts the
-     rig when the animation ends so the next scroll can retrigger.
-     Ease lifted from Toyota's engage.toyota.com cool-car-animation.
-     The Y translate is baked in so it doesn't get overridden by the X
-     keyframe (the rig is vertically centered via top:50% on its
-     parent). */
+  /* Supra accelerating drive-by — slow show-up over the first 2-3
+     seconds, then zooms past the screen and disappears. One-shot.
+     Ease: cubic-bezier(0.85, 0, 1, 0.45) holds the progress low for
+     most of the first half, then accelerates hard on the back end.
+     Y translate is baked in so it doesn't get overridden. */
   @keyframes car-drive-accel {
     0%   { transform: translate(-110%, -50%); }
     100% { transform: translate(100vw,  -50%); }
   }
   .car-drive-accel {
-    animation: car-drive-accel 9s cubic-bezier(.32, .9, .9, 1.4) forwards;
+    animation: car-drive-accel 5s cubic-bezier(0.85, 0, 1, 0.45) forwards;
   }
   @keyframes wheel-spin {
     to { transform: rotate(360deg); }
