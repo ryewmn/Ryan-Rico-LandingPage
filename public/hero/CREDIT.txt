@@ -14,3 +14,8 @@ gundam.jpg
   Source file: "RX-78-2 GUNDAM (9350224325).jpg"
   Cropped to 4:5 portrait. Placeholder; swap with a personal build
   photo when available.
+
+tundra.jpg
+  Third-gen Toyota Tundra TRD Pro on a snowy mountain road —
+  Wikimedia Commons (CC BY-SA)
+  Source file: "Third Gen Toyota Tundra TRD Pro on Snowy Mountain.jpg"

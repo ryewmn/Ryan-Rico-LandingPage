@@ -159,7 +159,7 @@ export function Projects() {
                   Shipped
                 </p>
                 <p className="mt-1 text-base font-semibold text-white leading-none">
-                  1 Live · 3 Building
+                  5 Live · 3 Building
                 </p>
               </div>
             </div>

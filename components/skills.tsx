@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Car, Code2 } from "lucide-react";
 import { SectionLabel } from "@/components/ui/section-label";
@@ -48,9 +49,22 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="relative bg-foreground/[0.015] py-28 md:py-36 border-t border-foreground/10"
+      className="relative bg-foreground/[0.015] py-28 md:py-36 border-t border-foreground/10 overflow-hidden"
     >
-      <div className="container">
+      {/* Tundra TRD Pro backdrop — washed out, anchors the right side */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+        <Image
+          src="/hero/tundra.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.20] dark:opacity-[0.30]"
+          style={{ objectPosition: "right center" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/45 via-transparent to-background/65" />
+      </div>
+      <div className="container relative">
         <div className="max-w-2xl mb-20">
           <SectionLabel>Skills</SectionLabel>
           <h2 className="mt-5 text-4xl md:text-5xl lg:text-[3.75rem] font-semibold tracking-[-0.025em] text-foreground leading-[1.02]">
