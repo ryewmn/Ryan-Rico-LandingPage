@@ -208,8 +208,8 @@
      in so the X keyframe doesn't override the centering. */
   @keyframes car-drive-accel {
     0%   { transform: translate(-20vw, -50%); }
-    50%  { transform: translate(35vw,  -50%); }
-    65%  { transform: translate(35vw,  -50%); }
+    50%  { transform: translate(5vw,   -50%); }
+    65%  { transform: translate(5vw,   -50%); }
     100% { transform: translate(120vw, -50%); }
   }
   .car-drive-accel {
