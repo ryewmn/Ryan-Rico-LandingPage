@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Bot, Instagram, LineChart, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -17,20 +18,17 @@ const areas: Area[] = [
   {
     icon: LineChart,
     title: "Dashboards",
-    description:
-      "Building dashboards for the sales floor — leaderboards, performance trackers, anything that gives the team a clearer signal of where the day is going.",
+    description: "Leaderboards and performance trackers for the sales floor.",
   },
   {
     icon: Bot,
     title: "AI Automation",
-    description:
-      "Wiring AI agents into the workflows that eat my team's day — lead workups, follow-up drafts, and the back-and-forth that doesn't need a human.",
+    description: "AI agents handling the back-and-forth that doesn't need a human.",
   },
   {
     icon: Wrench,
     title: "Building Gundams",
-    description:
-      "Off-the-clock Gunpla. Master Grades and Perfect Grades mostly — Real Grades and High Grades when I want a fast build. Posted on Instagram.",
+    description: "Off-the-clock Gunpla. Master and Perfect Grades mostly.",
     link: { href: SITE.instagram, label: SITE.instagramHandle },
   },
 ];
@@ -39,64 +37,96 @@ export function CurrentWork() {
   return (
     <section
       id="current-work"
-      className="relative bg-white/[0.015] py-24 md:py-32 overflow-hidden border-t border-white/10"
+      className="relative bg-foreground/[0.015] py-28 md:py-36 border-t border-foreground/10"
     >
-      <div className="container relative">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-          <div className="max-w-2xl">
-            <SectionLabel number="02">Current Work</SectionLabel>
-            <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-14 lg:gap-24">
+          {/* Photo column */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="relative order-2 lg:order-1 group"
+          >
+            <div className="relative p-2 rounded-xl border border-foreground/5 bg-foreground/[0.02]">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
+                <Image
+                  src="/hero/gundam.jpg"
+                  alt="RX-78-2 Gundam"
+                  fill
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className="object-cover transition-all duration-[1.2s] grayscale-[0.6] opacity-85 group-hover:grayscale-0 group-hover:opacity-100"
+                  style={{ objectPosition: "center" }}
+                />
+              </div>
+              {/* Floating accent — sticks out top-right like the reference */}
+              <div className="absolute top-10 -right-5 bg-toyota-red px-5 py-3.5 rounded shadow-2xl shadow-toyota-red/30 z-10">
+                <p className="text-[9px] font-mono uppercase tracking-[0.18em] text-white/70">
+                  After hours
+                </p>
+                <p className="mt-1 text-base font-semibold text-white leading-none">
+                  Gunpla
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Text column */}
+          <div className="order-1 lg:order-2">
+            <SectionLabel>Current Work</SectionLabel>
+            <h2 className="mt-5 text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-[-0.025em] text-foreground leading-[1.02]">
               Where I{" "}
-              <span className="font-display italic font-normal text-gradient-ember">
+              <span className="font-display italic font-normal text-foreground">
                 spend my time.
               </span>
             </h2>
-          </div>
-          <p className="text-base text-white/55 max-w-md">
-            A mix of code, AI, and building things with my hands. Most of the
-            satisfaction lives in the same place — making something work.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {areas.map((a, i) => {
-            const Icon = a.icon;
-            return (
-              <motion.article
-                key={a.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="group relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-7 transition-all hover:bg-white/[0.06] hover:border-white/20"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-toyota-red/15 text-toyota-red ring-1 ring-toyota-red/25 group-hover:bg-toyota-red group-hover:text-white group-hover:ring-toyota-red transition-colors">
-                  <Icon size={20} strokeWidth={2} />
-                </div>
-                <h3 className="mt-5 text-lg font-semibold tracking-tight text-white">
-                  {a.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">
-                  {a.description}
-                </p>
-                {a.link ? (
-                  <a
-                    href={a.link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-ember transition-colors"
+            <div className="mt-12 space-y-10">
+              {areas.map((a, i) => {
+                const Icon = a.icon;
+                return (
+                  <motion.div
+                    key={a.title}
+                    initial={{ opacity: 0, x: 16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.5, delay: i * 0.06 }}
+                    className="group border-l border-toyota-red/40 pl-7 md:pl-9"
                   >
-                    <Instagram size={14} />
-                    {a.link.label}
-                    <ArrowUpRight
-                      size={14}
-                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    />
-                  </a>
-                ) : null}
-              </motion.article>
-            );
-          })}
+                    <div className="flex items-center gap-2 mb-2">
+                      <Icon
+                        size={14}
+                        strokeWidth={2}
+                        className="text-toyota-red/70"
+                      />
+                      <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-muted-foreground">
+                        0{i + 1}
+                      </span>
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-medium tracking-[-0.01em] text-foreground group-hover:text-toyota-red transition-colors">
+                      {a.title}
+                    </h3>
+                    <p className="mt-2 text-sm md:text-base leading-relaxed text-foreground/65 max-w-md">
+                      {a.description}
+                    </p>
+                    {a.link ? (
+                      <a
+                        href={a.link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.18em] text-foreground/65 hover:text-toyota-red transition-colors"
+                      >
+                        <Instagram size={12} />
+                        {a.link.label}
+                        <ArrowUpRight size={12} />
+                      </a>
+                    ) : null}
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,8 +1,9 @@
 import dynamic from "next/dynamic";
 import { Navbar } from "@/components/navbar";
+import { HeaderCar } from "@/components/header-car";
 import { Hero } from "@/components/hero";
-import { TechMarquee } from "@/components/tech-marquee";
 import { About } from "@/components/about";
+import { Spotlight } from "@/components/spotlight";
 import { CurrentWork } from "@/components/current-work";
 import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
@@ -25,9 +26,10 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-background text-white">
       <Navbar />
+      <HeaderCar />
       <Hero />
-      <TechMarquee />
       <About />
+      <Spotlight />
       <CurrentWork />
       <Projects />
       <Skills />

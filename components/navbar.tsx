@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useActiveSection } from "@/components/use-active-section";
 import { ArrowPill } from "@/components/ui/arrow-pill";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { NAV_LINKS, SITE } from "@/lib/site-config";
 
 const NAV = NAV_LINKS.filter((l) => l.inNav);
@@ -29,9 +30,9 @@ export function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
-        "fixed top-0 inset-x-0 z-50 transition-all duration-500",
+        "fixed top-0 inset-x-0 z-50 transition-all duration-500 text-foreground",
         scrolled
-          ? "bg-neutral-950/60 backdrop-blur-xl border-b border-white/10"
+          ? "bg-background/70 backdrop-blur-xl border-b border-foreground/10"
           : "bg-transparent"
       )}
     >
@@ -47,7 +48,7 @@ export function Navbar() {
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-toyota-red to-ember text-white font-bold text-[13px] tracking-tight shadow-[0_4px_16px_rgba(235,10,30,0.4)]">
             {SITE.shortName}
           </span>
-          <span className="font-semibold tracking-tight text-white text-[15px]">
+          <span className="font-semibold tracking-tight text-foreground text-[15px]">
             {SITE.name}
           </span>
         </a>
@@ -62,7 +63,7 @@ export function Navbar() {
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
                     "px-3.5 py-2 text-[13.5px] font-medium rounded-full transition-colors",
-                    isActive ? "text-white" : "text-white/55 hover:text-white"
+                    isActive ? "text-foreground" : "text-foreground/65 hover:text-foreground"
                   )}
                 >
                   {link.label}
@@ -72,14 +73,15 @@ export function Navbar() {
           })}
         </ul>
 
-        <div className="hidden md:block shrink-0">
+        <div className="hidden md:flex items-center gap-3 shrink-0">
+          <ThemeToggle />
           <ArrowPill href="#contact" tone="light" size="sm">
             Get in touch
           </ArrowPill>
         </div>
 
         <button
-          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg text-white hover:bg-white/10"
+          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg text-foreground hover:bg-foreground/10"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
@@ -97,7 +99,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden overflow-hidden border-t border-white/10 bg-neutral-950/95 backdrop-blur-xl"
+            className="md:hidden overflow-hidden border-t border-foreground/10 bg-background/95 backdrop-blur-xl"
           >
             <ul className="container flex flex-col py-4">
               {NAV.map((link) => (
@@ -105,7 +107,7 @@ export function Navbar() {
                   <a
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block py-3 text-base font-medium text-white/80 hover:text-white"
+                    className="block py-3 text-base font-medium text-foreground/80 hover:text-foreground"
                   >
                     {link.label}
                   </a>

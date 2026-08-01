@@ -9,15 +9,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-toyota-red text-white hover:bg-toyota-red-dark shadow-red-glow hover:shadow-[0_12px_40px_rgba(235,10,30,0.28)] active:scale-[0.98]",
+          "bg-toyota-red text-foreground hover:bg-toyota-red-dark shadow-red-glow hover:shadow-[0_12px_40px_rgba(235,10,30,0.28)] active:scale-[0.98]",
         outline:
-          "border border-neutral-300 bg-white text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50 active:scale-[0.98]",
+          "border border-neutral-300 bg-foreground text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50 active:scale-[0.98]",
         ghost:
           "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900",
         dark:
-          "bg-neutral-900 text-white hover:bg-neutral-800 active:scale-[0.98]",
+          "bg-neutral-900 text-foreground hover:bg-neutral-800 active:scale-[0.98]",
         "outline-light":
-          "border border-white/20 bg-white/5 text-white backdrop-blur hover:bg-white/10 hover:border-white/40 active:scale-[0.98]",
+          "border border-foreground/20 bg-foreground/5 text-foreground backdrop-blur hover:bg-foreground/10 hover:border-foreground/40 active:scale-[0.98]",
       },
       size: {
         default: "h-11 px-6 py-2",

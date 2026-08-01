@@ -14,14 +14,15 @@ export const SITE = {
   email: "ryanchristopher.rico@gmail.com",
   phone: "(717) 781-4318",
   phoneTel: "+17177814318",
-  city: "Round Rock",
+  city: "Austin",
   region: "TX",
-  location: "Round Rock, TX",
+  location: "Austin, TX",
   github: "https://github.com/ryewmn",
   githubHandle: "@ryewmn",
   linkedin: "https://www.linkedin.com/in/ryanchristopherrico/",
   instagram: "https://www.instagram.com/builds.by.ryry/",
   instagramHandle: "@builds.by.ryry",
+  dealership: "https://www.roundrocktoyota.com/",
 } as const;
 
 export const NAV_LINKS = [

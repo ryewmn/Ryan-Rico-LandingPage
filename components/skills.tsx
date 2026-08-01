@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Car, Code2 } from "lucide-react";
 import { SectionLabel } from "@/components/ui/section-label";
+import { TechLogo } from "@/components/ui/tech-logo";
 
 type SkillGroup = {
   icon: typeof Car;
@@ -48,54 +50,65 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="relative bg-white/[0.015] py-24 md:py-32 overflow-hidden border-t border-white/10"
+      className="relative bg-foreground/[0.015] py-28 md:py-36 border-t border-foreground/10 overflow-hidden"
     >
+      {/* Tundra TRD Pro backdrop — washed out, anchors the right side */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+        <Image
+          src="/hero/tundra.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover drift opacity-[0.20] dark:opacity-[0.30]"
+          style={{ objectPosition: "right center" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/45 via-transparent to-background/65" />
+      </div>
       <div className="container relative">
-        <div className="max-w-2xl mb-16">
-          <SectionLabel number="04">Skills</SectionLabel>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.02em] text-white text-balance leading-[1.05]">
+        <div className="max-w-2xl mb-20">
+          <SectionLabel>Skills</SectionLabel>
+          <h2 className="mt-5 text-4xl md:text-5xl lg:text-[3.75rem] font-semibold tracking-[-0.025em] text-foreground leading-[1.02]">
             Two sides of the{" "}
-            <span className="font-display italic font-normal text-gradient-ember">
+            <span className="font-display italic font-normal text-foreground">
               same job.
             </span>
           </h2>
-          <p className="mt-4 text-lg text-white/55">
-            Years of automotive operations, paired with the software chops to
-            automate what shouldn&apos;t need a human anymore.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-16">
           {groups.map((g, i) => {
             const Icon = g.icon;
             return (
               <motion.div
                 key={g.title}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.55, delay: i * 0.06 }}
-                className="rounded-2xl border border-white/10 bg-white/[0.03] p-8"
               >
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-toyota-red/15 text-toyota-red ring-1 ring-toyota-red/25">
-                    <Icon size={22} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold tracking-tight text-white">
-                      {g.title}
-                    </h3>
-                    <p className="text-sm text-white/50">{g.description}</p>
-                  </div>
+                <div className="flex items-baseline gap-3 border-b border-foreground/10 pb-4">
+                  <Icon size={16} className="text-toyota-red/70" />
+                  <h3 className="text-xs font-mono uppercase tracking-[0.22em] text-foreground">
+                    {g.title}
+                  </h3>
                 </div>
-
-                <ul className="mt-7 grid grid-cols-2 gap-2">
+                <p className="mt-5 text-base text-foreground/65 max-w-md">
+                  {g.description}
+                </p>
+                <ul className="mt-6 columns-2 gap-x-8 space-y-2 text-[15px] text-foreground/80">
                   {g.items.map((item) => (
                     <li
                       key={item}
-                      className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.02] px-3 py-2 text-sm text-white/80"
+                      className="break-inside-avoid flex items-center gap-2.5"
                     >
-                      <span className="h-1.5 w-1.5 rounded-full bg-toyota-red" />
+                      {g.title === "Software" ? (
+                        <TechLogo
+                          name={item}
+                          size={14}
+                          className="shrink-0 text-foreground/70"
+                        />
+                      ) : null}
                       {item}
                     </li>
                   ))}

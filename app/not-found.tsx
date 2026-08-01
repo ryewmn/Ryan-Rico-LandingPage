@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen relative isolate flex items-center bg-background text-white overflow-hidden">
+    <main className="min-h-screen relative isolate flex items-center bg-background text-foreground overflow-hidden">
       <div
         aria-hidden="true"
         className="absolute inset-0 dot-grid mask-fade-y opacity-60"
@@ -17,13 +17,13 @@ export default function NotFound() {
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-toyota-red">
           [ 404 ] · Off the lot
         </p>
-        <h1 className="mt-5 text-6xl sm:text-7xl md:text-8xl lg:text-[120px] font-semibold tracking-[-0.03em] leading-[0.92] text-white">
+        <h1 className="mt-5 text-6xl sm:text-7xl md:text-8xl lg:text-[120px] font-semibold tracking-[-0.03em] leading-[0.92] text-foreground">
           Wrong{" "}
           <span className="font-display italic font-normal text-gradient-ember">
             turn.
           </span>
         </h1>
-        <p className="mt-6 max-w-xl text-lg text-white/55 leading-relaxed">
+        <p className="mt-6 max-w-xl text-lg text-foreground/65 leading-relaxed">
           This page isn&apos;t in the inventory. Maybe a typo, maybe it
           hasn&apos;t been built yet. Either way — let&apos;s get you back.
         </p>
