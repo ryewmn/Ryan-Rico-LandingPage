@@ -18,7 +18,9 @@ const chapters = [
   { id: "floor", label: "On the floor" },
   { id: "projects", label: "Selected work" },
   { id: "systems", label: "Systems" },
-  { id: "builds", label: "After hours" },
+  { id: "games", label: "Games" },
+  { id: "dogs", label: "The crew" },
+  { id: "builds", label: "Gunpla" },
   { id: "contact", label: "Say hi" },
 ] as const;
 
@@ -42,8 +44,9 @@ function FigureFrame({
   const Tag = onClick ? motion.button : motion.div;
 
   return (
-    <Tag
-      type={onClick ? "button" : undefined}
+    <motion.button
+      type="button"
+      disabled={!onClick}
       onClick={onClick}
       whileHover={onClick ? { scale: 1.008 } : undefined}
       whileTap={onClick ? { scale: 0.995 } : undefined}
@@ -103,7 +106,7 @@ function IntroFigure() {
           <span>rr-01</span>
         </div>
         <p className="mt-3 text-sm leading-relaxed text-white/75">
-          Dealership operations by day. Software, systems, and builds after hours.
+          Dealership operations by day. Software, games, dogs, and Gunpla after hours.
         </p>
       </motion.div>
 
@@ -455,6 +458,167 @@ function SystemsFigure() {
           <span className="p-3">tls <b className="block pt-1 font-normal text-white/70">on</b></span>
           <span className="border-l border-white/10 p-3">events <b className="block pt-1 font-normal text-white/70">{126 + scan * 7}</b></span>
           <span className="border-l border-white/10 p-3">alerts <b className="block pt-1 font-normal text-[#ff6673]">0</b></span>
+        </div>
+      </div>
+    </FigureFrame>
+  );
+}
+
+function GamingFigure() {
+  const modes = [
+    { label: "VALORANT", sub: "queue ready", score: "13 — 10" },
+    { label: "NIGHT MODE", sub: "one more game", score: "02:17 AM" },
+    { label: "LOCKED IN", sub: "comms on", score: "GG" },
+  ];
+  const [mode, setMode] = useState(0);
+  const selected = modes[mode];
+
+  return (
+    <FigureFrame
+      figure="FIG 05"
+      title="GAME SESSION"
+      action="click to change the session"
+      status={selected.sub}
+      onClick={() => setMode((value) => (value + 1) % modes.length)}
+    >
+      <div className="absolute inset-0 flex items-center justify-center p-8">
+        <div className="relative aspect-square w-full max-w-[360px]">
+          <motion.div
+            className="absolute inset-[12%] rounded-full border border-white/15"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.div
+            className="absolute inset-[24%] rounded-full border border-dashed border-white/10"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+          />
+
+          <div className="absolute left-1/2 top-1/2 h-28 w-px -translate-x-1/2 -translate-y-1/2 bg-white/20" />
+          <div className="absolute left-1/2 top-1/2 h-px w-28 -translate-x-1/2 -translate-y-1/2 bg-white/20" />
+          <motion.div
+            key={mode}
+            initial={{ scale: 1.7, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 border border-[#EB0A1E]"
+          />
+
+          <div className="absolute inset-x-0 top-0 flex items-start justify-between font-mono text-[8px] uppercase tracking-[0.16em] text-white/30">
+            <span>session / rr</span>
+            <span>fps online</span>
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selected.label}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="absolute inset-x-0 bottom-0 border border-white/15 bg-black/40 p-5 backdrop-blur-sm"
+            >
+              <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#ff6370]">
+                {selected.label}
+              </p>
+              <div className="mt-3 flex items-end justify-between gap-4">
+                <p className="text-xl font-medium tracking-tight text-white">
+                  {selected.sub}
+                </p>
+                <span className="font-mono text-sm text-white/50">{selected.score}</span>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+    </FigureFrame>
+  );
+}
+
+const dogs = [
+  { name: "Olly", breed: "Golden Retriever", code: "golden / 01", shape: "round" },
+  { name: "Molly", breed: "Golden Retriever", code: "golden / 02", shape: "round" },
+  { name: "Bruno", breed: "Dachshund", code: "doxie / 03", shape: "long" },
+];
+
+function DogsFigure() {
+  const [activeDog, setActiveDog] = useState(0);
+  const dog = dogs[activeDog];
+
+  return (
+    <FigureFrame
+      figure="FIG 06"
+      title="HOME CREW"
+      action="click for the next dog"
+      status={dog.name.toLowerCase()}
+      onClick={() => setActiveDog((value) => (value + 1) % dogs.length)}
+    >
+      <div className="absolute inset-0 p-7 sm:p-10">
+        <div className="flex items-center justify-between font-mono text-[8px] uppercase tracking-[0.16em] text-white/30">
+          <span>three dog household</span>
+          <span>{String(activeDog + 1).padStart(2, "0")} / 03</span>
+        </div>
+
+        <div className="relative mt-8 h-[265px]">
+          {dogs.map((item, index) => {
+            const offset = (index - activeDog + dogs.length) % dogs.length;
+            const isActive = index === activeDog;
+
+            return (
+              <motion.div
+                key={item.name}
+                className="absolute left-1/2 top-1/2 w-[78%] max-w-[330px] border border-white/15 bg-[#0d0d0d] p-5"
+                animate={{
+                  x: "-50%",
+                  y: isActive ? "-50%" : `calc(-50% + ${offset * 12}px)`,
+                  rotate: isActive ? 0 : offset === 1 ? 4 : -4,
+                  scale: isActive ? 1 : 0.94 - offset * 0.02,
+                  opacity: isActive ? 1 : 0.35,
+                  zIndex: isActive ? 20 : 10 - offset,
+                }}
+                transition={{ type: "spring", stiffness: 120, damping: 20 }}
+              >
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="font-mono text-[8px] uppercase tracking-[0.18em] text-white/28">
+                      {item.code}
+                    </p>
+                    <h3 className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-white">
+                      {item.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-white/45">{item.breed}</p>
+                  </div>
+
+                  <div className="relative h-24 w-28">
+                    <div
+                      className={`absolute bg-white/[0.055] ring-1 ring-white/20 ${
+                        item.shape === "long"
+                          ? "left-2 top-10 h-9 w-24 rounded-[45%]"
+                          : "left-6 top-7 h-14 w-16 rounded-[48%]"
+                      }`}
+                    />
+                    <div
+                      className={`absolute border border-white/25 bg-[#151515] ${
+                        item.shape === "long"
+                          ? "left-0 top-3 h-11 w-12 rounded-[48%]"
+                          : "left-5 top-0 h-14 w-14 rounded-[48%]"
+                      }`}
+                    >
+                      <span className="absolute left-[28%] top-[38%] h-1.5 w-1.5 rounded-full bg-[#EB0A1E]" />
+                      <span className="absolute right-[28%] top-[38%] h-1.5 w-1.5 rounded-full bg-[#EB0A1E]" />
+                    </div>
+                    <span className="absolute bottom-2 right-1 font-mono text-[8px] uppercase tracking-[0.12em] text-white/25">
+                      good dog
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-8 grid grid-cols-3 border-t border-white/10 pt-4 font-mono text-[8px] uppercase tracking-[0.13em] text-white/28">
+                  <span>status<b className="mt-1 block font-normal text-white/65">home</b></span>
+                  <span>priority<b className="mt-1 block font-normal text-white/65">snacks</b></span>
+                  <span>rating<b className="mt-1 block font-normal text-[#ff6370]">10/10</b></span>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </FigureFrame>
@@ -869,9 +1033,70 @@ export function EditorialPortfolio() {
       />
 
       <Chapter
-        id="builds"
+        id="games"
         index={4}
-        eyebrow="04 / after hours"
+        eyebrow="04 / gaming"
+        title={
+          <>
+            Sometimes I just
+            <br />
+            want to queue.
+          </>
+        }
+        body={
+          <>
+            <p>
+              Video games are the reset button after work and code. Valorant is
+              one of the games I keep coming back to, especially when I want
+              something competitive and mechanical.
+            </p>
+            <p>
+              I like the same thing in games that I like in software: feedback
+              that is immediate, controls that feel predictable, and small
+              adjustments that actually matter.
+            </p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-white/30">
+              Click the figure to rotate through the session.
+            </p>
+          </>
+        }
+        figure={<GamingFigure />}
+      />
+
+      <Chapter
+        id="dogs"
+        index={5}
+        eyebrow="05 / the crew"
+        title={
+          <>
+            Olly. Molly.
+            <br />
+            Bruno.
+          </>
+        }
+        body={
+          <>
+            <p>
+              Home is a three-dog operation. Olly and Molly are Golden
+              Retrievers. Bruno is the dachshund who somehow still manages to
+              take up the same amount of attention.
+            </p>
+            <p>
+              They are part of the site because they are a real part of my day,
+              not a random personality section added to a portfolio.
+            </p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-white/30">
+              Click the cards to cycle through the crew.
+            </p>
+          </>
+        }
+        figure={<DogsFigure />}
+      />
+
+      <Chapter
+        id="builds"
+        index={6}
+        eyebrow="06 / gunpla"
         title={
           <>
             I still like
@@ -907,7 +1132,7 @@ export function EditorialPortfolio() {
       <Chapter
         id="contact"
         index={5}
-        eyebrow="05 / say hi"
+        eyebrow="07 / say hi"
         title={
           <>
             Build something
