@@ -73,7 +73,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable}`}
+      className={`dark ${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable}`}
       suppressHydrationWarning
     >
       <head>
