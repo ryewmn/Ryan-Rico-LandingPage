@@ -47,9 +47,9 @@ function FigureFrame({
       onClick={onClick}
       whileHover={onClick ? { scale: 1.008 } : undefined}
       whileTap={onClick ? { scale: 0.995 } : undefined}
-      className="group relative block w-full overflow-hidden border border-white/20 bg-[#141414] text-left shadow-[0_30px_100px_rgba(0,0,0,0.35)]"
+      className="group relative block w-full overflow-hidden border border-white/20 bg-[#141414] text-left shadow-[0_30px_100px_rgba(0,0,0,0.35)] disabled:cursor-default"
     >
-      <div className="flex h-11 items-center justify-between border-b border-white/15 px-4 font-mono text-[10px] uppercase tracking-[0.19em] text-white/45 sm:px-5">
+      <div className="flex h-11 items-center justify-between border-b border-white/10 px-4 font-mono text-[10px] uppercase tracking-[0.19em] text-white/50 sm:px-5">
         <span>{figure}</span>
         <span>{title}</span>
       </div>
@@ -66,15 +66,15 @@ function FigureFrame({
       </div>
 
       {(action || status) && (
-        <div className="flex min-h-12 items-center justify-between gap-4 border-t border-white/15 px-4 font-mono text-[10px] uppercase tracking-[0.17em] sm:px-5">
-          <span className="text-white/38">{action}</span>
-          <span className="flex items-center gap-2 text-white/58">
+        <div className="flex min-h-12 items-center justify-between gap-4 border-t border-white/10 px-4 font-mono text-[10px] uppercase tracking-[0.17em] sm:px-5">
+          <span className="text-white/40">{action}</span>
+          <span className="flex items-center gap-2 text-white/60">
             <span className="h-1.5 w-1.5 rounded-full bg-[#EB0A1E] shadow-[0_0_14px_rgba(235,10,30,.9)]" />
             {status}
           </span>
         </div>
       )}
-    </Tag>
+    </motion.button>
   );
 }
 
@@ -93,21 +93,21 @@ function IntroFigure() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
 
       <motion.div
-        className="absolute bottom-6 left-6 right-6 border border-white/20 bg-black/45 p-4 backdrop-blur-md sm:bottom-8 sm:left-8 sm:right-auto sm:w-[280px]"
+        className="absolute bottom-6 left-6 right-6 border border-white/20 bg-black/40 p-4 backdrop-blur-md sm:bottom-8 sm:left-8 sm:right-auto sm:w-[280px]"
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35, duration: 0.7 }}
       >
-        <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.17em] text-white/45">
+        <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.17em] text-white/50">
           <span>signal</span>
           <span>rr-01</span>
         </div>
-        <p className="mt-3 text-sm leading-relaxed text-white/76">
+        <p className="mt-3 text-sm leading-relaxed text-white/75">
           Dealership operations by day. Software, systems, and builds after hours.
         </p>
       </motion.div>
 
-      <div className="absolute right-5 top-5 flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-white/45">
+      <div className="absolute right-5 top-5 flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">
         <span className="h-2 w-2 rounded-full border border-[#EB0A1E]">
           <span className="block h-full w-full animate-ping rounded-full bg-[#EB0A1E]/70" />
         </span>
@@ -156,7 +156,7 @@ function LeadFlowFigure() {
                 >
                   0{index + 1}
                 </motion.div>
-                <p className="mt-3 font-mono text-[8px] uppercase tracking-[0.14em] text-white/35">
+                <p className="mt-3 font-mono text-[8px] uppercase tracking-[0.14em] text-white/40">
                   {stage}
                 </p>
               </div>
@@ -173,7 +173,7 @@ function LeadFlowFigure() {
             >
               <div className="flex items-start justify-between">
                 <div>
-                  <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/35">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/40">
                     internet lead / 10482
                   </p>
                   <p className="mt-2 text-xl font-medium tracking-tight text-white">
@@ -185,10 +185,10 @@ function LeadFlowFigure() {
                 </span>
               </div>
 
-              <div className="mt-8 grid grid-cols-3 gap-2 border-t border-white/10 pt-4 font-mono text-[8px] uppercase tracking-[0.13em] text-white/35">
-                <span>source<br /><b className="mt-1 block font-normal text-white/68">web</b></span>
-                <span>response<br /><b className="mt-1 block font-normal text-white/68">02:14</b></span>
-                <span>owner<br /><b className="mt-1 block font-normal text-white/68">rr</b></span>
+              <div className="mt-8 grid grid-cols-3 gap-2 border-t border-white/10 pt-4 font-mono text-[8px] uppercase tracking-[0.13em] text-white/40">
+                <span>source<br /><b className="mt-1 block font-normal text-white/70">web</b></span>
+                <span>response<br /><b className="mt-1 block font-normal text-white/70">02:14</b></span>
+                <span>owner<br /><b className="mt-1 block font-normal text-white/70">rr</b></span>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -233,7 +233,7 @@ function LeaderboardFigure() {
       <div className="absolute inset-0 p-7 sm:p-10">
         <div className="flex items-center justify-between">
           <div>
-            <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/35">
+            <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/40">
               live floor snapshot
             </p>
             <p className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-white">
@@ -244,7 +244,7 @@ function LeaderboardFigure() {
             key={selected.label}
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
-            className="border border-[#EB0A1E]/35 bg-[#EB0A1E]/10 px-3 py-2 font-mono text-[9px] uppercase tracking-[0.16em] text-[#ff6270]"
+            className="border border-[#EB0A1E]/40 bg-[#EB0A1E]/10 px-3 py-2 font-mono text-[9px] uppercase tracking-[0.16em] text-[#ff6270]"
           >
             {selected.label}
           </motion.div>
@@ -254,8 +254,8 @@ function LeaderboardFigure() {
           {selected.values.map((value, index) => (
             <div key={selected.names[index]}>
               <div className="mb-2 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.14em]">
-                <span className="text-white/48">{selected.names[index]}</span>
-                <span className="text-white/72">{value}</span>
+                <span className="text-white/50">{selected.names[index]}</span>
+                <span className="text-white/70">{value}</span>
               </div>
               <div className="h-2 overflow-hidden bg-white/[0.055]">
                 <motion.div
@@ -269,7 +269,7 @@ function LeaderboardFigure() {
           ))}
         </div>
 
-        <div className="mt-10 grid grid-cols-3 border border-white/12 bg-black/20">
+        <div className="mt-10 grid grid-cols-3 border border-white/10 bg-black/20">
           {[
             ["refresh", "live"],
             ["source", "sales log"],
@@ -277,9 +277,9 @@ function LeaderboardFigure() {
           ].map(([label, value], index) => (
             <div
               key={label}
-              className={`p-3 ${index > 0 ? "border-l border-white/12" : ""}`}
+              className={`p-3 ${index > 0 ? "border-l border-white/10" : ""}`}
             >
-              <p className="font-mono text-[8px] uppercase tracking-[0.15em] text-white/28">
+              <p className="font-mono text-[8px] uppercase tracking-[0.15em] text-white/30">
                 {label}
               </p>
               <p className="mt-1 text-xs text-white/65">{value}</p>
@@ -333,7 +333,7 @@ function ProjectFigure() {
     >
       <div className="absolute inset-0 flex items-center justify-center p-8 sm:p-12">
         <div className="w-full max-w-[470px]">
-          <div className="mb-6 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.18em] text-white/32">
+          <div className="mb-6 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.18em] text-white/30">
             <span>selected work</span>
             <span>{project.state}</span>
           </div>
@@ -345,7 +345,7 @@ function ProjectFigure() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -18 }}
               transition={{ duration: 0.3 }}
-              className="border border-white/18 bg-[#0c0c0c] p-6 sm:p-8"
+              className="border border-white/20 bg-[#0c0c0c] p-6 sm:p-8"
             >
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#ff5362]">
                 {project.number}
@@ -353,10 +353,10 @@ function ProjectFigure() {
               <h3 className="mt-8 max-w-sm text-3xl font-semibold tracking-[-0.035em] text-white">
                 {project.title}
               </h3>
-              <p className="mt-5 max-w-md text-sm leading-6 text-white/52">
+              <p className="mt-5 max-w-md text-sm leading-6 text-white/50">
                 {project.note}
               </p>
-              <div className="mt-10 flex items-center justify-between border-t border-white/10 pt-4 font-mono text-[8px] uppercase tracking-[0.15em] text-white/28">
+              <div className="mt-10 flex items-center justify-between border-t border-white/10 pt-4 font-mono text-[8px] uppercase tracking-[0.15em] text-white/30">
                 <span>ryan rico / build log</span>
                 <span>{project.state}</span>
               </div>
@@ -451,10 +451,10 @@ function SystemsFigure() {
           ))}
         </svg>
 
-        <div className="absolute bottom-7 left-7 right-7 grid grid-cols-3 border border-white/12 bg-black/30 font-mono text-[8px] uppercase tracking-[0.14em] text-white/32 sm:left-10 sm:right-10">
+        <div className="absolute bottom-7 left-7 right-7 grid grid-cols-3 border border-white/10 bg-black/30 font-mono text-[8px] uppercase tracking-[0.14em] text-white/30 sm:left-10 sm:right-10">
           <span className="p-3">tls <b className="block pt-1 font-normal text-white/70">on</b></span>
-          <span className="border-l border-white/12 p-3">events <b className="block pt-1 font-normal text-white/70">{126 + scan * 7}</b></span>
-          <span className="border-l border-white/12 p-3">alerts <b className="block pt-1 font-normal text-[#ff6673]">0</b></span>
+          <span className="border-l border-white/10 p-3">events <b className="block pt-1 font-normal text-white/70">{126 + scan * 7}</b></span>
+          <span className="border-l border-white/10 p-3">alerts <b className="block pt-1 font-normal text-[#ff6673]">0</b></span>
         </div>
       </div>
     </FigureFrame>
@@ -549,7 +549,7 @@ function ContactFigure() {
       onClick={() => setSent((value) => !value)}
     >
       <div className="absolute inset-0 flex items-center justify-center p-8">
-        <div className="w-full max-w-[450px] border border-white/18 bg-[#0b0b0b] font-mono text-[11px] leading-7 text-white/46">
+        <div className="w-full max-w-[450px] border border-white/20 bg-[#0b0b0b] font-mono text-[11px] leading-7 text-white/50">
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 text-[9px] uppercase tracking-[0.16em]">
             <span>rr_terminal</span>
             <span className="text-[#ff5c6b]">online</span>
@@ -570,7 +570,7 @@ function ContactFigure() {
                 {sent ? "signal received. inbox ready." : "available for the right build."}
               </motion.p>
             </AnimatePresence>
-            <p className="mt-3"><span className="text-[#ff5c6b]">$</span> <span className="inline-block h-3 w-1.5 animate-pulse bg-white/55 align-middle" /></p>
+            <p className="mt-3"><span className="text-[#ff5c6b]">$</span> <span className="inline-block h-3 w-1.5 animate-pulse bg-white/60 align-middle" /></p>
           </div>
         </div>
       </div>
@@ -613,7 +613,7 @@ function Chapter({ id, eyebrow, title, body, figure, index, first }: ChapterProp
           transition={{ duration: 0.72, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
           className="order-1 max-w-[720px] lg:order-2"
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/34">
+          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/30">
             {eyebrow}
           </p>
           <h2
@@ -621,14 +621,14 @@ function Chapter({ id, eyebrow, title, body, figure, index, first }: ChapterProp
           >
             {title}
           </h2>
-          <div className="mt-8 max-w-[650px] space-y-5 text-[15px] leading-7 text-white/56 sm:text-[17px] sm:leading-8">
+          <div className="mt-8 max-w-[650px] space-y-5 text-[15px] leading-7 text-white/60 sm:text-[17px] sm:leading-8">
             {body}
           </div>
 
           {first && (
             <a
               href="#floor"
-              className="mt-12 inline-flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.2em] text-white/36 transition-colors hover:text-white/75"
+              className="mt-12 inline-flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-white/75"
             >
               Scroll
               <ArrowDown size={13} className="text-[#EB0A1E]" />
@@ -664,7 +664,7 @@ export function EditorialPortfolio() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#101010] text-white">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#101010]/82 backdrop-blur-xl">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#101010]/80 backdrop-blur-xl">
         <div className="mx-auto grid h-16 max-w-[1600px] grid-cols-[1fr_auto_1fr] items-center px-5 sm:px-8 lg:px-12 xl:px-16">
           <a
             href="#top"
@@ -673,7 +673,7 @@ export function EditorialPortfolio() {
             Ryan Rico
           </a>
 
-          <div className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/38">
+          <div className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">
             {String(active + 1).padStart(2, "0")} / {String(chapters.length).padStart(2, "0")}
           </div>
 
@@ -682,7 +682,7 @@ export function EditorialPortfolio() {
               href={SITE.github}
               target="_blank"
               rel="noreferrer"
-              className="hidden text-white/38 transition-colors hover:text-white sm:inline"
+              className="hidden text-white/40 transition-colors hover:text-white sm:inline"
             >
               GitHub
             </a>
@@ -690,7 +690,7 @@ export function EditorialPortfolio() {
               href={SITE.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="text-white/38 transition-colors hover:text-white"
+              className="text-white/40 transition-colors hover:text-white"
             >
               LinkedIn
             </a>
@@ -711,7 +711,7 @@ export function EditorialPortfolio() {
             className="group flex items-center justify-end gap-3"
           >
             <span
-              className={`pointer-events-none whitespace-nowrap font-mono text-[8px] uppercase tracking-[0.14em] transition-opacity ${active === index ? "text-white/45 opacity-100" : "text-white/25 opacity-0 group-hover:opacity-100"}`}
+              className={`pointer-events-none whitespace-nowrap font-mono text-[8px] uppercase tracking-[0.14em] transition-opacity ${active === index ? "text-white/50 opacity-100" : "text-white/25 opacity-0 group-hover:opacity-100"}`}
             >
               {chapter.label}
             </span>
@@ -751,7 +751,7 @@ export function EditorialPortfolio() {
               automation, internal tools, and AI-assisted systems are where my
               dealership experience and technical work meet.
             </p>
-            <div className="flex flex-wrap gap-x-5 gap-y-2 pt-2 font-mono text-[9px] uppercase tracking-[0.17em] text-white/35">
+            <div className="flex flex-wrap gap-x-5 gap-y-2 pt-2 font-mono text-[9px] uppercase tracking-[0.17em] text-white/40">
               <a href={SITE.github} target="_blank" rel="noreferrer" className="hover:text-white/75">GitHub</a>
               <a href={SITE.linkedin} target="_blank" rel="noreferrer" className="hover:text-white/75">LinkedIn</a>
               <a href={SITE.instagram} target="_blank" rel="noreferrer" className="hover:text-white/75">Builds</a>
@@ -784,7 +784,7 @@ export function EditorialPortfolio() {
               follow-up, vehicle availability, and helping customers move from
               a message to a real visit without losing context.
             </p>
-            <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-white/34">
+            <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-white/30">
               Click the figure to move the lead through the funnel.
             </p>
           </>
@@ -819,7 +819,7 @@ export function EditorialPortfolio() {
               href="https://github.com/ryewmn/ROUND-ROCK-TOYOTA-LEADERBOARD"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 pt-2 font-mono text-[9px] uppercase tracking-[0.18em] text-white/45 hover:text-white"
+              className="inline-flex items-center gap-2 pt-2 font-mono text-[9px] uppercase tracking-[0.18em] text-white/50 hover:text-white"
             >
               Open flagship project <ArrowUpRight size={12} className="text-[#EB0A1E]" />
             </a>
@@ -858,7 +858,7 @@ export function EditorialPortfolio() {
               boundaries, reliable logs, and predictable failure modes matter
               as much as the interface.
             </p>
-            <div className="grid max-w-lg grid-cols-2 gap-x-8 gap-y-3 pt-3 font-mono text-[9px] uppercase tracking-[0.15em] text-white/36 sm:grid-cols-3">
+            <div className="grid max-w-lg grid-cols-2 gap-x-8 gap-y-3 pt-3 font-mono text-[9px] uppercase tracking-[0.15em] text-white/40 sm:grid-cols-3">
               {["Next.js", "React", "TypeScript", "Python", "GitHub", "Cloud", "APIs", "Automation", "Security"].map((skill) => (
                 <span key={skill}>{skill}</span>
               ))}
@@ -895,7 +895,7 @@ export function EditorialPortfolio() {
               href={SITE.instagram}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 pt-2 font-mono text-[9px] uppercase tracking-[0.18em] text-white/45 hover:text-white"
+              className="inline-flex items-center gap-2 pt-2 font-mono text-[9px] uppercase tracking-[0.18em] text-white/50 hover:text-white"
             >
               {SITE.instagramHandle} <ArrowUpRight size={12} className="text-[#EB0A1E]" />
             </a>
@@ -926,7 +926,7 @@ export function EditorialPortfolio() {
             <div className="grid gap-3 pt-4 sm:grid-cols-2">
               <a
                 href={`mailto:${SITE.email}`}
-                className="group flex items-center justify-between border border-white/15 px-4 py-4 text-sm text-white/68 transition hover:border-white/30 hover:bg-white/[0.03] hover:text-white"
+                className="group flex items-center justify-between border border-white/10 px-4 py-4 text-sm text-white/70 transition hover:border-white/30 hover:bg-white/[0.03] hover:text-white"
               >
                 <span className="flex items-center gap-3"><Mail size={15} className="text-[#EB0A1E]" /> Email</span>
                 <ArrowUpRight size={14} className="opacity-35 transition group-hover:opacity-100" />
@@ -935,7 +935,7 @@ export function EditorialPortfolio() {
                 href={SITE.github}
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center justify-between border border-white/15 px-4 py-4 text-sm text-white/68 transition hover:border-white/30 hover:bg-white/[0.03] hover:text-white"
+                className="group flex items-center justify-between border border-white/10 px-4 py-4 text-sm text-white/70 transition hover:border-white/30 hover:bg-white/[0.03] hover:text-white"
               >
                 <span className="flex items-center gap-3"><Github size={15} className="text-[#EB0A1E]" /> GitHub</span>
                 <ArrowUpRight size={14} className="opacity-35 transition group-hover:opacity-100" />
@@ -944,12 +944,12 @@ export function EditorialPortfolio() {
                 href={SITE.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center justify-between border border-white/15 px-4 py-4 text-sm text-white/68 transition hover:border-white/30 hover:bg-white/[0.03] hover:text-white"
+                className="group flex items-center justify-between border border-white/10 px-4 py-4 text-sm text-white/70 transition hover:border-white/30 hover:bg-white/[0.03] hover:text-white"
               >
                 <span className="flex items-center gap-3"><Linkedin size={15} className="text-[#EB0A1E]" /> LinkedIn</span>
                 <ArrowUpRight size={14} className="opacity-35 transition group-hover:opacity-100" />
               </a>
-              <div className="flex items-center gap-3 border border-white/10 px-4 py-4 text-sm text-white/46">
+              <div className="flex items-center gap-3 border border-white/10 px-4 py-4 text-sm text-white/50">
                 <MapPin size={15} className="text-[#EB0A1E]" /> {SITE.location}
               </div>
             </div>
@@ -959,7 +959,7 @@ export function EditorialPortfolio() {
       />
 
       <footer className="border-t border-white/10 px-5 py-8 sm:px-8 lg:px-12 xl:px-16">
-        <div className="mx-auto flex max-w-[1440px] flex-col gap-3 font-mono text-[8px] uppercase tracking-[0.16em] text-white/26 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto flex max-w-[1440px] flex-col gap-3 font-mono text-[8px] uppercase tracking-[0.16em] text-white/30 sm:flex-row sm:items-center sm:justify-between">
           <span>Ryan Rico / {new Date().getFullYear()}</span>
           <span>BDC Sales · Software · Builds</span>
         </div>
