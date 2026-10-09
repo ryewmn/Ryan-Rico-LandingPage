@@ -159,7 +159,7 @@ function LeadFlowFigure() {
   return (
     <FigureFrame
       figure="FIG 01"
-      title="LEAD FLOW"
+      title="BDC LEAD WORKFLOW"
       action="click to advance the lead"
       status={stage.label}
       onClick={() => setStep((value) => (value + 1) % stages.length)}
@@ -590,7 +590,7 @@ function DogsFigure() {
   return (
     <FigureFrame
       figure="FIG 06"
-      title="HOME CREW"
+      title="OLLY · MOLLY · BRUNO"
       action="click to rotate the crew"
       status={dog.name.toLowerCase()}
       onClick={() => setActiveDog((value) => (value + 1) % dogs.length)}
