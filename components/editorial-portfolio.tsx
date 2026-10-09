@@ -121,30 +121,62 @@ function IntroFigure() {
 }
 
 function LeadFlowFigure() {
-  const stages = ["new lead", "appointment", "show", "delivered"];
+  const stages = [
+    {
+      label: "new lead",
+      title: "Lead received",
+      note: "A new internet inquiry hits the queue. First job: understand the customer, the vehicle, and how fast we need to respond.",
+      meta: [["source", "web"], ["response", "02:14"], ["next", "contact"]],
+    },
+    {
+      label: "contacted",
+      title: "Conversation started",
+      note: "The lead becomes a real conversation. Questions get answered, availability gets checked, and the next step gets clear.",
+      meta: [["channel", "phone / text"], ["status", "engaged"], ["next", "appointment"]],
+    },
+    {
+      label: "appointment",
+      title: "Appointment set",
+      note: "Time is locked in. Vehicle, customer notes, and expectations are lined up before they arrive.",
+      meta: [["visit", "scheduled"], ["vehicle", "confirmed"], ["next", "show"]],
+    },
+    {
+      label: "show",
+      title: "Customer on site",
+      note: "The handoff matters here. The floor gets the context so the customer does not have to restart the conversation.",
+      meta: [["arrival", "checked in"], ["handoff", "complete"], ["next", "deal"]],
+    },
+    {
+      label: "delivered",
+      title: "Vehicle delivered",
+      note: "The lead closes as a delivered customer. The useful part is the full trail from first message to final handoff.",
+      meta: [["result", "delivered"], ["journey", "complete"], ["next", "follow-up"]],
+    },
+  ];
   const [step, setStep] = useState(0);
+  const stage = stages[step];
 
   return (
     <FigureFrame
       figure="FIG 01"
       title="LEAD FLOW"
-      action="click to advance the customer"
-      status={stages[step]}
+      action="click to advance the lead"
+      status={stage.label}
       onClick={() => setStep((value) => (value + 1) % stages.length)}
     >
-      <div className="absolute inset-0 flex items-center justify-center p-8 sm:p-12">
-        <div className="relative w-full max-w-[470px]">
-          <div className="absolute left-8 right-8 top-[42px] h-px bg-white/15" />
+      <div className="absolute inset-0 flex items-center justify-center p-6 sm:p-10">
+        <div className="relative w-full max-w-[500px]">
+          <div className="absolute left-6 right-6 top-[39px] h-px bg-white/15" />
           <motion.div
-            className="absolute left-8 top-[40px] h-[3px] bg-[#EB0A1E]"
+            className="absolute left-6 top-[38px] h-[2px] bg-[#EB0A1E]"
             animate={{ width: `${(step / (stages.length - 1)) * 100}%` }}
             transition={{ type: "spring", stiffness: 130, damping: 22 }}
-            style={{ maxWidth: "calc(100% - 4rem)" }}
+            style={{ maxWidth: "calc(100% - 3rem)" }}
           />
 
-          <div className="relative grid grid-cols-4 gap-2">
-            {stages.map((stage, index) => (
-              <div key={stage} className="text-center">
+          <div className="relative grid grid-cols-5 gap-1">
+            {stages.map((item, index) => (
+              <div key={item.label} className="text-center">
                 <motion.div
                   className="mx-auto flex h-7 w-7 items-center justify-center rounded-full border font-mono text-[9px]"
                   animate={{
@@ -159,8 +191,8 @@ function LeadFlowFigure() {
                 >
                   0{index + 1}
                 </motion.div>
-                <p className="mt-3 font-mono text-[8px] uppercase tracking-[0.14em] text-white/40">
-                  {stage}
+                <p className="mt-3 font-mono text-[7px] uppercase tracking-[0.12em] text-white/40 sm:text-[8px]">
+                  {item.label}
                 </p>
               </div>
             ))}
@@ -168,30 +200,42 @@ function LeadFlowFigure() {
 
           <AnimatePresence mode="wait">
             <motion.div
-              key={step}
-              initial={{ opacity: 0, y: 14, rotate: -0.4 }}
+              key={stage.label}
+              initial={{ opacity: 0, y: 14, rotate: -0.35 }}
               animate={{ opacity: 1, y: 0, rotate: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              className="mx-auto mt-16 w-[88%] border border-white/20 bg-[#0d0d0d] p-5 shadow-2xl"
+              className="mx-auto mt-12 w-[94%] border border-white/20 bg-[#0d0d0d] p-5 shadow-2xl sm:p-6"
             >
-              <div className="flex items-start justify-between">
+              <div className="flex items-start justify-between gap-5">
                 <div>
-                  <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/40">
-                    internet lead / 10482
+                  <p className="font-mono text-[8px] uppercase tracking-[0.18em] text-white/35">
+                    bdc workflow / stage {String(step + 1).padStart(2, "0")}
                   </p>
-                  <p className="mt-2 text-xl font-medium tracking-tight text-white">
-                    Customer journey
+                  <p className="mt-2 text-xl font-medium tracking-tight text-white sm:text-2xl">
+                    {stage.title}
                   </p>
                 </div>
-                <span className="rounded-full border border-[#EB0A1E]/40 px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.16em] text-[#ff5b69]">
-                  {stages[step]}
+                <span className="shrink-0 rounded-full border border-[#EB0A1E]/40 px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.16em] text-[#ff5b69]">
+                  {stage.label}
                 </span>
               </div>
 
-              <div className="mt-8 grid grid-cols-3 gap-2 border-t border-white/10 pt-4 font-mono text-[8px] uppercase tracking-[0.13em] text-white/40">
-                <span>source<br /><b className="mt-1 block font-normal text-white/70">web</b></span>
-                <span>response<br /><b className="mt-1 block font-normal text-white/70">02:14</b></span>
-                <span>owner<br /><b className="mt-1 block font-normal text-white/70">rr</b></span>
+              <motion.p
+                key={`${stage.label}-note`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="mt-5 max-w-md text-sm leading-6 text-white/48"
+              >
+                {stage.note}
+              </motion.p>
+
+              <div className="mt-6 grid grid-cols-3 gap-2 border-t border-white/10 pt-4 font-mono text-[8px] uppercase tracking-[0.12em] text-white/35">
+                {stage.meta.map(([label, value]) => (
+                  <span key={label}>
+                    {label}
+                    <b className="mt-1 block font-normal text-white/70">{value}</b>
+                  </span>
+                ))}
               </div>
             </motion.div>
           </AnimatePresence>
@@ -534,9 +578,9 @@ function GamingFigure() {
 }
 
 const dogs = [
-  { name: "Olly", breed: "Golden Retriever", code: "golden / 01", shape: "round" },
-  { name: "Molly", breed: "Golden Retriever", code: "golden / 02", shape: "round" },
-  { name: "Bruno", breed: "Dachshund", code: "doxie / 03", shape: "long" },
+  { name: "Olly", breed: "Golden Retriever", code: "golden / 01", type: "retriever", slot: "01" },
+  { name: "Molly", breed: "Golden Retriever", code: "golden / 02", type: "retriever", slot: "02" },
+  { name: "Bruno", breed: "Dachshund", code: "doxie / 03", type: "dachshund", slot: "03" },
 ];
 
 function DogsFigure() {
@@ -547,78 +591,139 @@ function DogsFigure() {
     <FigureFrame
       figure="FIG 06"
       title="HOME CREW"
-      action="click for the next dog"
+      action="click to rotate the crew"
       status={dog.name.toLowerCase()}
       onClick={() => setActiveDog((value) => (value + 1) % dogs.length)}
     >
-      <div className="absolute inset-0 p-7 sm:p-10">
+      <div className="absolute inset-0 p-5 sm:p-8">
         <div className="flex items-center justify-between font-mono text-[8px] uppercase tracking-[0.16em] text-white/30">
-          <span>three dog household</span>
-          <span>{String(activeDog + 1).padStart(2, "0")} / 03</span>
+          <span>pack roster / 03</span>
+          <span>active {dog.slot}</span>
         </div>
 
-        <div className="relative mt-8 h-[265px]">
-          {dogs.map((item, index) => {
-            const offset = (index - activeDog + dogs.length) % dogs.length;
-            const isActive = index === activeDog;
-
-            return (
+        <div className="mt-5 grid h-[310px] grid-cols-[92px_1fr] gap-4 sm:grid-cols-[110px_1fr]">
+          <div className="flex flex-col gap-2">
+            {dogs.map((item, index) => (
               <motion.div
                 key={item.name}
-                className="absolute left-1/2 top-1/2 w-[78%] max-w-[330px] border border-white/15 bg-[#0d0d0d] p-5"
                 animate={{
-                  x: "-50%",
-                  y: isActive ? "-50%" : `calc(-50% + ${offset * 12}px)`,
-                  rotate: isActive ? 0 : offset === 1 ? 4 : -4,
-                  scale: isActive ? 1 : 0.94 - offset * 0.02,
-                  opacity: isActive ? 1 : 0.35,
-                  zIndex: isActive ? 20 : 10 - offset,
+                  borderColor: index === activeDog ? "rgba(235,10,30,.8)" : "rgba(255,255,255,.10)",
+                  backgroundColor: index === activeDog ? "rgba(235,10,30,.08)" : "rgba(255,255,255,.015)",
                 }}
-                transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                className="border p-3"
               >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="font-mono text-[8px] uppercase tracking-[0.18em] text-white/28">
-                      {item.code}
+                <p className="font-mono text-[7px] uppercase tracking-[0.14em] text-white/28">
+                  {item.slot}
+                </p>
+                <p className={`mt-1 text-sm font-medium ${index === activeDog ? "text-white" : "text-white/38"}`}>
+                  {item.name}
+                </p>
+              </motion.div>
+            ))}
+
+            <div className="mt-auto border-t border-white/10 pt-3 font-mono text-[7px] uppercase tracking-[0.14em] text-white/22">
+              home crew
+              <span className="mt-1 block text-white/45">3 online</span>
+            </div>
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={dog.name}
+              initial={{ opacity: 0, x: 18, rotate: 0.4 }}
+              animate={{ opacity: 1, x: 0, rotate: 0 }}
+              exit={{ opacity: 0, x: -14 }}
+              transition={{ duration: 0.28 }}
+              className="relative overflow-hidden border border-white/15 bg-[#0c0c0c] p-5 sm:p-6"
+            >
+              <div className="absolute right-4 top-4 font-mono text-[7px] uppercase tracking-[0.14em] text-white/20">
+                rr-home / {dog.slot}
+              </div>
+
+              <div className="grid h-full grid-rows-[1fr_auto]">
+                <div className="relative">
+                  <div className="absolute left-0 top-0">
+                    <p className="font-mono text-[8px] uppercase tracking-[0.18em] text-[#ff6370]">
+                      {dog.code}
                     </p>
-                    <h3 className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-white">
-                      {item.name}
+                    <h3 className="mt-2 text-3xl font-semibold tracking-[-0.045em] text-white sm:text-4xl">
+                      {dog.name}
                     </h3>
-                    <p className="mt-1 text-sm text-white/45">{item.breed}</p>
+                    <p className="mt-1 text-sm text-white/45">{dog.breed}</p>
                   </div>
 
-                  <div className="relative h-24 w-28">
-                    <div
-                      className={`absolute bg-white/[0.055] ring-1 ring-white/20 ${
-                        item.shape === "long"
-                          ? "left-2 top-10 h-9 w-24 rounded-[45%]"
-                          : "left-6 top-7 h-14 w-16 rounded-[48%]"
-                      }`}
+                  <div className="absolute bottom-2 right-0 h-[150px] w-[190px] sm:h-[170px] sm:w-[220px]">
+                    <motion.div
+                      className="absolute inset-0 rounded-full border border-white/[0.07]"
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
                     />
-                    <div
-                      className={`absolute border border-white/25 bg-[#151515] ${
-                        item.shape === "long"
-                          ? "left-0 top-3 h-11 w-12 rounded-[48%]"
-                          : "left-5 top-0 h-14 w-14 rounded-[48%]"
-                      }`}
-                    >
-                      <span className="absolute left-[28%] top-[38%] h-1.5 w-1.5 rounded-full bg-[#EB0A1E]" />
-                      <span className="absolute right-[28%] top-[38%] h-1.5 w-1.5 rounded-full bg-[#EB0A1E]" />
-                    </div>
-                    <span className="absolute bottom-2 right-1 font-mono text-[8px] uppercase tracking-[0.12em] text-white/25">
-                      good dog
+                    <motion.div
+                      className="absolute inset-[18%] rounded-full border border-dashed border-white/[0.07]"
+                      animate={{ rotate: -360 }}
+                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    />
+
+                    {dog.type === "dachshund" ? (
+                      <>
+                        <motion.div
+                          initial={{ scaleX: 0.7 }}
+                          animate={{ scaleX: 1 }}
+                          className="absolute bottom-[42px] right-[20px] h-[42px] w-[135px] rounded-[48%] border border-white/25 bg-white/[0.045]"
+                        />
+                        <div className="absolute bottom-[55px] left-[18px] h-[58px] w-[62px] rounded-[48%] border border-white/28 bg-[#141414]">
+                          <span className="absolute left-[28%] top-[38%] h-1.5 w-1.5 rounded-full bg-[#EB0A1E]" />
+                          <span className="absolute right-[28%] top-[38%] h-1.5 w-1.5 rounded-full bg-[#EB0A1E]" />
+                          <span className="absolute -left-2 top-2 h-8 w-3 rotate-[-18deg] rounded-full border border-white/20" />
+                          <span className="absolute -right-2 top-2 h-8 w-3 rotate-[18deg] rounded-full border border-white/20" />
+                        </div>
+                        <span className="absolute bottom-[26px] right-[42px] h-6 w-px bg-white/20" />
+                        <span className="absolute bottom-[26px] right-[105px] h-6 w-px bg-white/20" />
+                      </>
+                    ) : (
+                      <>
+                        <motion.div
+                          initial={{ scale: 0.86 }}
+                          animate={{ scale: 1 }}
+                          className="absolute bottom-[35px] right-[28px] h-[88px] w-[100px] rounded-[45%] border border-white/25 bg-white/[0.045]"
+                        />
+                        <div className="absolute bottom-[90px] left-[28px] h-[74px] w-[78px] rounded-[48%] border border-white/28 bg-[#141414]">
+                          <span className="absolute left-[28%] top-[38%] h-1.5 w-1.5 rounded-full bg-[#EB0A1E]" />
+                          <span className="absolute right-[28%] top-[38%] h-1.5 w-1.5 rounded-full bg-[#EB0A1E]" />
+                          <span className="absolute -left-3 top-1 h-12 w-5 rotate-[15deg] rounded-full border border-white/18" />
+                          <span className="absolute -right-3 top-1 h-12 w-5 rotate-[-15deg] rounded-full border border-white/18" />
+                        </div>
+                        <span className="absolute bottom-[19px] right-[45px] h-8 w-px bg-white/20" />
+                        <span className="absolute bottom-[19px] right-[95px] h-8 w-px bg-white/20" />
+                      </>
+                    )}
+
+                    <span className="absolute bottom-0 right-0 font-mono text-[7px] uppercase tracking-[0.14em] text-white/22">
+                      schematic portrait
                     </span>
                   </div>
                 </div>
 
-                <div className="mt-8 grid grid-cols-3 border-t border-white/10 pt-4 font-mono text-[8px] uppercase tracking-[0.13em] text-white/28">
-                  <span>status<b className="mt-1 block font-normal text-white/65">home</b></span>
-                  <span>priority<b className="mt-1 block font-normal text-white/65">snacks</b></span>
-                  <span>rating<b className="mt-1 block font-normal text-[#ff6370]">10/10</b></span>
+                <div>
+                  <div className="grid grid-cols-3 border-t border-white/10 pt-4 font-mono text-[8px] uppercase tracking-[0.12em] text-white/28">
+                    <span>breed<b className="mt-1 block font-normal text-white/68">{dog.breed}</b></span>
+                    <span>crew slot<b className="mt-1 block font-normal text-white/68">{dog.slot} / 03</b></span>
+                    <span>status<b className="mt-1 block font-normal text-[#ff6370]">home</b></span>
+                  </div>
+
+                  <div className="mt-4 flex items-center gap-2">
+                    {dogs.map((item, index) => (
+                      <motion.span
+                        key={item.name}
+                        animate={{ width: index === activeDog ? 28 : 8 }}
+                        className={`h-px ${index === activeDog ? "bg-[#EB0A1E]" : "bg-white/15"}`}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </motion.div>
-            );
-          })}
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </FigureFrame>
@@ -1077,16 +1182,16 @@ export function EditorialPortfolio() {
         body={
           <>
             <p>
-              Home is a three-dog operation. Olly and Molly are Golden
-              Retrievers. Bruno is the dachshund who somehow still manages to
-              take up the same amount of attention.
+              Olly and Molly are the two Goldens. Bruno is the dachshund.
+              They are the part of home that has nothing to do with dashboards,
+              lead counts, code, or whatever I am building that week.
             </p>
             <p>
-              They are part of the site because they are a real part of my day,
-              not a random personality section added to a portfolio.
+              I wanted them here because this site should feel like me, not
+              just a cleaner version of a resume.
             </p>
             <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-white/30">
-              Click the cards to cycle through the crew.
+              Click the figure to rotate through Olly, Molly, and Bruno.
             </p>
           </>
         }
